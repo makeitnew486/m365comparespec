@@ -541,12 +541,17 @@
 
   /* === BIG COMPARISON TABLE === */
   .table-wrap {
-    overflow-x: auto;
     border: 1px solid var(--hairline);
     border-radius: 16px;
     background: white;
     margin-bottom: 16px;
-    -webkit-overflow-scrolling: touch;
+  }
+  @media (max-width: 1023px) {
+    /* 좁은 화면에서만 가로 스크롤 활성화 — 데스크탑에선 sticky thead가 viewport에 정상 고정되도록 overflow 제거 */
+    .table-wrap {
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
   }
   .big-table {
     width: 100%; border-collapse: separate;
