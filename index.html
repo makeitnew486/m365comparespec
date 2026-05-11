@@ -52,7 +52,8 @@
     height: 80px;
     display: flex; align-items: center; justify-content: space-between; gap: 32px;
   }
-  .logo-wrap { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
+  .logo-wrap { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; cursor: pointer; user-select: none; }
+  .logo-wrap:hover .logo { opacity: 0.85; }
   .logo {
     font-size: 28px; letter-spacing: -1px;
     color: var(--rausch); line-height: 1;
@@ -830,7 +831,7 @@
 
 <header class="top-nav">
   <div class="nav-inner container">
-    <div class="logo-wrap">
+    <div class="logo-wrap" onclick="showTab('overview')" role="button" tabindex="0" onkeydown="if(event.key==='Enter'||event.key===' '){event.preventDefault();showTab('overview');}">
       <span class="logo">FBKR</span>
       <span class="logo-sub">Microsoft 365 영업 가이드</span>
     </div>
