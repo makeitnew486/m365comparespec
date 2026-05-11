@@ -12,3 +12,6 @@ desktop.ini
 # Backups
 *.bak
 *.orig
+
+# Working sandbox (mirrored to root/index.html when ready)
+Output/

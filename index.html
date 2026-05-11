@@ -1,957 +1,1740 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>M365 영업 가이드</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&display=swap" rel="stylesheet">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FBKR · Microsoft 365 영업 가이드</title>
+<link rel="stylesheet" type="text/css" href="https://hangeul.pstatic.net/hangeul_static/css/nanum-square-neo.css">
 <style>
-  * { margin: 0; padding: 0; box-sizing: border-box; }
+  * {
+    font-family: 'NanumSquareNeo-Variable', 'NanumSquareNeo', 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
+    font-weight: 700 !important;
+    box-sizing: border-box;
+    margin: 0; padding: 0;
+  }
   :root {
-    --blue: #0078d4; --blue-light: #50a8f0; --blue-pale: #e8f3fb;
-    --green: #107c10; --orange: #ff8c00; --purple: #6b2fa0;
-    --gray: #f4f6f8; --text: #1a1a2e; --text-sub: #5a6678;
-    --shadow: 0 2px 12px rgba(0,120,212,0.10); --radius: 16px;
+    --rausch: #ff385c;
+    --rausch-deep: #e00b41;
+    --ink: #222222;
+    --body: #3f3f3f;
+    --muted: #6a6a6a;
+    --muted-soft: #929292;
+    --hairline: #dddddd;
+    --hairline-soft: #ebebeb;
+    --surface-soft: #f7f7f7;
+    --surface-strong: #f2f2f2;
+    --success: #2e7d32;
   }
-  body { font-family: 'Noto Sans KR', sans-serif; background: #f0f6ff; color: var(--text); min-height: 100vh; }
+  html, body {
+    color: var(--ink); background: white;
+    font-size: 16px; line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    min-height: 100vh;
+  }
+  button { cursor: pointer; border: 0; background: none; color: inherit; }
+  a { color: inherit; text-decoration: none; }
+  a:hover { text-decoration: underline; text-underline-offset: 3px; }
+  ul { list-style: none; }
 
-  nav {
-    background: #fff; border-bottom: 2px solid var(--blue-pale);
-    padding: 0 20px; display: flex; align-items: center; gap: 6px;
-    position: sticky; top: 0; z-index: 100;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06); height: 56px;
-    overflow-x: auto; white-space: nowrap;
-  }
-  nav .logo { font-size: 16px; font-weight: 900; color: var(--blue); margin-right: 12px; flex-shrink: 0; }
-  nav button {
-    background: none; border: none; padding: 6px 14px; border-radius: 20px;
-    font-size: 13px; font-family: inherit; font-weight: 500; cursor: pointer;
-    color: var(--text-sub); transition: all 0.18s; flex-shrink: 0;
-  }
-  nav button.active, nav button:hover { background: var(--blue); color: white; }
+  /* === CONTAINER === */
+  .container { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+  @media (max-width: 1024px) { .container { padding: 0 24px; } }
+  @media (max-width: 768px) { .container { padding: 0 16px; } }
 
-  main { max-width: 980px; margin: 0 auto; padding: 24px 14px 56px; }
-  .section { display: none; }
+  /* === TOP NAV === */
+  header.top-nav {
+    position: sticky; top: 0; z-index: 30;
+    background: white;
+    border-bottom: 1px solid var(--hairline);
+  }
+  .nav-inner {
+    height: 80px;
+    display: flex; align-items: center; justify-content: space-between; gap: 32px;
+  }
+  .logo-wrap { display: flex; align-items: baseline; gap: 12px; flex-shrink: 0; }
+  .logo {
+    font-size: 28px; letter-spacing: -1px;
+    color: var(--rausch); line-height: 1;
+  }
+  .logo-sub { font-size: 13px; color: var(--muted); }
+  @media (max-width: 768px) { .logo-sub { display: none; } }
+
+  .nav-tabs {
+    display: flex; gap: 28px;
+    flex: 1; justify-content: center;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-tabs::-webkit-scrollbar { display: none; }
+  .nav-tab {
+    position: relative;
+    padding: 0;
+    font-size: 15px;
+    color: var(--muted);
+    transition: color 0.15s;
+    white-space: nowrap;
+    line-height: 1;
+  }
+  .nav-tab:hover { color: var(--ink); }
+  .nav-tab.active { color: var(--ink); }
+  .nav-tab.active::after {
+    content: '';
+    position: absolute;
+    bottom: -28px;
+    left: 0; right: 0;
+    height: 2px;
+    background: var(--ink);
+  }
+  @media (max-width: 1024px) {
+    .nav-inner { height: 64px; gap: 16px; }
+    .logo { font-size: 22px; }
+    .nav-tabs { gap: 20px; flex: 0 1 auto; justify-content: flex-end; }
+    .nav-tab.active::after { bottom: -20px; }
+  }
+  @media (max-width: 768px) {
+    .nav-tabs { gap: 16px; }
+    .nav-tab { font-size: 14px; }
+  }
+
+  /* === SECTIONS === */
+  main { padding-bottom: 96px; }
+  .section { display: none; padding-top: 56px; }
   .section.active { display: block; }
+  @media (max-width: 768px) { .section { padding-top: 32px; } }
 
-  .hero {
-    background: linear-gradient(135deg, #0078d4 0%, #50a8f0 100%);
-    border-radius: var(--radius); padding: 26px 28px; color: white; margin-bottom: 20px;
-  }
-  .hero h1 { font-size: 22px; font-weight: 900; margin-bottom: 6px; }
-  .hero p { font-size: 14px; opacity: 0.92; line-height: 1.6; }
-
-  .sec-title { font-size: 17px; font-weight: 900; margin-bottom: 14px; display: flex; align-items: center; gap: 8px; }
-
-  /* 비교표 */
-  .big-table-wrap {
-    overflow: auto;
+  /* === PAGE HEAD === */
+  .page-head { margin-bottom: 36px; }
+  .page-eyebrow {
+    display: block;
+    font-size: 12px; letter-spacing: 1.8px;
+    text-transform: uppercase;
+    color: var(--rausch);
     margin-bottom: 12px;
-    border-radius: var(--radius);
-    box-shadow: var(--shadow);
-    max-height: 70vh;
   }
-  .big-table { width: 100%; border-collapse: separate; border-spacing: 0; background: white; min-width: 500px; }
+  .page-head h1 {
+    font-size: 32px; line-height: 1.15;
+    letter-spacing: -0.6px;
+    color: var(--ink);
+    word-break: keep-all;
+  }
+  .page-head .subtitle {
+    font-size: 16px;
+    color: var(--muted);
+    margin-top: 10px;
+    word-break: keep-all;
+    line-height: 1.55;
+    max-width: 720px;
+  }
+  .page-head .subtitle.one-line {
+    white-space: nowrap;
+    max-width: none;
+    font-size: 15px;
+  }
+  @media (max-width: 1024px) {
+    .page-head .subtitle.one-line { white-space: normal; font-size: 14px; max-width: 720px; }
+  }
+  @media (max-width: 768px) {
+    .page-head h1 { font-size: 24px; }
+    .page-head .subtitle { font-size: 14px; }
+  }
 
-  /* 헤더 행 세로 고정 */
+  /* === SECTION TITLES === */
+  .section-title {
+    margin-top: 56px;
+    margin-bottom: 20px;
+    display: flex; align-items: baseline; gap: 12px;
+    flex-wrap: wrap;
+  }
+  .section-title:first-of-type, .section > *:first-child + .section-title { margin-top: 40px; }
+  .section .page-head + .section-title { margin-top: 0; }
+  .section .notice + .section-title { margin-top: 12px; }
+  .section-title h2 {
+    font-size: 22px; line-height: 1.2;
+    letter-spacing: -0.4px;
+    color: var(--ink);
+  }
+  .section-title .desc {
+    font-size: 14px; color: var(--muted);
+    word-break: keep-all;
+  }
+  .lead-text {
+    font-size: 14px; color: var(--muted);
+    line-height: 1.7; max-width: 760px;
+    margin-bottom: 24px; word-break: keep-all;
+  }
+  .lead-text b { color: var(--ink); }
+
+  /* === NOTICE === */
+  .notice {
+    display: flex; gap: 16px;
+    padding: 22px 24px;
+    background: var(--surface-soft);
+    border-radius: 16px;
+    margin-bottom: 16px;
+  }
+  .notice .icon {
+    font-size: 22px; flex-shrink: 0;
+    color: var(--rausch); line-height: 1.2;
+  }
+  .notice .content { flex: 1; min-width: 0; }
+  .notice .content .eyebrow {
+    display: block;
+    font-size: 11px; letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--rausch);
+    margin-bottom: 6px;
+  }
+  .notice .content .title {
+    font-size: 17px; color: var(--ink);
+    margin-bottom: 8px; word-break: keep-all;
+  }
+  .notice .content .text {
+    font-size: 14px; color: var(--body);
+    line-height: 1.6; word-break: keep-all;
+  }
+  .notice .content .text b { color: var(--ink); }
+  .notice .content .text a {
+    color: var(--ink); text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  @media (max-width: 768px) {
+    .notice { padding: 18px 20px; gap: 12px; }
+    .notice .content .title { font-size: 15px; }
+    .notice .content .text { font-size: 13px; }
+  }
+
+  /* === QUICK LINKS (homepage navigation grid) === */
+  .quick-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    margin-bottom: 32px;
+  }
+  .quick-link {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 24px 24px 22px;
+    cursor: pointer;
+    transition: border-color 0.15s, transform 0.15s;
+    text-align: left;
+    display: block; width: 100%;
+  }
+  .quick-link:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .quick-link .label {
+    font-size: 11px; letter-spacing: 1.8px;
+    color: var(--muted);
+    margin-bottom: 14px;
+    text-transform: uppercase;
+  }
+  .quick-link h3 {
+    font-size: 17px; margin-bottom: 6px;
+    color: var(--ink); word-break: keep-all;
+  }
+  .quick-link p {
+    font-size: 13px; color: var(--muted);
+    line-height: 1.5; word-break: keep-all;
+  }
+  .quick-link .arrow {
+    display: inline-block; margin-top: 14px;
+    font-size: 18px; color: var(--ink);
+    transition: transform 0.15s;
+  }
+  .quick-link:hover .arrow { transform: translateX(4px); }
+
+  /* === PILLAR CARDS (homepage why subscription) === */
+  .pillar-grid {
+    display: grid; gap: 20px; margin-bottom: 64px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .pillar-card {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 28px 28px 24px;
+    position: relative;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .pillar-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .pillar-card .pillar-num {
+    position: absolute; top: 22px; right: 26px;
+    font-size: 32px; line-height: 1;
+    color: var(--hairline);
+    letter-spacing: -1px;
+  }
+  .pillar-card .pillar-icon { font-size: 32px; margin-bottom: 14px; line-height: 1; }
+  .pillar-card h3 {
+    font-size: 18px; margin-bottom: 10px;
+    color: var(--ink); word-break: keep-all;
+    line-height: 1.3;
+  }
+  .pillar-card p {
+    font-size: 13px; color: var(--body);
+    line-height: 1.7; word-break: keep-all;
+  }
+  .pillar-card p b { color: var(--ink); }
+  @media (max-width: 1024px) {
+    .pillar-grid { grid-template-columns: 1fr; gap: 14px; margin-bottom: 48px; }
+  }
+
+  /* === JOURNEY FLOW (customer 5-step) === */
+  .journey-flow {
+    display: grid; gap: 12px; margin-bottom: 64px;
+    grid-template-columns: repeat(5, 1fr);
+    position: relative;
+  }
+  .journey-flow::before {
+    content: '';
+    position: absolute;
+    top: 36px;
+    left: 10%; right: 10%;
+    height: 1px; background: var(--hairline);
+    z-index: 0;
+  }
+  .journey-step {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 18px 16px;
+    text-align: center;
+    position: relative; z-index: 1;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .journey-step:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .journey-step .js-num {
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: var(--ink); color: white;
+    font-size: 13px;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 12px;
+  }
+  .journey-step h3 {
+    font-size: 14px; margin-bottom: 8px;
+    color: var(--ink);
+  }
+  .journey-step p {
+    font-size: 12px; color: var(--muted);
+    line-height: 1.55; word-break: keep-all;
+  }
+  @media (max-width: 1024px) {
+    .journey-flow { grid-template-columns: repeat(2, 1fr); margin-bottom: 48px; }
+    .journey-flow::before { display: none; }
+  }
+  @media (max-width: 480px) {
+    .journey-flow { grid-template-columns: 1fr; }
+  }
+
+  /* === ROADMAP (professional services) === */
+  .roadmap-flow {
+    display: grid; gap: 0;
+    grid-template-columns: 1fr 28px 1fr 28px 1fr 28px 1fr;
+    align-items: stretch;
+    margin-bottom: 56px;
+  }
+  .roadmap-stage {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 22px 20px 20px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .roadmap-stage:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .roadmap-stage.featured {
+    background: var(--ink); border-color: var(--ink);
+    color: white;
+  }
+  .roadmap-stage.featured:hover { border-color: var(--rausch); }
+  .roadmap-stage .rm-stage {
+    font-size: 11px; letter-spacing: 1.5px;
+    color: var(--muted); margin-bottom: 12px;
+  }
+  .roadmap-stage.featured .rm-stage { color: rgba(255,255,255,0.7); }
+  .roadmap-stage h3 {
+    font-size: 16px; margin-bottom: 8px;
+    color: var(--ink); word-break: keep-all;
+  }
+  .roadmap-stage.featured h3 { color: white; }
+  .roadmap-stage p {
+    font-size: 13px; color: var(--body);
+    line-height: 1.6; word-break: keep-all;
+    flex: 1; margin-bottom: 14px;
+  }
+  .roadmap-stage.featured p { color: rgba(255,255,255,0.88); }
+  .roadmap-stage .rm-tag {
+    display: inline-block; padding: 4px 10px;
+    font-size: 11px; color: var(--muted);
+    background: var(--surface-soft);
+    border-radius: 9999px;
+    align-self: flex-start;
+  }
+  .roadmap-stage.featured .rm-tag {
+    background: var(--rausch); color: white;
+  }
+  .roadmap-arrow {
+    align-self: center; color: var(--muted);
+    font-size: 18px; line-height: 1;
+  }
+  @media (max-width: 1024px) {
+    .roadmap-flow { grid-template-columns: 1fr; gap: 12px; margin-bottom: 48px; }
+    .roadmap-arrow { display: none; }
+  }
+
+  /* === CARDS (general) === */
+  .cards-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    margin-bottom: 32px;
+  }
+  .card {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 24px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .card .icon { font-size: 28px; margin-bottom: 14px; line-height: 1; }
+  .card h3 {
+    font-size: 16px; margin-bottom: 8px;
+    color: var(--ink); word-break: keep-all;
+    line-height: 1.3;
+  }
+  .card p {
+    font-size: 14px; color: var(--body);
+    line-height: 1.6; word-break: keep-all;
+  }
+  .card p b, .card p strong { color: var(--ink); }
+  .card .tag {
+    display: inline-block; margin-top: 12px;
+    padding: 4px 10px;
+    font-size: 11px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    border-radius: 9999px;
+  }
+
+  /* === PLAN CARDS === */
+  .plan-cards {
+    display: grid; gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    margin-bottom: 32px;
+  }
+  .plan-card {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 28px;
+    position: relative;
+    transition: border-color 0.15s;
+  }
+  .plan-card:hover { border-color: var(--ink); }
+  .plan-card.featured {
+    background: var(--ink);
+    border-color: var(--ink);
+  }
+  .plan-card.featured h3, .plan-card.featured ul li {
+    color: white;
+  }
+  .plan-card.featured .desc, .plan-card.featured .src {
+    color: rgba(255,255,255,0.7);
+  }
+  .plan-card.featured .src { border-color: rgba(255,255,255,0.15); }
+  .plan-card.featured ul li { border-color: rgba(255,255,255,0.12); }
+  .plan-card.featured .src a, .plan-card.featured .src b { color: white; }
+  .plan-card .badge {
+    position: absolute; top: -12px; left: 24px;
+    padding: 5px 12px;
+    background: var(--rausch); color: white;
+    border-radius: 9999px;
+    font-size: 11px; letter-spacing: 0.5px;
+  }
+  .plan-card .badge.alt { background: var(--ink); }
+  .plan-card h3 {
+    font-size: 20px; margin-bottom: 4px;
+    color: var(--ink); word-break: keep-all;
+    letter-spacing: -0.3px;
+  }
+  .plan-card .desc {
+    font-size: 13px; color: var(--muted);
+    margin-bottom: 18px; word-break: keep-all;
+    line-height: 1.4;
+  }
+  .plan-card .desc b { color: var(--ink); }
+  .plan-card ul { margin-bottom: 18px; }
+  .plan-card ul li {
+    font-size: 13px; padding: 10px 0;
+    border-bottom: 1px solid var(--hairline-soft);
+    color: var(--body); line-height: 1.5;
+    word-break: keep-all;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .plan-card ul li:last-child { border-bottom: 0; }
+  .plan-card ul li .chk { color: var(--success); flex-shrink: 0; }
+  .plan-card.featured ul li .chk { color: #6fd982; }
+  .plan-card ul li .warn { color: var(--rausch); flex-shrink: 0; }
+  .plan-card.featured ul li .warn { color: #ff8095; }
+  .plan-card ul li .x { color: var(--muted-soft); flex-shrink: 0; }
+  .plan-card .src {
+    font-size: 12px; color: var(--muted);
+    border-top: 1px dashed var(--hairline);
+    padding-top: 14px; line-height: 1.5;
+    word-break: keep-all;
+  }
+  .plan-card .src b { color: var(--ink); }
+  .plan-card .src a {
+    color: var(--ink); text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  /* === PILL CHIPS (filters) === */
+  .chip-row {
+    display: flex; gap: 8px; flex-wrap: wrap;
+    margin-bottom: 20px;
+  }
+  @media (max-width: 768px) {
+    .chip-row {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      margin: 0 -16px 16px;
+      padding: 0 16px 4px;
+    }
+    .chip-row::-webkit-scrollbar { display: none; }
+  }
+  .chip {
+    height: 36px; padding: 0 16px;
+    border: 1px solid var(--hairline);
+    border-radius: 9999px;
+    background: white;
+    font-size: 13px;
+    color: var(--ink);
+    display: inline-flex; align-items: center; gap: 6px;
+    white-space: nowrap;
+    transition: all 0.15s;
+    flex-shrink: 0;
+  }
+  .chip:hover { border-color: var(--ink); }
+  .chip.active { background: var(--ink); color: white; border-color: var(--ink); }
+
+  /* === SEARCH BAR === */
+  .search-bar {
+    display: flex; align-items: center; gap: 10px;
+    height: 48px; padding: 0 20px;
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 9999px;
+    margin-bottom: 16px;
+    transition: border-color 0.15s;
+  }
+  .search-bar:focus-within { border-color: var(--ink); }
+  .search-bar .ic { font-size: 16px; color: var(--muted); }
+  .search-bar input {
+    flex: 1; border: 0; outline: 0;
+    font-size: 15px; background: transparent;
+    color: var(--ink);
+  }
+  .search-bar input::placeholder { color: var(--muted-soft); }
+
+  /* === BIG COMPARISON TABLE === */
+  .table-wrap {
+    overflow-x: auto;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    background: white;
+    margin-bottom: 16px;
+    -webkit-overflow-scrolling: touch;
+  }
+  .big-table {
+    width: 100%; border-collapse: separate;
+    border-spacing: 0; min-width: 900px;
+  }
   .big-table thead th {
-    position: sticky; top: 0; z-index: 3;
-    background: var(--blue); color: white; padding: 10px 8px;
-    font-size: 11px; font-weight: 700; text-align: center; white-space: nowrap;
-    border-bottom: 2px solid #005a9e;
+    position: sticky; top: 80px; z-index: 3;
+    background: white;
+    padding: 18px 14px;
+    text-align: center; vertical-align: middle;
+    box-shadow: inset 0 -1px 0 var(--hairline);
+    white-space: nowrap;
   }
-  /* 첫 번째 열(기능 항목) 헤더 — 가로+세로 모두 고정 */
   .big-table thead th:first-child {
-    position: sticky; top: 0; left: 0; z-index: 5;
-    text-align: left; min-width: 120px; max-width: 120px; width: 120px;
-    background: #005a9e;
+    position: sticky; top: 80px; left: 0; z-index: 5;
+    text-align: left;
+    min-width: 260px; max-width: 260px; width: 260px;
+    padding-left: 28px;
+    background: white;
+    font-size: 13px; color: var(--muted);
+    letter-spacing: 0.5px; text-transform: uppercase;
+    box-shadow: inset 0 -1px 0 var(--hairline), inset -1px 0 0 var(--hairline-soft);
   }
-
-  .plan-price { font-size: 14px; font-weight: 900; display: block; }
-  .plan-sub { font-size: 10px; font-weight: 400; opacity: 0.88; }
-
+  @media (max-width: 1024px) {
+    .big-table thead th, .big-table thead th:first-child { top: 64px; }
+  }
+  .big-table thead .plan-name {
+    display: block; font-size: 16px;
+    color: var(--ink); letter-spacing: -0.2px;
+    margin-bottom: 4px;
+  }
+  .big-table thead .plan-tag {
+    display: block; font-size: 11px;
+    color: var(--muted);
+  }
   .big-table tbody td {
-    padding: 9px 12px; font-size: 12px;
-    border-bottom: 1px solid #edf2f7; text-align: center; vertical-align: middle;
+    padding: 14px; font-size: 13px;
+    color: var(--body);
+    text-align: center; vertical-align: middle;
+    border-top: 1px solid var(--hairline-soft);
+    background: white;
   }
-  /* 첫 번째 열 본문 — 가로 고정 */
   .big-table tbody td:first-child {
     position: sticky; left: 0; z-index: 2;
-    text-align: left; font-weight: 500; font-size: 11px;
-    min-width: 120px; max-width: 120px; width: 120px;
+    text-align: left;
+    color: var(--ink);
+    min-width: 260px; max-width: 260px; width: 260px;
+    padding-left: 28px;
     white-space: normal; word-break: keep-all;
     background: white;
-    border-right: 2px solid #c8dff5;
-    box-shadow: 2px 0 6px rgba(0,120,212,0.08);
+    box-shadow: inset -1px 0 0 var(--hairline-soft);
+    line-height: 1.45;
   }
-  .big-table tbody tr:nth-child(even) td { background: #f8fbff; }
-  .big-table tbody tr:nth-child(even) td:first-child { background: #f8fbff; }
-  .big-table tbody tr:hover td { background: #eef5fc; }
-  .big-table tbody tr:hover td:first-child { background: #eef5fc; }
-  .cat-row td { background: #ddeeff !important; font-weight: 700; color: #005a9e; font-size: 11px; padding: 7px 12px; letter-spacing: 0.3px; }
-  .cat-row td:first-child { background: #c5daef !important; }
-  .y { color: var(--green); font-size: 16px; font-weight: 700; }
-  .n { color: #ccc; font-size: 16px; }
-  .add { color: var(--orange); font-size: 11px; font-weight: 700; }
-  .e5only { color: var(--purple); font-size: 11px; font-weight: 700; }
-
-  .source-note-sm { font-size: 11px; color: #aaa; margin-bottom: 24px; text-align: right; }
-  .source-note-sm a { color: var(--blue); text-decoration: none; }
-
-  .info-banner {
-    background: var(--blue-pale); border-radius: 12px; padding: 12px 16px;
-    font-size: 13px; color: #1a5276; margin-bottom: 18px;
-    display: flex; gap: 10px; align-items: flex-start; line-height: 1.6;
+  .big-table tbody tr:nth-child(even) td { background: var(--surface-soft); }
+  .big-table tbody tr:nth-child(even) td:first-child { background: var(--surface-soft); }
+  .big-table tbody tr:hover td { background: #f0f0f0; }
+  .big-table tbody tr:hover td:first-child { background: #f0f0f0; }
+  .big-table tr.cat-row td {
+    background: var(--ink) !important; color: white !important;
+    padding: 12px 14px 12px 28px !important;
+    font-size: 12px;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    text-align: left !important;
   }
-  .info-banner a { color: var(--blue); text-decoration: none; }
+  .big-table tr.cat-row td:first-child { background: var(--ink) !important; }
+  .big-table .y { color: var(--success); font-size: 15px; }
+  .big-table .n { color: var(--muted-soft); }
+  .big-table .e5tag {
+    display: inline-block;
+    font-size: 10px; padding: 3px 9px;
+    background: var(--surface-strong); color: var(--ink);
+    border-radius: 9999px;
+    letter-spacing: 0.3px;
+  }
+  .big-table .addtag {
+    display: inline-block;
+    font-size: 10px; padding: 3px 9px;
+    background: rgba(255,56,92,0.08); color: var(--rausch);
+    border-radius: 9999px;
+    letter-spacing: 0.3px;
+  }
 
-  /* 카드 */
-  .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(230px, 1fr)); gap: 14px; margin-bottom: 24px; }
-  .card { background: white; border-radius: var(--radius); padding: 18px 16px; box-shadow: var(--shadow); border: 2px solid transparent; transition: all 0.18s; }
-  .card:hover { border-color: var(--blue-light); transform: translateY(-2px); }
-  .card .ci { font-size: 26px; margin-bottom: 8px; }
-  .card h3 { font-size: 14px; font-weight: 700; margin-bottom: 5px; }
-  .card p { font-size: 13px; color: var(--text-sub); line-height: 1.6; }
+  .table-legend {
+    display: flex; flex-wrap: wrap; gap: 18px;
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 32px;
+    align-items: center;
+  }
+  .table-legend > span { display: inline-flex; align-items: center; gap: 5px; }
+  .table-legend .src-link { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; margin-left: auto; }
 
-  /* 가격 플랜 */
-  .plan-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-bottom: 24px; }
-  .plan-card { background: white; border-radius: var(--radius); padding: 20px 18px; box-shadow: var(--shadow); border: 2px solid var(--blue-pale); position: relative; transition: all 0.2s; }
-  .plan-card:hover { border-color: var(--blue); }
-  .plan-card.featured { border-color: var(--blue); }
-  .plan-card .rec-badge { position: absolute; top: -11px; left: 16px; background: var(--orange); color: white; font-size: 10px; font-weight: 800; padding: 3px 10px; border-radius: 10px; }
-  .plan-card h3 { font-size: 15px; font-weight: 900; margin-bottom: 2px; color: var(--blue); }
-  .plan-card .ps { font-size: 11px; color: var(--text-sub); margin-bottom: 10px; }
-  .plan-card .price { font-size: 26px; font-weight: 900; }
-  .plan-card .price span { font-size: 12px; font-weight: 400; color: var(--text-sub); }
-  .plan-card .pn { font-size: 11px; color: var(--text-sub); margin: 2px 0 12px; }
-  .plan-card ul { list-style: none; }
-  .plan-card ul li { font-size: 12px; padding: 4px 0; border-bottom: 1px solid var(--gray); display: flex; align-items: flex-start; gap: 6px; color: var(--text-sub); line-height: 1.5; }
-  .plan-card ul li:last-child { border-bottom: none; }
-  .plan-card ul li .chk { color: var(--green); flex-shrink: 0; }
-  .plan-src { margin-top: 10px; font-size: 10px; color: #bbb; border-top: 1px dashed #eee; padding-top: 8px; }
-  .plan-src a { color: var(--blue); text-decoration: none; }
+  /* === APPS GRID === */
+  .apps-grid {
+    display: grid; gap: 12px;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    margin-bottom: 24px;
+  }
+  @media (max-width: 768px) { .apps-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (max-width: 425px) { .apps-grid { grid-template-columns: repeat(2, 1fr); } }
+  .app-item {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    padding: 18px 14px;
+    text-align: center;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .app-item:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .app-item .emoji { font-size: 28px; margin-bottom: 8px; line-height: 1; }
+  .app-item .name {
+    font-size: 13px; margin-bottom: 4px;
+    color: var(--ink); word-break: keep-all;
+  }
+  .app-item .desc {
+    font-size: 11px; color: var(--muted);
+    line-height: 1.4; word-break: keep-all;
+    min-height: 30px;
+  }
+  .app-item .cat {
+    display: inline-block; margin-top: 8px;
+    padding: 2px 8px;
+    font-size: 10px; color: var(--muted);
+    background: var(--surface-soft);
+    border-radius: 9999px;
+    letter-spacing: 0.3px;
+  }
 
-  /* 앱 */
-  .app-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(128px, 1fr)); gap: 12px; margin-bottom: 22px; }
-  .app-item { background: white; border-radius: 14px; padding: 14px 10px; text-align: center; box-shadow: var(--shadow); transition: all 0.18s; border: 2px solid transparent; }
-  .app-item:hover { border-color: var(--blue-light); transform: translateY(-2px); }
-  .app-item .ae { font-size: 24px; margin-bottom: 6px; }
-  .app-item .an { font-size: 12px; font-weight: 700; margin-bottom: 3px; }
-  .app-item .ad { font-size: 10px; color: var(--text-sub); line-height: 1.4; }
-  .app-item .ac { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 700; padding: 2px 7px; border-radius: 7px; }
-  .cat-ai { background: #e8f3fb; color: #0078d4; }
-  .cat-prod { background: #e6f3e6; color: #107c10; }
-  .cat-sec { background: #fde8e8; color: #c42b1c; }
-  .cat-collab { background: #fff4e6; color: #ff8c00; }
-  .cat-emp { background: #f0e8f8; color: #6b2fa0; }
+  /* === REASON CARDS === */
+  .reason-grid {
+    display: grid; gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-bottom: 32px;
+  }
+  .reason-card {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 26px 28px;
+    transition: border-color 0.15s, transform 0.15s;
+  }
+  .reason-card:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .reason-card .num {
+    display: block;
+    font-size: 13px; letter-spacing: 2px;
+    color: var(--rausch);
+    margin-bottom: 14px;
+  }
+  .reason-card h3 {
+    font-size: 17px; margin-bottom: 10px;
+    color: var(--ink); word-break: keep-all;
+    line-height: 1.3;
+  }
+  .reason-card p {
+    font-size: 13px; color: var(--body);
+    line-height: 1.7; word-break: keep-all;
+  }
+  .reason-card p b { color: var(--ink); }
 
-  /* 팁 */
-  .tip-box { background: white; border-radius: var(--radius); padding: 16px 18px; box-shadow: var(--shadow); margin-bottom: 10px; border-left: 4px solid var(--blue); cursor: pointer; transition: all 0.18s; }
-  .tip-box:hover { border-left-color: var(--orange); }
-  .tip-box[data-tcat="contract"] { border-left-color: #0078d4; }
-  .tip-box[data-tcat="objection"] { border-left-color: #c42b1c; }
-  .tip-box[data-tcat="product"]  { border-left-color: #107c10; }
-  .tip-box[data-tcat="process"]  { border-left-color: #ff8c00; }
-  .tip-box .tq { font-size: 14px; font-weight: 700; display: flex; justify-content: space-between; align-items: center; gap: 10px; }
-  .tip-box .ta { font-size: 13px; color: var(--text-sub); margin-top: 10px; line-height: 1.8; display: none; }
-  .tip-box.open .ta { display: block; }
-  .tip-box .arr { font-size: 15px; transition: transform 0.2s; flex-shrink: 0; }
-  .tip-box.open .arr { transform: rotate(180deg); }
+  /* === TIPS ACCORDION === */
+  .tip-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .tip-box {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 12px;
+    padding: 18px 22px;
+    cursor: pointer;
+    transition: border-color 0.15s;
+    border-left-width: 4px;
+  }
+  .tip-box:hover { border-color: var(--ink); }
+  .tip-box[data-cat="contract"] { border-left-color: var(--ink); }
+  .tip-box[data-cat="objection"] { border-left-color: var(--rausch); }
+  .tip-box[data-cat="product"] { border-left-color: var(--success); }
+  .tip-box[data-cat="process"] { border-left-color: #d97706; }
+  .tip-q {
+    display: flex; align-items: center; justify-content: space-between; gap: 12px;
+    font-size: 15px; color: var(--ink); word-break: keep-all;
+    line-height: 1.4;
+  }
+  .tip-arr {
+    font-size: 14px; color: var(--muted);
+    transition: transform 0.2s; flex-shrink: 0;
+  }
+  .tip-box.open .tip-arr { transform: rotate(180deg); }
+  .tip-a {
+    display: none; margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid var(--hairline-soft);
+    font-size: 14px; color: var(--body);
+    line-height: 1.75; word-break: keep-all;
+  }
+  .tip-box.open .tip-a { display: block; }
+  .tip-a b { color: var(--ink); }
+  .tip-a .mini-table {
+    width: 100%; border-collapse: collapse;
+    margin-top: 12px;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid var(--hairline);
+    font-size: 13px;
+  }
+  .tip-a .mini-table th {
+    background: var(--ink); color: white;
+    padding: 11px 12px; text-align: left;
+    font-size: 12px;
+  }
+  .tip-a .mini-table th:not(:first-child) { text-align: center; }
+  .tip-a .mini-table td {
+    padding: 10px 12px;
+    border-top: 1px solid var(--hairline-soft);
+    color: var(--body);
+  }
+  .tip-a .mini-table td:not(:first-child) { text-align: center; }
+  .tip-a .mini-table tr:nth-child(even) td { background: var(--surface-soft); }
+  .tip-a .mini-table .y { color: var(--success); }
+  .tip-a .mini-table .n { color: var(--muted-soft); }
 
-  .tip-cat-filter { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 16px; }
-  .tip-cat-filter button { background: white; border: 2px solid #e0e8f0; padding: 6px 13px; border-radius: 20px; font-size: 12px; font-family: inherit; font-weight: 600; cursor: pointer; color: var(--text-sub); transition: all 0.18s; }
-  .tip-cat-filter button.active { background: var(--blue); color: white; border-color: var(--blue); }
-
-  /* 용어 탭 */
-  .search-wrap { background: white; border-radius: 12px; padding: 12px 16px; box-shadow: var(--shadow); display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
-  .search-wrap input { border: none; outline: none; font-size: 14px; font-family: inherit; flex: 1; background: none; }
-
-  .cat-filter { display: flex; gap: 7px; flex-wrap: wrap; margin-bottom: 14px; }
-  .cat-filter button { background: white; border: 2px solid #e0e8f0; padding: 5px 12px; border-radius: 20px; font-size: 12px; font-family: inherit; font-weight: 600; cursor: pointer; color: var(--text-sub); transition: all 0.18s; }
-  .cat-filter button.active { background: var(--blue); color: white; border-color: var(--blue); }
-
-  .term-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 14px; }
-  .term-card { background: white; border-radius: 14px; padding: 16px 16px; box-shadow: var(--shadow); border-left: 4px solid var(--blue); transition: all 0.18s; }
+  /* === TERM CARDS === */
+  .term-grid {
+    display: grid; gap: 14px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-bottom: 32px;
+  }
+  .term-card {
+    background: white;
+    border: 1px solid var(--hairline);
+    border-radius: 16px;
+    padding: 22px 24px;
+    border-left-width: 4px; border-left-style: solid;
+    border-left-color: var(--ink);
+    transition: transform 0.15s, border-color 0.15s;
+  }
   .term-card:hover { transform: translateY(-2px); }
-  .term-card[data-cat="contract"] { border-color: #0078d4; }
-  .term-card[data-cat="license"]  { border-color: #107c10; }
-  .term-card[data-cat="product"]  { border-color: #6b2fa0; }
-  .term-card[data-cat="tech"]     { border-color: #ff8c00; }
-  .term-card[data-cat="sales"]    { border-color: #c42b1c; }
-  .term-label { font-size: 10px; font-weight: 700; padding: 2px 8px; border-radius: 7px; display: inline-block; margin-bottom: 7px; }
-  .lbl-contract { background: #e8f3fb; color: #0078d4; }
-  .lbl-license  { background: #e6f3e6; color: #107c10; }
-  .lbl-product  { background: #f0e8f8; color: #6b2fa0; }
-  .lbl-tech     { background: #fff4e6; color: #ff8c00; }
-  .lbl-sales    { background: #fde8e8; color: #c42b1c; }
-  .term-name { font-size: 16px; font-weight: 900; margin-bottom: 3px; }
-  .term-full { font-size: 11px; color: var(--text-sub); margin-bottom: 7px; font-style: italic; }
-  .term-desc { font-size: 12px; color: var(--text-sub); line-height: 1.75; }
-
-  .source-footer { text-align: center; font-size: 11px; color: #aaa; margin-top: 28px; padding-top: 14px; border-top: 1px solid #e0e8f0; }
-  .source-footer a { color: var(--blue); text-decoration: none; }
-
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 18px; }
-    .plan-cards { grid-template-columns: 1fr; }
-    .app-grid { grid-template-columns: repeat(3, 1fr); }
-    .term-cards { grid-template-columns: 1fr; }
+  .term-card[data-cat="contract"] { border-left-color: var(--ink); }
+  .term-card[data-cat="license"] { border-left-color: var(--success); }
+  .term-card[data-cat="product"] { border-left-color: #6b2fa0; }
+  .term-card[data-cat="tech"] { border-left-color: #d97706; }
+  .term-card[data-cat="sales"] { border-left-color: var(--rausch); }
+  .term-card .label {
+    display: inline-block; margin-bottom: 10px;
+    padding: 3px 10px;
+    font-size: 11px; color: var(--muted);
+    background: var(--surface-soft);
+    border-radius: 9999px;
+    letter-spacing: 0.3px;
   }
+  .term-card .name {
+    font-size: 17px; margin-bottom: 4px;
+    color: var(--ink); word-break: keep-all;
+    line-height: 1.3;
+  }
+  .term-card .full {
+    font-size: 12px; color: var(--muted);
+    margin-bottom: 10px; word-break: keep-all;
+  }
+  .term-card .desc {
+    font-size: 13px; color: var(--body);
+    line-height: 1.75; word-break: keep-all;
+  }
+  .term-card .desc b { color: var(--ink); }
+
+  /* === FOOTER === */
+  .footer-source {
+    margin-top: 64px;
+    padding: 32px 0 0;
+    border-top: 1px solid var(--hairline);
+    font-size: 12px; color: var(--muted);
+    line-height: 1.8; word-break: keep-all;
+  }
+  .footer-source a { color: var(--ink); text-decoration: underline; text-underline-offset: 3px; }
+  .footer-source b { color: var(--ink); }
 </style>
 </head>
 <body>
 
-<nav>
-  <div class="logo">📊 M365 가이드</div>
-  <button class="active" onclick="showTab('overview')">🏠 홈</button>
-  <button onclick="showTab('pricing')">💰 가격 플랜</button>
-  <button onclick="showTab('apps')">🧩 앱 목록</button>
-  <button onclick="showTab('compare')">📋 플랜 비교</button>
-  <button onclick="showTab('tips')">💡 영업 팁</button>
-  <button onclick="showTab('terms')">📖 영업 용어</button>
-</nav>
+<header class="top-nav">
+  <div class="nav-inner container">
+    <div class="logo-wrap">
+      <span class="logo">FBKR</span>
+      <span class="logo-sub">Microsoft 365 영업 가이드</span>
+    </div>
+    <nav class="nav-tabs">
+      <button class="nav-tab active" data-tab="overview" onclick="showTab('overview')">홈</button>
+      <button class="nav-tab" data-tab="plans" onclick="showTab('plans')">플랜</button>
+      <button class="nav-tab" data-tab="compare" onclick="showTab('compare')">기능</button>
+      <button class="nav-tab" data-tab="license" onclick="showTab('license')">라이선스</button>
+      <button class="nav-tab" data-tab="tips" onclick="showTab('tips')">영업 자료</button>
+    </nav>
+  </div>
+</header>
 
 <main>
 
-<!-- ===== 홈 ===== -->
-<div class="section active" id="overview">
-  <div class="hero">
-    <h1>🚀 Microsoft 365 엔터프라이즈 — 전체 플랜 비교</h1>
-    <p>엔터프라이즈 전 플랜의 기능 포함 여부를 한눈에 확인하세요.</p>
-  </div>
+  <!-- ===== 홈 ===== -->
+  <section class="section active" id="overview">
+    <div class="container">
+      <header class="page-head">
+        <span class="page-eyebrow">FBKR · Microsoft 365 Sales Kit</span>
+        <h1>엔터프라이즈 영업 가이드</h1>
+        <p class="subtitle one-line">M365 플랜·기능·라이선스 전환까지 한 페이지에 — 고객 미팅 1분 전 빠른 확인용</p>
+      </header>
 
-  <div class="info-banner">
-    📌&nbsp; 연간 약정 기준 · VAT 별도 · 출처: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">Microsoft 공식 플랜 및 가격 페이지</a>
-  </div>
+      <div class="notice">
+        <div class="icon">⚠</div>
+        <div class="content">
+          <span class="eyebrow">2026-07-01 · 가격 공지</span>
+          <div class="title">Microsoft 365 가격 인상 예정</div>
+          <div class="text">Microsoft가 <b>AI·보안·관리 기능 확대</b>를 사유로 M365 Business/Enterprise 가격 변경을 발표했습니다. 한국 신가격은 미공개 — 견적·갱신 검토 시 담당자 확인 권장. <a href="https://news.microsoft.com/source/asia/2025/12/05/m365-pricing-updates/?lang=ko" target="_blank">공식 공지 →</a></div>
+        </div>
+      </div>
 
-  <div class="big-table-wrap">
-    <table class="big-table">
-      <thead>
-        <tr>
-          <th>기능 항목</th>
-          <th><span class="plan-price">E3</span><span class="plan-sub">₩48,600/월<br>Teams 포함</span></th>
-          <th><span class="plan-price">E5</span><span class="plan-sub">₩77,000/월<br>Teams 포함</span></th>
-          <th><span class="plan-price">E3</span><span class="plan-sub">₩37,100/월<br>Teams 제외</span></th>
-          <th><span class="plan-price">E5</span><span class="plan-sub">₩65,500/월<br>Teams 제외</span></th>
-          <th><span class="plan-price">+Copilot</span><span class="plan-sub">+₩40,500/월<br>별도 추가</span></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="cat-row"><td colspan="6">📱 핵심 생산성 앱</td></tr>
-        <tr><td>Word · Excel · PowerPoint · Outlook (데스크톱+웹+모바일)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>OneNote · Loop · Clipchamp · Microsoft 편집기</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Exchange (비즈니스 이메일·일정)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Power Apps · Power Automate (M365용)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Power BI Pro</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
+      <!-- ===== 왜 구독형인가 ===== -->
+      <div class="section-title">
+        <h2>왜 구독형 M365인가</h2>
+        <span class="desc">영구형으로는 더 이상 갈 수 없는 3가지 이유</span>
+      </div>
+      <div class="pillar-grid">
+        <div class="pillar-card">
+          <div class="pillar-num">01</div>
+          <div class="pillar-icon">🤖</div>
+          <h3>AI는 구독자만의 권리</h3>
+          <p>Copilot Chat(무료)과 Microsoft 365 Copilot(유료) 모두 <b>구독형 전용</b>. 영구판에서는 AI 통합이 영구 차단. AI 도입을 검토하는 모든 고객은 자동으로 구독 전환 대상.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">02</div>
+          <div class="pillar-icon">🔒</div>
+          <h3>보안은 통합되어야 한다</h3>
+          <p>Defender · Purview · Intune · Entra ID — 영구판 고객은 따로 사야 하지만 <b>M365 E3/E5에 통합 제공</b>. 보안 솔루션 중복 투자 해소가 가장 강력한 영업 포인트.</p>
+        </div>
+        <div class="pillar-card">
+          <div class="pillar-num">03</div>
+          <div class="pillar-icon">☁️</div>
+          <h3>협업은 클라우드 네이티브</h3>
+          <p>Teams · SharePoint · OneDrive · 실시간 공동 편집은 <b>구독 클라우드 인프라가 전제</b>. 영구판은 파일 첨부·로컬 저장 시대 도구. 원격·하이브리드 근무에 부적합.</p>
+        </div>
+      </div>
 
-        <tr class="cat-row"><td colspan="6">🤝 협업 도구</td></tr>
-        <tr><td>Microsoft Teams (채팅·통화·모임·웨비나)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td>—</td></tr>
-        <tr><td>SharePoint (팀 사이트·문서 공유)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>OneDrive (1~5TB+ 클라우드 저장소)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
+      <!-- ===== 고객 제안 5단계 ===== -->
+      <div class="section-title">
+        <h2>고객 제안 5단계</h2>
+        <span class="desc">진단부터 전환까지의 영업 로드맵</span>
+      </div>
+      <div class="journey-flow">
+        <div class="journey-step">
+          <div class="js-num">01</div>
+          <h3>현황 진단</h3>
+          <p>영구판 / 클라우드 도구 / 보안 솔루션 사용 현황 파악</p>
+        </div>
+        <div class="journey-step">
+          <div class="js-num">02</div>
+          <h3>페인 발견</h3>
+          <p>AI 미도입 · 협업 비효율 · 보안 중복 투자 · 라이선스 관리 부담</p>
+        </div>
+        <div class="journey-step">
+          <div class="js-num">03</div>
+          <h3>가치 제안</h3>
+          <p>통합 TCO 계산서 + 3년 ROI 175% · 통합 플랫폼 가치 제시</p>
+        </div>
+        <div class="journey-step">
+          <div class="js-num">04</div>
+          <h3>PoC 진행</h3>
+          <p>1팀 10~30명 1개월 무료 체험 + Copilot 시범 운영</p>
+        </div>
+        <div class="journey-step">
+          <div class="js-num">05</div>
+          <h3>전환 & 도입</h3>
+          <p>FastTrack 무료 지원 · 마이그레이션 · 사용자 교육</p>
+        </div>
+      </div>
 
-        <tr class="cat-row"><td colspan="6">🔒 보안 · ID 관리</td></tr>
-        <tr><td>Microsoft Entra ID (ID·액세스 관리)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Intune (기기·앱 데이터 관리)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Windows 11 Enterprise</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Windows Hello for Business</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Microsoft Defender (바이러스·맬웨어 방지)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Shadow IT Discovery</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
-        <tr><td>Microsoft Purview (데이터 거버넌스)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td>—</td></tr>
+      <!-- ===== 프로페셔널 서비스 로드맵 ===== -->
+      <div class="section-title">
+        <h2>FBKR 프로페셔널 서비스 로드맵</h2>
+        <span class="desc">단순 라이선스 영업 → 장기 전략 파트너</span>
+      </div>
+      <div class="roadmap-flow">
+        <div class="roadmap-stage">
+          <div class="rm-stage">STAGE 1</div>
+          <h3>라이선스 영업</h3>
+          <p>M365 E3/E5/Copilot 구독 영업. 가격 비교·견적 제출·계약 체결.</p>
+          <div class="rm-tag">진입점</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-stage">
+          <div class="rm-stage">STAGE 2</div>
+          <h3>도입 컨설팅</h3>
+          <p>FastTrack 연계 + 마이그레이션 계획 수립 + 보안 정책 설계.</p>
+          <div class="rm-tag">+ 가치</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-stage">
+          <div class="rm-stage">STAGE 3</div>
+          <h3>운영 지원</h3>
+          <p>Copilot 활성화 교육 · 관리자 도구 코칭 · 사용자 채택률 향상.</p>
+          <div class="rm-tag">+ 신뢰</div>
+        </div>
+        <div class="roadmap-arrow">→</div>
+        <div class="roadmap-stage featured">
+          <div class="rm-stage">STAGE 4 · GOAL</div>
+          <h3>전략 파트너</h3>
+          <p>AI 에이전트 개발 · 디지털 트랜스포메이션 · 장기 컨설팅 계약.</p>
+          <div class="rm-tag">FBKR 프로페셔널 서비스</div>
+        </div>
+      </div>
 
-        <tr class="cat-row"><td colspan="6">🛡️ 고급 보안 (E5 전용)</td></tr>
-        <tr><td>피싱·랜섬웨어 방지 (고급)</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>XDR 확장 감지 및 대응</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>ITDR 하이브리드 ID 보호</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>Defender for Identity</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>Defender for Cloud Apps</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>악성 OAuth 앱 차단</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
-        <tr><td>고급 데이터 컴플라이언스·eDiscovery</td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td><span class="n">✖</span></td><td><span class="e5only">✔ E5</span></td><td>—</td></tr>
+      <div class="section-title">
+        <h2>둘러보기</h2>
+        <span class="desc">상세 섹션으로 이동</span>
+      </div>
+      <div class="quick-grid">
+        <button class="quick-link" onclick="showTab('plans')">
+          <div class="label">PLANS</div>
+          <h3>플랜</h3>
+          <p>E3·E5·Teams 포함·제외·Copilot 옵션 카탈로그</p>
+          <span class="arrow">→</span>
+        </button>
+        <button class="quick-link" onclick="showTab('compare')">
+          <div class="label">FEATURES</div>
+          <h3>기능</h3>
+          <p>전체 기능 매트릭스 + 포함된 앱 목록</p>
+          <span class="arrow">→</span>
+        </button>
+        <button class="quick-link" onclick="showTab('license')">
+          <div class="label">LICENSE</div>
+          <h3>라이선스</h3>
+          <p>영구형 → 구독형 전환 가이드 · talking point 9</p>
+          <span class="arrow">→</span>
+        </button>
+        <button class="quick-link" onclick="showTab('tips')">
+          <div class="label">SALES KIT</div>
+          <h3>영업 자료</h3>
+          <p>영업 팁 (계약·반론·제품·프로세스) + 용어집</p>
+          <span class="arrow">→</span>
+        </button>
+      </div>
 
-        <tr class="cat-row"><td colspan="6">🤖 AI / Copilot</td></tr>
-        <tr><td>Copilot Chat (기본 AI 채팅)</td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td><td><span class="y">✔</span></td></tr>
-        <tr><td>Teams Copilot (회의 요약·작업 제안)</td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="add">✔ 추가</span></td></tr>
-        <tr><td>Word / Excel / PowerPoint Copilot</td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="add">✔ 추가</span></td></tr>
-        <tr><td>Outlook Copilot (이메일 요약·초안)</td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="add">✔ 추가</span></td></tr>
-        <tr><td>Copilot Studio (커스텀 에이전트 제작)</td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="add">✔ 추가</span></td></tr>
-        <tr><td>리서치 도구 · 분석 도구</td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="n">✖</span></td><td><span class="add">✔ 추가</span></td></tr>
-      </tbody>
-    </table>
-  </div>
-  <div class="source-note-sm">
-    <span class="y" style="font-size:13px">✔</span> 포함 &nbsp;|&nbsp; <span class="n" style="font-size:13px">✖</span> 미포함 &nbsp;|&nbsp;
-    <span style="color:var(--purple);font-weight:700">✔ E5</span> E5 전용 &nbsp;|&nbsp;
-    <span style="color:var(--orange);font-weight:700">✔ 추가</span> Copilot 별도 구매 &nbsp;&nbsp;
-    📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/microsoft-365-enterprise" target="_blank">Microsoft 공식 출처</a>
-  </div>
-</div>
-
-
-<!-- ===== 가격 플랜 ===== -->
-<div class="section" id="pricing">
-  <div class="info-banner">📌&nbsp; 연간 약정 기준 · VAT 별도 · 출처: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">Microsoft 공식 플랜 및 가격 페이지</a></div>
-
-  <div class="sec-title"><span>📦</span> Teams 포함 플랜</div>
-  <div class="plan-cards">
-    <div class="plan-card">
-      <h3>Microsoft 365 E3</h3>
-      <div class="ps">Teams 포함 · 엔터프라이즈 표준</div>
-      <div class="price">₩48,600 <span>/사용자·월</span></div>
-      <div class="pn">연간 약정 · VAT 별도 · 1개월 무료 체험 가능</div>
-      <ul>
-        <li><span class="chk">✔</span>Word, Excel, PPT, Outlook (전 플랫폼)</li>
-        <li><span class="chk">✔</span>Teams · SharePoint · OneDrive (1~5TB+)</li>
-        <li><span class="chk">✔</span>Windows 11 Enterprise</li>
-        <li><span class="chk">✔</span>Entra ID · Intune · Defender · Purview</li>
-        <li><span class="chk">✔</span>Power Apps · Power Automate</li>
-        <li><span class="chk">✔</span>Copilot Chat (기본 AI 채팅 포함)</li>
-      </ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com 공식 가격 페이지</a></div>
+      <div class="footer-source">
+        <b>최근 확인 2026-05-11</b> · 출처:
+        <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com/ko-kr 플랜 및 가격</a>
+        ·
+        <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/enterprise" target="_blank">엔터프라이즈 Copilot 가격</a><br>
+        가격은 <b>FBKR 영업 견적 별도</b>로 안내 · 본 문서는 공시 정보 기반 영업 참고용
+      </div>
     </div>
-    <div class="plan-card featured">
-      <div class="rec-badge">🏆 최고 보안</div>
-      <h3>Microsoft 365 E5</h3>
-      <div class="ps">Teams 포함 · 엔터프라이즈 프리미엄</div>
-      <div class="price">₩77,000 <span>/사용자·월</span></div>
-      <div class="pn">연간 약정 · VAT 별도</div>
-      <ul>
-        <li><span class="chk">✔</span>E3 전체 기능 포함</li>
-        <li><span class="chk">✔</span>피싱·랜섬웨어 방지 (고급)</li>
-        <li><span class="chk">✔</span>XDR · ITDR · 악성 OAuth 차단</li>
-        <li><span class="chk">✔</span>Defender for Identity · Cloud Apps</li>
-        <li><span class="chk">✔</span>Power BI Pro</li>
-        <li><span class="chk">✔</span>고급 데이터 컴플라이언스·eDiscovery</li>
-      </ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com 공식 가격 페이지</a></div>
+  </section>
+
+
+  <!-- ===== 플랜 ===== -->
+  <section class="section" id="plans">
+    <div class="container">
+      <header class="page-head">
+        <span class="page-eyebrow">PLANS</span>
+        <h1>플랜 구성</h1>
+        <p class="subtitle">Teams 포함/제외 4 SKU + Teams 단독 + Copilot 옵션 4종. 가격은 FBKR 영업 견적 별도.</p>
+      </header>
+
+      <div class="section-title"><h2>Teams 포함 플랜</h2></div>
+      <div class="plan-cards">
+        <div class="plan-card">
+          <h3>Microsoft 365 E3</h3>
+          <div class="desc">Teams 포함 · 엔터프라이즈 표준</div>
+          <ul>
+            <li><span class="chk">✓</span>Word, Excel, PPT, Outlook (전 플랫폼)</li>
+            <li><span class="chk">✓</span>Teams · SharePoint · OneDrive (1~5TB+)</li>
+            <li><span class="chk">✓</span>Windows 11 Enterprise</li>
+            <li><span class="chk">✓</span>Entra ID · Intune · Defender · Purview</li>
+            <li><span class="chk">✓</span>Power Apps · Power Automate</li>
+            <li><span class="chk">✓</span>Copilot Chat (기본 AI 채팅)</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card featured">
+          <div class="badge">최고 보안</div>
+          <h3>Microsoft 365 E5</h3>
+          <div class="desc">Teams 포함 · 엔터프라이즈 프리미엄</div>
+          <ul>
+            <li><span class="chk">✓</span>E3 전체 기능 포함</li>
+            <li><span class="chk">✓</span>피싱·랜섬웨어 방지 (고급)</li>
+            <li><span class="chk">✓</span>XDR · ITDR · 악성 OAuth 차단</li>
+            <li><span class="chk">✓</span>Defender for Identity · Cloud Apps</li>
+            <li><span class="chk">✓</span>Power BI Pro</li>
+            <li><span class="chk">✓</span>고급 데이터 컴플라이언스·eDiscovery</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
+        </div>
+      </div>
+
+      <div class="section-title"><h2>Teams 미포함 플랜</h2><span class="desc">EU 경쟁 규정 대응으로 분리 출시된 SKU</span></div>
+      <div class="plan-cards">
+        <div class="plan-card">
+          <h3>M365 E3 (Teams 제외)</h3>
+          <div class="desc">Teams 별도 구매 필요</div>
+          <ul>
+            <li><span class="chk">✓</span>E3 전체 기능 (Teams 제외)</li>
+            <li><span class="x">✕</span>Teams는 별도 라이선스 필요</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b></div>
+        </div>
+        <div class="plan-card">
+          <h3>M365 E5 (Teams 제외)</h3>
+          <div class="desc">Teams 별도 구매 필요</div>
+          <ul>
+            <li><span class="chk">✓</span>E5 전체 기능 (Teams 제외)</li>
+            <li><span class="x">✕</span>Teams는 별도 라이선스 필요</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b></div>
+        </div>
+        <div class="plan-card">
+          <div class="badge alt">+ Teams 단독</div>
+          <h3>Microsoft Teams Enterprise</h3>
+          <div class="desc">Teams 제외 플랜에 추가 시 사용</div>
+          <ul>
+            <li><span class="chk">✓</span>Teams 채팅·통화·모임·웨비나 (포함 플랜과 동일)</li>
+            <li><span class="chk">✓</span>E3/E5(Teams 제외) + Teams 단독 = 포함 플랜과 거의 동일 비용 구조</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b></div>
+        </div>
+      </div>
+
+      <div class="section-title"><h2>Copilot 옵션</h2><span class="desc">AI 풀 기능은 별도 라이선스</span></div>
+      <div class="plan-cards">
+        <div class="plan-card">
+          <h3>Copilot Chat</h3>
+          <div class="desc">기본 AI 채팅 · <b>무료 포함</b> (적격 M365 구독자)</div>
+          <ul>
+            <li><span class="chk">✓</span>최신 LLM 기반 안전한 AI 채팅</li>
+            <li><span class="chk">✓</span>엔터프라이즈 데이터 보호</li>
+            <li><span class="chk">✓</span>사용량 기반 에이전트 접근</li>
+          </ul>
+          <div class="src">추가 비용 없음 · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card featured">
+          <div class="badge">AI 풀 기능</div>
+          <h3>Microsoft 365 Copilot</h3>
+          <div class="desc">별도 라이선스 · 적격 M365 플랜 필요</div>
+          <ul>
+            <li><span class="chk">✓</span>Teams·Outlook·Word·PPT·Excel 전체 Copilot</li>
+            <li><span class="chk">✓</span>비즈니스 데이터 기반 AI 채팅</li>
+            <li><span class="chk">✓</span>Copilot Studio 커스텀 에이전트</li>
+            <li><span class="chk">✓</span>리서치 도구 · 분석 도구</li>
+            <li><span class="warn">⚠</span>별도 M365 라이선스 필수</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/enterprise" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card">
+          <div class="badge alt">에이전트 종량제</div>
+          <h3>Copilot Studio Pack</h3>
+          <div class="desc">커스텀 에이전트 · 종량제(pay-as-you-go)</div>
+          <ul>
+            <li><span class="chk">✓</span>Copilot Studio로 자체 에이전트 제작</li>
+            <li><span class="chk">✓</span>Copilot Chat 내 메시지/실행에 크레딧 차감</li>
+            <li><span class="chk">✓</span>선불 capacity pack · Azure 구독 필요</li>
+            <li><span class="warn">⚠</span>사용량 폭증 시 추가 팩 구매 필요</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/copilot-studio" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card">
+          <h3>M365 Copilot Business</h3>
+          <div class="desc">SMB(300명 이하) 전용 · 참고</div>
+          <ul>
+            <li><span class="chk">✓</span>적격 M365 Business 플랜 필요</li>
+            <li><span class="chk">✓</span>최대 300 사용자 한도</li>
+            <li><span class="warn">⚠</span>Enterprise(E3/E5) 고객은 위 M365 Copilot 플랜 사용</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b></div>
+        </div>
+      </div>
+
+      <div class="section-title"><h2>고객 유형별 추천</h2></div>
+      <div class="cards-grid">
+        <div class="card"><div class="icon">🏢</div><h3>일반·중견기업</h3><p>표준 생산성+기본 보안 → <b>M365 E3</b> (Teams 포함)</p></div>
+        <div class="card"><div class="icon">🏦</div><h3>금융·의료·공공기관</h3><p>강력 보안·컴플라이언스 필수 → <b>M365 E5</b> (고급 보안 일체)</p></div>
+        <div class="card"><div class="icon">🤖</div><h3>AI 혁신 추구</h3><p>E3/E5에 <b>Microsoft 365 Copilot</b> 추가</p></div>
+        <div class="card"><div class="icon">🌍</div><h3>EU 규정 대응</h3><p><b>Teams 제외</b> 플랜 사용 (E3/E5 모두 가능)</p></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="sec-title"><span>📦</span> Teams 미포함 플랜</div>
-  <div class="plan-cards">
-    <div class="plan-card" style="opacity:.82">
-      <h3>M365 E3 (Teams 제외)</h3>
-      <div class="ps">Teams 별도 구매 필요</div>
-      <div class="price">₩37,100 <span>/사용자·월</span></div>
-      <div class="pn">연간 약정 · VAT 별도 · 1개월 무료 체험 가능</div>
-      <ul><li><span class="chk">✔</span>E3 전체 기능 (Teams 제외)</li><li><span style="color:#ccc">✖</span> Teams는 별도 라이선스 필요</li></ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com 공식 가격 페이지</a></div>
+
+  <!-- ===== 라이선스 모델 ===== -->
+  <section class="section" id="license">
+    <div class="container">
+      <header class="page-head">
+        <span class="page-eyebrow">영구형 → 구독형 전환 가이드</span>
+        <h1>라이선스 모델 비교</h1>
+        <p class="subtitle">Office 영구형(Perpetual)을 사용 중인 고객에게 Microsoft 365 구독으로 전환을 제안할 때 활용.</p>
+      </header>
+
+      <div class="section-title"><h2>현재 시중의 영구형 라이선스</h2></div>
+      <p class="lead-text">고객사가 사용 중일 가능성이 높은 Office Perpetual 제품군. 1회 구매로 영구 사용권을 갖지만 <b>업데이트·신기능·클라우드 서비스는 포함되지 않음</b>.</p>
+      <div class="cards-grid">
+        <div class="card">
+          <div class="icon">🏠</div>
+          <h3>Office Home &amp; Business 2024</h3>
+          <p>Word·Excel·PowerPoint·Outlook 영구. 1대 PC/Mac 설치. <b>소상공인/개인사업자 대상</b>.</p>
+          <span class="tag">개인·소상공인</span>
+        </div>
+        <div class="card">
+          <div class="icon">🎓</div>
+          <h3>Office Home &amp; Student 2024</h3>
+          <p>Word·Excel·PowerPoint 영구 (Outlook 미포함). 1대 PC/Mac. <b>가정·학생 전용</b>, 상업적 사용 불가.</p>
+          <span class="tag">가정·교육</span>
+        </div>
+        <div class="card">
+          <div class="icon">🏢</div>
+          <h3>Office Standard 2024</h3>
+          <p>Word·Excel·PowerPoint·Outlook·OneNote·Publisher 영구. <b>Volume License Program</b>(기업 대량 구매) 전용.</p>
+          <span class="tag">기업 Volume</span>
+        </div>
+        <div class="card">
+          <div class="icon">💼</div>
+          <h3>Office Professional Plus 2024</h3>
+          <p>Standard + Access + Skype for Business 등. Volume License 전용. <b>대기업 표준 영구 라이선스</b>.</p>
+          <span class="tag">기업 Volume</span>
+        </div>
+        <div class="card">
+          <div class="icon">🏛️</div>
+          <h3>Office LTSC 2024</h3>
+          <p>Long-Term Servicing Channel. 인터넷 단절 환경·생산 시스템·공공·의료 등 <b>특수 보안 환경</b>용. 클라우드 기능 일체 제외.</p>
+          <span class="tag">특수 환경</span>
+        </div>
+        <div class="card">
+          <div class="icon">📊</div>
+          <h3>Microsoft Project 2024</h3>
+          <p>일정·자원·예산 관리 영구판. Standard / Professional 두 SKU. <b>독립 제품</b>이라 Office와 별도 구매.</p>
+          <span class="tag">독립 제품</span>
+        </div>
+        <div class="card">
+          <div class="icon">🗺️</div>
+          <h3>Microsoft Visio 2024</h3>
+          <p>다이어그램·플로우차트 영구판. Standard / Professional. <b>독립 제품</b>이라 별도 구매.</p>
+          <span class="tag">독립 제품</span>
+        </div>
+        <div class="card">
+          <div class="icon">🖥️</div>
+          <h3>Exchange / SharePoint Server</h3>
+          <p>온프레미스 서버 제품. 자체 서버 운영. <b>하이브리드 또는 완전 온프레미스</b> 환경 고객용. 별도 CAL 필요.</p>
+          <span class="tag">온프레미스</span>
+        </div>
+      </div>
+
+      <div class="section-title"><h2>영구형 vs 구독형 핵심 차이</h2></div>
+      <div class="table-wrap">
+        <table class="big-table" style="min-width:720px">
+          <thead>
+            <tr>
+              <th>구분</th>
+              <th><span class="plan-name">영구형</span><span class="plan-tag">Office 2024 / LTSC</span></th>
+              <th><span class="plan-name">구독형</span><span class="plan-tag">Microsoft 365</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>구매 모델</td><td>1회 구매 · 영구 사용권</td><td>월/연 구독 · 사용권 지속</td></tr>
+            <tr><td>설치 디바이스</td><td>1대 PC 또는 Mac</td><td>1인당 PC 5대 + 모바일 5대 + 태블릿 5대</td></tr>
+            <tr><td>기능 업데이트</td><td><span class="n">✕</span> 출시 시점 동결 (보안 패치만)</td><td><span class="y">✓</span> 신기능 자동 반영</td></tr>
+            <tr><td>AI / Copilot</td><td><span class="n">✕</span> 사용 불가</td><td><span class="y">✓</span> Copilot Chat 무료 · M365 Copilot 추가</td></tr>
+            <tr><td>Teams · SharePoint · OneDrive</td><td><span class="n">✕</span> 포함 안 됨</td><td><span class="y">✓</span> 통합 제공</td></tr>
+            <tr><td>Exchange Online (메일)</td><td><span class="n">✕</span> 자체 서버 필요</td><td><span class="y">✓</span> 클라우드 메일·일정</td></tr>
+            <tr><td>실시간 공동 편집</td><td><span class="n">✕</span> 비현실적</td><td><span class="y">✓</span> 동시 편집·댓글</td></tr>
+            <tr><td>보안 (Defender·Purview·Intune)</td><td><span class="n">✕</span> 별도 구매</td><td><span class="y">✓</span> E3/E5에 포함</td></tr>
+            <tr><td>라이선스 관리</td><td>제품키·개별 PC 관리</td><td>Admin Center 중앙 콘솔</td></tr>
+            <tr><td>지원 기간</td><td>5년 메인 + 2년 확장 한정</td><td>구독 기간 = 지원 기간 (영구 유지)</td></tr>
+            <tr><td>초기 비용</td><td>높음 (1회)</td><td>낮음 (월·연 분할)</td></tr>
+            <tr><td>장기 비용 (5년+)</td><td>저렴해 보이나 협업·보안·AI 추가 비용으로 역전</td><td>모든 비용 통합 · TCO 우위</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="section-title"><h2>구독형으로 넘어가야 하는 이유</h2><span class="desc">영업 talking point 9</span></div>
+      <p class="lead-text">고객의 "영구는 1번 사면 끝인데 왜 매달 내?" 반박에 대응하는 9가지 핵심 가치.</p>
+      <div class="reason-grid">
+        <div class="reason-card"><span class="num">01</span><h3>AI는 구독자만의 권리</h3><p>Copilot Chat(무료)·Microsoft 365 Copilot(유료) 모두 <b>구독형 전용</b>. 영구판에서는 AI 통합이 영구 차단됨. AI 도입을 검토하는 모든 고객은 자동으로 구독 전환 대상.</p></div>
+        <div class="reason-card"><span class="num">02</span><h3>신기능은 매달 업데이트</h3><p>Office 2024 영구판은 출시 시점에 동결. <b>구독은 매월 신기능 자동 반영</b>. Excel 데이터 분석, PPT 디자이너, Word AI 등 영구판에 없는 기능 다수.</p></div>
+        <div class="reason-card"><span class="num">03</span><h3>협업이 영구판의 한계</h3><p>Teams·SharePoint·OneDrive·실시간 공동 편집은 <b>구독 클라우드 인프라가 전제</b>. 영구판은 파일 첨부·로컬 저장 시대 도구. 원격·하이브리드 근무 시대에 부적합.</p></div>
+        <div class="reason-card"><span class="num">04</span><h3>보안은 더 이상 부가 기능 아님</h3><p>피싱·랜섬웨어·내부 위협이 일상화된 환경에서 <b>Defender · Purview · Intune · Entra ID</b>는 필수. 영구판은 이걸 따로 사야 하지만 M365 E3/E5엔 통합됨.</p></div>
+        <div class="reason-card"><span class="num">05</span><h3>1인 멀티 디바이스 시대</h3><p>영구판은 1라이선스=1PC. 구독은 <b>PC 5 + 모바일 5 + 태블릿 5</b> = 15 디바이스. 사무실·재택·외근 모두 같은 계정으로.</p></div>
+        <div class="reason-card"><span class="num">06</span><h3>라이선스 관리 단순화</h3><p>영구판은 제품키 보관·재설치·이직자 관리 모두 수동. 구독은 <b>Admin Center 중앙 관리</b> — 입퇴사 즉시 회수·재할당.</p></div>
+        <div class="reason-card"><span class="num">07</span><h3>장기 TCO 사실은 구독 유리</h3><p>"영구는 1번이면 끝" 통념과 달리, 5년+ 운영 시 Office 영구판도 보안·협업·AI 별도 비용을 더하면 <b>구독 통합가가 우위</b>. 견적 비교 시 통합 TCO 제시.</p></div>
+        <div class="reason-card"><span class="num">08</span><h3>지원 종료 리스크</h3><p>Office 2016 메인스트림 지원 종료. Office 2019 확장 지원도 곧 종료. 영구판은 <b>구매일=수명의 시작</b>. 구독은 구독 중인 한 항상 최신 지원.</p></div>
+        <div class="reason-card"><span class="num">09</span><h3>컴플라이언스 자동 대응</h3><p>K-ISMS · GDPR · 개인정보보호법 등 규제 대응은 <b>클라우드 거버넌스 도구(Purview)</b> 없이 불가능. 영구판으로는 규제 감사 통과 어려움.</p></div>
+      </div>
+
+      <div class="section-title"><h2>자주 듣는 반박 처리</h2></div>
+      <div class="cards-grid">
+        <div class="card"><div class="icon">💸</div><h3>"매달 내는 게 부담이다"</h3><p>5년 단위 TCO 계산서 제시. 영구판 + Teams + Defender + Copilot 별도 구매가 → M365 통합가가 거의 항상 우위.</p></div>
+        <div class="card"><div class="icon">🔌</div><h3>"인터넷 끊기면 못 쓰나?"</h3><p>오해. <b>오프라인 사용 가능</b> (Word·Excel·PPT 30일 미접속 가능). 클라우드는 동기화/협업/AI에만 필요.</p></div>
+        <div class="card"><div class="icon">🔒</div><h3>"보안 때문에 클라우드 못 둠"</h3><p>한국 데이터센터 보장(Microsoft Cloud Korea) · Customer Lockbox · BYOK 옵션. 또는 LTSC 영구판 + 하이브리드 옵션 제안.</p></div>
+        <div class="card"><div class="icon">📜</div><h3>"2016/2019로 충분하다"</h3><p>지원 종료 일정 + 보안 패치 단절 시점 제시. 구버전 사용은 <b>컴플라이언스 위반 + 보안 사고 시 책임</b>으로 직결.</p></div>
+        <div class="card"><div class="icon">⚙️</div><h3>"이전 데이터·매크로 호환?"</h3><p>Office 2003 이후 전 버전 .doc/.xls/.ppt 호환. VBA 매크로 동일 동작. <b>FastTrack 마이그레이션</b>으로 무료 이전 지원.</p></div>
+        <div class="card"><div class="icon">👥</div><h3>"직원들이 익숙한 환경 변경"</h3><p>UI 거의 동일. <b>Copilot 도입 교육</b>이 오히려 신규 동기 — "AI로 업무 빨라진다"는 직원 만족도 상승 사례 제시.</p></div>
+      </div>
+
+      <div class="footer-source">
+        📎 라이선스 SKU·종료일정 출처:
+        <a href="https://learn.microsoft.com/ko-kr/lifecycle/products/" target="_blank">Microsoft Lifecycle Policy</a>
+        ·
+        <a href="https://learn.microsoft.com/ko-kr/officeupdates/" target="_blank">Office Updates</a>
+      </div>
     </div>
-    <div class="plan-card" style="opacity:.82">
-      <h3>M365 E5 (Teams 제외)</h3>
-      <div class="ps">Teams 별도 구매 필요</div>
-      <div class="price">₩65,500 <span>/사용자·월</span></div>
-      <div class="pn">연간 약정 · VAT 별도</div>
-      <ul><li><span class="chk">✔</span>E5 전체 기능 (Teams 제외)</li><li><span style="color:#ccc">✖</span> Teams는 별도 라이선스 필요</li></ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com 공식 가격 페이지</a></div>
+  </section>
+
+
+  <!-- ===== 기능 (Compare + Apps) ===== -->
+  <section class="section" id="compare">
+    <div class="container">
+      <header class="page-head">
+        <span class="page-eyebrow">FEATURES</span>
+        <h1>기능 & 앱</h1>
+        <p class="subtitle">M365 엔터프라이즈 4개 SKU + Copilot 옵션의 기능 매트릭스 · 포함 앱 목록.</p>
+      </header>
+
+      <div class="section-title" style="margin-top: 8px;"><h2>📊 전체 기능 매트릭스</h2></div>
+
+      <div class="table-wrap">
+        <table class="big-table">
+          <thead>
+            <tr>
+              <th>기능 항목</th>
+              <th><span class="plan-name">E3</span><span class="plan-tag">Teams 포함</span></th>
+              <th><span class="plan-name">E5</span><span class="plan-tag">Teams 포함</span></th>
+              <th><span class="plan-name">E3</span><span class="plan-tag">Teams 제외</span></th>
+              <th><span class="plan-name">E5</span><span class="plan-tag">Teams 제외</span></th>
+              <th><span class="plan-name">+ Copilot</span><span class="plan-tag">별도 라이선스</span></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="cat-row"><td colspan="6">핵심 생산성 앱</td></tr>
+            <tr><td>Word · Excel · PowerPoint · Outlook (데스크톱+웹+모바일)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>OneNote · Loop · Clipchamp · Microsoft 편집기</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Exchange (비즈니스 이메일·일정)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Power Apps · Power Automate (M365용)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Power BI Pro</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+
+            <tr class="cat-row"><td colspan="6">협업 도구</td></tr>
+            <tr><td>Microsoft Teams (채팅·통화·모임·웨비나)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td>—</td></tr>
+            <tr><td>SharePoint (팀 사이트·문서 공유)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>OneDrive (1~5TB+ 클라우드 저장소)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+
+            <tr class="cat-row"><td colspan="6">보안 · ID 관리</td></tr>
+            <tr><td>Microsoft Entra ID (ID·액세스 관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Intune (기기·앱 데이터 관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Windows 11 Enterprise</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Windows Hello for Business</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Microsoft Defender (바이러스·맬웨어 방지)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Shadow IT Discovery</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Microsoft Purview (데이터 거버넌스)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+
+            <tr class="cat-row"><td colspan="6">고급 보안 (E5 전용)</td></tr>
+            <tr><td>피싱·랜섬웨어 방지 (고급)</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>XDR 확장 감지 및 대응</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>ITDR 하이브리드 ID 보호</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>Defender for Identity</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>Defender for Cloud Apps</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>악성 OAuth 앱 차단</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>고급 데이터 컴플라이언스·eDiscovery</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+
+            <tr class="cat-row"><td colspan="6">AI / Copilot</td></tr>
+            <tr><td>Copilot Chat (기본 AI 채팅)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+            <tr><td>Teams Copilot (회의 요약·작업 제안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Word / Excel / PowerPoint Copilot</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Outlook Copilot (이메일 요약·초안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Copilot Studio (커스텀 에이전트 제작)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>리서치 도구 · 분석 도구</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="table-legend">
+        <span><span class="y">✓</span> 포함</span>
+        <span><span class="n">✕</span> 미포함</span>
+        <span><span class="e5tag">E5 전용</span> E5 플랜만</span>
+        <span><span class="addtag">Copilot 추가</span> Copilot 라이선스 별도</span>
+        <a class="src-link" href="https://www.microsoft.com/ko-kr/microsoft-365/microsoft-365-enterprise" target="_blank">📎 Microsoft 공식 출처</a>
+      </div>
+
+      <!-- 포함된 앱 (sub-section) -->
+      <div class="section-title" style="margin-top: 72px;"><h2>📱 포함된 앱</h2><span class="desc">카테고리별 앱 목록 · 검색 지원</span></div>
+
+      <div class="search-bar">
+        <span class="ic">🔍</span>
+        <input type="text" placeholder="앱 검색 (예: Teams, Copilot, Defender)" oninput="filterApps(this.value)">
+      </div>
+
+      <div class="section-title"><h2>🤖 AI / Copilot</h2></div>
+      <div class="apps-grid">
+        <div class="app-item" data-name="Copilot Chat"><div class="emoji">💬</div><div class="name">Copilot Chat</div><div class="desc">LLM 기반 안전한 AI 채팅</div><div class="cat">AI</div></div>
+        <div class="app-item" data-name="Copilot Studio"><div class="emoji">🛠️</div><div class="name">Copilot Studio</div><div class="desc">맞춤형 에이전트 제작</div><div class="cat">AI</div></div>
+        <div class="app-item" data-name="리서치 도구"><div class="emoji">🔬</div><div class="name">리서치 도구</div><div class="desc">복잡한 리서치 자동화</div><div class="cat">AI</div></div>
+        <div class="app-item" data-name="분석 도구"><div class="emoji">📊</div><div class="name">분석 도구</div><div class="desc">데이터 인사이트 추출</div><div class="cat">AI</div></div>
+        <div class="app-item" data-name="Create"><div class="emoji">🎨</div><div class="name">Create</div><div class="desc">AI 이미지·배너·동영상</div><div class="cat">AI</div></div>
+      </div>
+
+      <div class="section-title"><h2>💼 생산성</h2></div>
+      <div class="apps-grid">
+        <div class="app-item" data-name="Word"><div class="emoji">📝</div><div class="name">Word</div><div class="desc">AI 문서 작성·편집</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Excel"><div class="emoji">📈</div><div class="name">Excel</div><div class="desc">스프레드시트·분석</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="PowerPoint"><div class="emoji">🎤</div><div class="name">PowerPoint</div><div class="desc">프레젠테이션 제작</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Outlook"><div class="emoji">📧</div><div class="name">Outlook</div><div class="desc">이메일·일정 관리</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="OneNote"><div class="emoji">🗒️</div><div class="name">OneNote</div><div class="desc">디지털 필기·노트</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Loop"><div class="emoji">🔄</div><div class="name">Loop</div><div class="desc">프로젝트 통합 공동작업</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Clipchamp"><div class="emoji">🎬</div><div class="name">Clipchamp</div><div class="desc">동영상 편집</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Power Apps"><div class="emoji">⚡</div><div class="name">Power Apps</div><div class="desc">로우코드 앱 빌드</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Power Automate"><div class="emoji">🤖</div><div class="name">Power Automate</div><div class="desc">업무 자동화</div><div class="cat">생산성</div></div>
+        <div class="app-item" data-name="Power BI Pro"><div class="emoji">📉</div><div class="name">Power BI Pro</div><div class="desc">비즈니스 분석 (E5)</div><div class="cat">생산성</div></div>
+      </div>
+
+      <div class="section-title"><h2>🤝 협업</h2></div>
+      <div class="apps-grid">
+        <div class="app-item" data-name="Teams"><div class="emoji">👥</div><div class="name">Teams</div><div class="desc">채팅·통화·모임·웨비나</div><div class="cat">협업</div></div>
+        <div class="app-item" data-name="SharePoint"><div class="emoji">🌐</div><div class="name">SharePoint</div><div class="desc">팀 사이트·문서 공유</div><div class="cat">협업</div></div>
+        <div class="app-item" data-name="OneDrive"><div class="emoji">☁️</div><div class="name">OneDrive</div><div class="desc">클라우드 파일 저장</div><div class="cat">협업</div></div>
+        <div class="app-item" data-name="Exchange"><div class="emoji">📬</div><div class="name">Exchange</div><div class="desc">엔터프라이즈 이메일</div><div class="cat">협업</div></div>
+      </div>
+
+      <div class="section-title"><h2>🔒 보안</h2></div>
+      <div class="apps-grid">
+        <div class="app-item" data-name="Defender"><div class="emoji">🛡️</div><div class="name">Defender</div><div class="desc">엔드포인트 위협 방어</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Entra ID"><div class="emoji">🔑</div><div class="name">Entra ID</div><div class="desc">ID·자격증명 보호</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Intune"><div class="emoji">📱</div><div class="name">Intune</div><div class="desc">기기·앱 데이터 보호</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Purview"><div class="emoji">📂</div><div class="name">Purview</div><div class="desc">데이터 거버넌스</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Defender Identity"><div class="emoji">🕵️</div><div class="name">Defender Identity</div><div class="desc">온프레미스 ID 보호 (E5)</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Defender Cloud Apps"><div class="emoji">🌩️</div><div class="name">Defender Cloud Apps</div><div class="desc">클라우드 앱 보안 (E5)</div><div class="cat">보안</div></div>
+        <div class="app-item" data-name="Windows 11 Enterprise"><div class="emoji">🖥️</div><div class="name">Windows 11 Ent.</div><div class="desc">제로 트러스트 OS</div><div class="cat">보안</div></div>
+      </div>
+
+      <div class="section-title"><h2>💜 직원 경험 (Viva)</h2></div>
+      <div class="apps-grid">
+        <div class="app-item" data-name="Viva Glint"><div class="emoji">📋</div><div class="name">Viva Glint</div><div class="desc">직원 설문 조사</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Engage"><div class="emoji">💬</div><div class="name">Viva Engage</div><div class="desc">직원 커뮤니티 소통</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Insights"><div class="emoji">💡</div><div class="name">Viva Insights</div><div class="desc">생산성 데이터 인사이트</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Connections"><div class="emoji">🔗</div><div class="name">Viva Connections</div><div class="desc">뉴스·대화 통합 허브</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Pulse"><div class="emoji">❤️</div><div class="name">Viva Pulse</div><div class="desc">빠른 팀 피드백 수집</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Learning"><div class="emoji">📚</div><div class="name">Viva Learning</div><div class="desc">직원 학습·성장 지원</div><div class="cat">직원경험</div></div>
+        <div class="app-item" data-name="Viva Amplify"><div class="emoji">📢</div><div class="name">Viva Amplify</div><div class="desc">캠페인 관리·소통</div><div class="cat">직원경험</div></div>
+      </div>
     </div>
-  </div>
+  </section>
 
-  <div class="sec-title"><span>🤖</span> Copilot 옵션</div>
-  <div class="plan-cards">
-    <div class="plan-card">
-      <h3>Copilot Chat</h3>
-      <div class="ps">기본 AI 채팅 · 별도 비용 없음</div>
-      <div class="price" style="color:var(--green)">무료 포함</div>
-      <div class="pn">적격 M365 구독 사용자 전원</div>
-      <ul>
-        <li><span class="chk">✔</span>최신 LLM 기반 안전한 AI 채팅</li>
-        <li><span class="chk">✔</span>엔터프라이즈 데이터 보호</li>
-        <li><span class="chk">✔</span>사용량 기반 에이전트 접근</li>
-      </ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com 공식 가격 페이지</a></div>
+
+  <!-- ===== 영업 자료 (Tips + Glossary) ===== -->
+  <section class="section" id="tips">
+    <div class="container">
+      <header class="page-head">
+        <span class="page-eyebrow">SALES KIT</span>
+        <h1>영업 자료</h1>
+        <p class="subtitle">영업 팁(계약·반론·제품·프로세스) + 영업 용어집을 한 페이지에.</p>
+      </header>
+
+      <div class="section-title" style="margin-top: 8px;"><h2>💡 영업 팁</h2><span class="desc">카테고리 필터 · 클릭으로 펼치기</span></div>
+
+      <div class="chip-row" data-filter="tips">
+        <button class="chip active" onclick="filterTips('all',this)">전체</button>
+        <button class="chip" onclick="filterTips('contract',this)">계약·구매</button>
+        <button class="chip" onclick="filterTips('objection',this)">반론 대응</button>
+        <button class="chip" onclick="filterTips('product',this)">제품 설명</button>
+        <button class="chip" onclick="filterTips('process',this)">영업 프로세스</button>
+      </div>
+
+      <div class="tip-list">
+        <!-- 계약·구매 -->
+        <div class="tip-box" data-cat="contract" onclick="toggleTip(this)">
+          <div class="tip-q"><span>EA 계약 리스트는 어디서 확인하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>고객(구매자) 입장:</b><br>
+            • <b>VLSC</b> (microsoft.com/licensing/servicecenter) — EA 계약 상세, 라이선스 수량, True-Up 내역, 만료일 확인. Agreement Admin으로 등록 필요<br>
+            • <b>Microsoft 365 관리 센터</b> (admin.microsoft.com) → 청구 → 내 제품에서 현재 구독 확인<br><br>
+            <b>영업사원 입장:</b><br>
+            • <b>Microsoft Partner Center</b> (partner.microsoft.com) — CSP 파트너인 경우 고객별 구독 현황 조회<br>
+            • <b>MSX / D365 내부 툴</b> — Microsoft 직원·공인 파트너는 내부 CRM에서 고객 EA 계약 조회<br>
+            • 고객사 IT 담당자에게 직접 요청 (Agreement Admin 통해 계약서·현황 공유)<br><br>
+            💡 <b>팁:</b> EA 만료일 6개월 전부터 Renewal 대화 시작이 핵심. VLSC에서 만료일 확인 후 선제적으로 연락하세요.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="contract" onclick="toggleTip(this)">
+          <div class="tip-q"><span>EA vs CSP, 어떤 계약 방식을 제안하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>EA (Enterprise Agreement)</b><br>
+            • 대상: 직원 250명 이상 대기업<br>
+            • 3년 약정, 연간 True-Up 정산<br>
+            • 장점: 단가 저렴, 통합 관리 편리<br>
+            • 단점: 약정 기간 중 축소 어려움<br><br>
+            <b>CSP (Cloud Solution Provider)</b><br>
+            • 대상: 중소기업, 유연성 필요 고객<br>
+            • 월간/연간 약정 선택 가능<br>
+            • 장점: 유연한 수량 조정, 파트너 지원<br>
+            • 단점: EA 대비 단가 다소 높음<br><br>
+            💡 <b>판단 기준:</b> 규모가 크고 안정적이면 EA, 빠르게 성장 중이거나 유연성이 필요하면 CSP를 제안하세요.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="contract" onclick="toggleTip(this)">
+          <div class="tip-q"><span>NCE 약정 시 주의사항은?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            NCE(New Commerce Experience)에서 반드시 고객에게 사전 안내해야 할 내용:<br><br>
+            • <b>연간 약정 선택 시</b>: 약정 기간 내 라이선스 수량 <b>감축 불가</b>. 증가만 가능<br>
+            • <b>월간 약정</b>은 연간보다 약 <b>20% 비쌈</b>. 비용 절감이 목적이면 연간 추천<br>
+            • 약정 갱신일(Anniversary Date) 전후 72시간 내에만 변경 가능<br>
+            • 중도 해지 시 잔여 기간 요금 환불 불가<br><br>
+            💡 <b>팁:</b> 사용자 수 변동이 잦으면 처음에 월간으로 시작 후 안정화되면 연간으로 전환을 제안하세요.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="contract" onclick="toggleTip(this)">
+          <div class="tip-q"><span>True-Up 정산 시점을 영업에 어떻게 활용하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            True-Up은 EA 고객의 <b>연간 라이선스 수량 정산</b> 프로세스로, 영업 최고의 접촉 타이밍입니다.<br><br>
+            <b>활용 방법:</b><br>
+            • True-Up 1~2개월 전 고객에게 먼저 연락 → "올해 사용자 수 변동 파악 도와드릴게요"<br>
+            • 사용자 수 증가분 확인 → 추가 라이선스 비용 안내<br>
+            • 이 시점에 <b>플랜 업그레이드(E3→E5)</b> 또는 <b>Copilot 추가</b> 제안<br>
+            • 다음 연도 약정 수량 조정 협의<br><br>
+            💡 <b>주의:</b> True-Up 미진행 시 라이선스 초과 사용으로 감사(Audit) 위험 있음 — 고객 리스크로 설명하면 설득력 높아집니다.
+          </div>
+        </div>
+
+        <!-- 반론 대응 -->
+        <div class="tip-box" data-cat="objection" onclick="toggleTip(this)">
+          <div class="tip-q"><span>"비용이 너무 비싸다"고 할 때</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>수치로 반박하세요 (Forrester 2025 연구):</b><br>
+            • 3년 기준 ROI <b>175%</b><br>
+            • 사용자당 월 <b>$60</b> 공급업체 비용 절감<br>
+            • IT 지원 티켓 <b>40% 이상</b> 감소<br><br>
+            <b>TCO 비교 논리:</b><br>
+            M365 = Office 앱 + 이메일 + 화상회의 + 보안 + 기기 관리 + AI<br>
+            개별 솔루션으로 따로 구매하면 훨씬 비쌉니다. 통합 플랫폼 비용임을 강조하세요.<br><br>
+            💡 <b>말하기 좋은 문장:</b> "M365 E3 한 라이선스로 Office 앱·Teams·보안·기기 관리·AI 채팅이 전부 포함됩니다. 개별 제품으로 따면 비용·관리 부담이 몇 배입니다."
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="objection" onclick="toggleTip(this)">
+          <div class="tip-q"><span>"지금 쓰는 게 있어서 바꾸기 어렵다"고 할 때</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>현재 사용 환경별 대응:</b><br><br>
+            • <b>Google Workspace 사용 중</b>: 마이그레이션 도구(Google Workspace Migration for Microsoft Exchange) 무료 제공. FastTrack 지원으로 데이터 이전 무료 지원(150석+)<br>
+            • <b>온프레미스 Exchange/AD 사용 중</b>: 하이브리드 구성으로 단계적 전환 가능. 당장 전체 이전 안 해도 됨<br>
+            • <b>Zoom 사용 중</b>: Teams는 Zoom과 연동 가능. 동시에 쓰다가 Teams로 자연스럽게 전환 유도<br><br>
+            💡 <b>핵심 메시지:</b> "한 번에 바꾸지 않아도 됩니다. 단계적으로 전환하는 로드맵을 같이 만들어드릴 수 있습니다."
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="objection" onclick="toggleTip(this)">
+          <div class="tip-q"><span>"보안은 이미 다른 솔루션 쓰고 있다"고 할 때</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>중복 투자 해소 관점으로 접근하세요:</b><br><br>
+            • M365 E3/E5에는 Defender, Entra ID, Intune, Purview가 이미 포함<br>
+            • 기존 보안 솔루션 비용과 M365 포함 보안 기능을 비교 → 중복 계약 정리 기회<br>
+            • E5의 경우 XDR·SIEM 수준의 보안을 추가 비용 없이 제공<br><br>
+            💡 <b>질문 포인트:</b> "현재 보안 솔루션에 월 얼마 쓰고 계세요? M365 안에 이미 포함된 기능과 겹치는 게 있을 수 있습니다."
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="objection" onclick="toggleTip(this)">
+          <div class="tip-q"><span>"Copilot은 아직 AI 믿기 어렵다"고 할 때</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>신뢰도 높이는 포인트:</b><br><br>
+            • Copilot Chat은 <b>무료</b>로 이미 포함 → 먼저 써보게 하세요. 부담 없음<br>
+            • 기업 데이터는 외부 AI 학습에 사용되지 않음 (엔터프라이즈 데이터 보호)<br>
+            • AI가 최종 결정하는 게 아니라 초안·요약·분석을 도와주는 도구임을 강조<br>
+            • 특히 <b>반복 업무</b>(이메일 초안, 회의 요약, 보고서 작성)부터 시작하면 체감 효과 빠름<br><br>
+            💡 <b>PoC 제안:</b> "한 팀에서 한 달만 써보고 효과 측정해보시죠. 무료 체험판 연결해드릴게요."
+          </div>
+        </div>
+
+        <!-- 제품 설명 -->
+        <div class="tip-box" data-cat="product" onclick="toggleTip(this)">
+          <div class="tip-q"><span>E3 vs E5 한 문장으로 설명하면?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>"E3는 생산성의 기반, E5는 보안의 완성"</b><br><br>
+            E5 추가 항목 요약:<br>
+            • 고급 위협 방지 (피싱·랜섬웨어·제로데이 공격)<br>
+            • XDR — 이메일·기기·ID·클라우드 앱 전방위 탐지·대응<br>
+            • Defender for Identity (온프레미스 AD 공격 탐지)<br>
+            • Power BI Pro (데이터 분석·시각화)<br>
+            • 고급 eDiscovery·컴플라이언스<br><br>
+            💡 <b>E5 추천 고객:</b> 금융·의료·공공기관, 개인정보 대량 처리 기업, 보안 감사 대응이 필요한 곳
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="product" onclick="toggleTip(this)">
+          <div class="tip-q"><span>Teams 포함/제외 버전, 어떻게 설명하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            2023년 10월부터 EU 경쟁 규정 대응으로 Teams가 별도 분리된 버전이 생겼습니다.<br><br>
+            <b>Teams 제외 버전 추천 대상:</b><br>
+            • 이미 Teams 라이선스를 별도 보유한 고객<br>
+            • Zoom, Google Meet, Cisco Webex 등 다른 협업 툴 사용 중인 고객<br>
+            • Teams 기능이 필요 없는 부서/직군 (현장 작업자 등)<br><br>
+            <b>구조:</b><br>
+            Teams 제외 플랜은 Teams 포함 플랜 대비 월 단가가 낮음 (E3/E5 동일 차이폭). 단, Teams 단독 라이선스(Teams Enterprise)를 별도 추가하면 결과적으로 Teams 포함 플랜과 거의 동일 비용 구조가 됨.<br>
+            → 실제 비용 절감은 <b>"Teams를 완전히 사용 안 하는 부서·직군"</b>에서만 발생.<br>
+            → 정확한 비용 차이는 FBKR 영업 견적으로 확인.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="product" onclick="toggleTip(this)">
+          <div class="tip-q"><span>Copilot Chat(무료)과 M365 Copilot(유료) 차이는?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <table class="mini-table">
+              <tr><th>구분</th><th>Copilot Chat (무료)</th><th>M365 Copilot (유료)</th></tr>
+              <tr><td>웹 AI 채팅</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+              <tr><td>업무 데이터 기반 AI</td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+              <tr><td>Teams 회의 요약</td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+              <tr><td>Outlook 이메일 초안</td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+              <tr><td>Word·PPT·Excel Copilot</td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+              <tr><td>Copilot Studio 에이전트</td><td><span class="n">✕</span></td><td><span class="y">✓</span></td></tr>
+            </table>
+            <br>💡 <b>핵심 차이:</b> 무료는 "인터넷 기반 AI 채팅", 유료는 "우리 회사 데이터를 아는 AI 비서"
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="product" onclick="toggleTip(this)">
+          <div class="tip-q"><span>F1/F3 Frontline은 언제 제안하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>현장 직원(최전방 근무자)이 많은 고객에게 적합:</b><br><br>
+            • 제조·물류·유통 현장 작업자<br>
+            • 병원·요양원 간호사·간병인<br>
+            • 유통 매장 직원<br>
+            • 건설·현장 관리자<br><br>
+            <b>F1 vs F3 차이:</b><br>
+            • <b>F1</b>: 웹·모바일 앱만 사용 가능. 데스크톱 Office 앱 없음. 가장 저렴<br>
+            • <b>F3</b>: 데스크톱 Office 앱 포함. E3보다 저렴하면서 기능 충분<br><br>
+            💡 <b>혼합 구성 제안:</b> 사무직은 E3, 현장 직원은 F1/F3으로 나눠 라이선스 비용을 최적화하세요.
+          </div>
+        </div>
+
+        <!-- 영업 프로세스 -->
+        <div class="tip-box" data-cat="process" onclick="toggleTip(this)">
+          <div class="tip-q"><span>FastTrack을 영업에 어떻게 활용하나요?</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>FastTrack이란:</b> 150석 이상 M365 고객에게 Microsoft가 <b>무료</b>로 제공하는 도입 지원 서비스<br><br>
+            <b>제공 내용:</b><br>
+            • 배포 계획 수립 지원<br>
+            • 데이터 마이그레이션 지원 (이메일·파일 등)<br>
+            • 사용자 교육 자료 제공<br>
+            • 기술 전문가 직접 지원<br><br>
+            <b>영업 활용법:</b><br>
+            • "도입이 복잡하지 않냐"는 고객에게 → "Microsoft 전문가가 무료로 도와줍니다"<br>
+            • 경쟁사 대비 차별점으로 활용<br>
+            • aka.ms/fasttrack 에서 신청 가능<br><br>
+            💡 <b>주의:</b> 150석 미만은 파트너사(CSP)의 지원을 안내하세요.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="process" onclick="toggleTip(this)">
+          <div class="tip-q"><span>무료 평가판(Trial) 전략적으로 활용하는 법</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>제공 평가판:</b><br>
+            • M365 E3: <b>1개월 무료</b><br>
+            • M365 E3 Teams 제외: <b>1개월 무료</b><br>
+            • M365 Copilot: 일부 고객 대상 무료 체험 가능 (파트너 통해 확인)<br><br>
+            <b>Trial 진행 전략:</b><br>
+            1. 시작 전 — 체험 목표와 평가 기준을 고객과 미리 합의<br>
+            2. 2~3주차 — 중간 체크인으로 사용 현황 확인, 문제 해결<br>
+            3. 만료 1주 전 — 결과 리뷰 미팅 → 구매 결정 유도<br><br>
+            💡 <b>핵심:</b> Trial은 자동으로 유료 전환되므로, 만료 전 구매 여부를 반드시 확정하세요. 카드 등록이 필요합니다.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="process" onclick="toggleTip(this)">
+          <div class="tip-q"><span>Renewal(갱신) 타이밍 공략법</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>갱신 준비 타임라인:</b><br><br>
+            • <b>만료 6개월 전</b>: 첫 접촉. 현재 만족도 파악, 사용자 수 변동 확인<br>
+            • <b>만료 3개월 전</b>: 플랜 업그레이드 제안, 견적서 제출<br>
+            • <b>만료 1개월 전</b>: 계약서 검토 및 서명<br>
+            • <b>만료 2주 전</b>: 최종 확인 및 처리<br><br>
+            <b>갱신 시 업셀 포인트:</b><br>
+            • E3 → E5 업그레이드 (보안 강화 니즈 확인)<br>
+            • Copilot 라이선스 추가<br>
+            • 사용자 수 증가에 따른 추가 라이선스<br><br>
+            💡 <b>경쟁사 개입 방어:</b> 갱신 6개월 전부터 관계 강화. 경쟁사는 갱신 시점에 집중적으로 공략합니다.
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="process" onclick="toggleTip(this)">
+          <div class="tip-q"><span>PoC(개념 증명) 효과적으로 진행하는 방법</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>PoC 성공 공식:</b><br><br>
+            <b>1. 범위 한정</b>: 전사 도입 X → 특정 팀(10~30명)으로 시작<br>
+            <b>2. 측정 지표 합의</b>: "회의 시간 20% 단축", "이메일 처리 시간 30분 절감" 등 구체적 목표 설정<br>
+            <b>3. 챔피언 지정</b>: 고객사 내 적극적인 담당자를 내부 전도사로 육성<br>
+            <b>4. 결과 문서화</b>: PoC 종료 후 수치로 결과 정리 → 의사결정권자에게 보고<br><br>
+            💡 <b>Copilot PoC 추천 시나리오:</b><br>
+            • Teams 회의 자동 요약 → 회의록 작성 시간 절감<br>
+            • Outlook 이메일 초안 → 응대 시간 절감<br>
+            • Excel 데이터 분석 → 보고서 작성 시간 절감
+          </div>
+        </div>
+
+        <div class="tip-box" data-cat="process" onclick="toggleTip(this)">
+          <div class="tip-q"><span>Google Workspace 쓰는 고객 공략법</span><span class="tip-arr">▾</span></div>
+          <div class="tip-a">
+            <b>핵심 차별점 3가지:</b><br><br>
+            <b>① 보안</b>: Google은 별도 보안 솔루션 필요. M365는 Defender·Purview·Entra ID·Intune 통합 제공<br>
+            <b>② AI</b>: Microsoft Copilot은 GPT-4 기반으로 모든 Office 앱에 깊게 통합. Google Gemini 대비 업무 데이터 연동 수준이 높음<br>
+            <b>③ Windows 통합</b>: Windows 11 Enterprise 포함 → 기기 관리까지 일원화<br><br>
+            <b>마이그레이션 장벽 해소:</b><br>
+            • Google Drive → OneDrive: Microsoft 마이그레이션 도구 무료 제공<br>
+            • Gmail → Outlook: GWMME(Google Workspace Migration for Microsoft Exchange) 활용<br>
+            • FastTrack으로 무료 기술 지원(150석+)<br><br>
+            💡 <b>공략 타이밍:</b> Google 계약 갱신 6개월 전이 최적. 미리 파악해두세요.
+          </div>
+        </div>
+      </div>
+
+      <!-- 영업 용어 (sub-section) -->
+      <div class="section-title" style="margin-top: 72px;"><h2>📖 영업 용어집</h2><span class="desc">EA·NCE·CSP·SKU·TCO 등 핵심 약어 · 검색·필터 지원</span></div>
+
+      <div class="search-bar">
+        <span class="ic">🔍</span>
+        <input type="text" id="termSearch" placeholder="용어 검색 (예: EA, Copilot, NCE)" oninput="filterTerms(this.value)">
+      </div>
+
+      <div class="chip-row" data-filter="terms">
+        <button class="chip active" onclick="filterTermCat('all',this)">전체</button>
+        <button class="chip" onclick="filterTermCat('contract',this)">계약·라이선스</button>
+        <button class="chip" onclick="filterTermCat('license',this)">구독·플랜</button>
+        <button class="chip" onclick="filterTermCat('product',this)">제품·기술</button>
+        <button class="chip" onclick="filterTermCat('tech',this)">IT 기술</button>
+        <button class="chip" onclick="filterTermCat('sales',this)">영업 프로세스</button>
+      </div>
+
+      <div class="term-grid">
+        <div class="term-card" data-cat="contract" data-name="EA Enterprise Agreement"><span class="label">계약·라이선스</span><div class="name">EA</div><div class="full">Enterprise Agreement</div><div class="desc">Microsoft와 대기업(250명 이상) 간 3년 볼륨 라이선스 계약. 일괄 구매로 단가가 낮아지며, True-Up(연간 정산)으로 사용자 수를 조정합니다. 엔터프라이즈 영업에서 가장 흔히 접하는 계약 방식입니다.</div></div>
+        <div class="term-card" data-cat="contract" data-name="MCA MPSA CSP"><span class="label">계약·라이선스</span><div class="name">MCA / MPSA / CSP</div><div class="full">Microsoft Customer Agreement / Products and Services Agreement / Cloud Solution Provider</div><div class="desc"><b>MCA</b>: 클라우드 제품 구매를 위한 현대화된 계약. <b>MPSA</b>: 다양한 제품을 하나의 계약으로 구매. <b>CSP</b>: 파트너(리셀러)를 통해 구독하는 방식으로 중소기업에 많이 쓰입니다.</div></div>
+        <div class="term-card" data-cat="contract" data-name="True-Up 연간 정산"><span class="label">계약·라이선스</span><div class="name">True-Up</div><div class="full">연간 라이선스 정산</div><div class="desc">EA 계약에서 연 1회 실제 사용자 수와 계약 수량 차액을 정산하는 프로세스. 사용자가 늘었으면 추가 비용 발생. 고객과 매년 접촉하는 중요한 영업 타이밍입니다.</div></div>
+        <div class="term-card" data-cat="contract" data-name="VL 볼륨 라이선스"><span class="label">계약·라이선스</span><div class="name">VL (볼륨 라이선스)</div><div class="full">Volume Licensing</div><div class="desc">다수의 라이선스를 일괄 구매해 할인받는 방식. EA, MPSA, Open License 등이 VL의 하위 프로그램입니다. 일정 수량 이상 구매 시 적용됩니다.</div></div>
+        <div class="term-card" data-cat="contract" data-name="SA 소프트웨어 어슈어런스"><span class="label">계약·라이선스</span><div class="name">SA (소프트웨어 어슈어런스)</div><div class="full">Software Assurance</div><div class="desc">라이선스 구매 시 추가하는 유지보수 옵션. 계약 기간 내 새 버전으로 무료 업그레이드, 교육, 기술 지원 혜택 제공. EA에 기본 포함됩니다.</div></div>
+
+        <div class="term-card" data-cat="license" data-name="SKU 제품 코드"><span class="label">구독·플랜</span><div class="name">SKU</div><div class="full">Stock Keeping Unit</div><div class="desc">Microsoft 제품의 개별 라이선스 단위. 예: "M365 E3 SKU", "Copilot SKU". 견적서 작성 시 SKU 코드(예: CFQ7TTC0HNG6)를 기재합니다. 영업 내부에서 플랜을 지칭할 때 자주 씁니다.</div></div>
+        <div class="term-card" data-cat="license" data-name="UAL CAL"><span class="label">구독·플랜</span><div class="name">UAL / CAL</div><div class="full">User Access License / Client Access License</div><div class="desc"><b>CAL</b>: 서버 제품(Exchange, SharePoint 등)에 접근하기 위한 클라이언트 라이선스. <b>UAL</b>: 사용자 기준 CAL. M365 구독에 포함되어 별도 구매가 필요 없습니다.</div></div>
+        <div class="term-card" data-cat="license" data-name="Add-on 애드온"><span class="label">구독·플랜</span><div class="name">Add-on (애드온)</div><div class="full">추가 라이선스</div><div class="desc">기본 M365 플랜에 추가 구매하는 라이선스. M365 Copilot, Teams Phone, Audio Conferencing 등이 대표적. 기존 고객에게 업셀(Upsell)할 때 핵심 상품입니다.</div></div>
+        <div class="term-card" data-cat="license" data-name="NCE New Commerce Experience"><span class="label">구독·플랜</span><div class="name">NCE</div><div class="full">New Commerce Experience</div><div class="desc">Microsoft가 2022년부터 도입한 새 CSP 구매 방식. 연간·월간 약정 선택 가능. 월간 약정은 연간보다 약 20% 비쌉니다. 약정 기간 내 라이선스 감축 불가 — 고객에게 반드시 사전 안내가 필요합니다.</div></div>
+        <div class="term-card" data-cat="license" data-name="F1 F3 Frontline"><span class="label">구독·플랜</span><div class="name">F1 / F3 (Frontline)</div><div class="full">Microsoft 365 Frontline Worker 플랜</div><div class="desc">현장 근무자용 저가형 플랜. <b>F1</b>: 웹·모바일 전용(데스크톱 앱 없음), <b>F3</b>: 데스크톱 앱 포함. 제조·유통·의료 현장 직원이 많은 고객에게 비용 최적화 제안으로 활용하세요.</div></div>
+
+        <div class="term-card" data-cat="product" data-name="Entra ID AAD"><span class="label">제품·기술</span><div class="name">Entra ID (구 AAD)</div><div class="full">Microsoft Entra ID · Azure Active Directory</div><div class="desc">Microsoft의 클라우드 기반 ID·액세스 관리 서비스. 직원 계정 관리, SSO, MFA 담당. 2023년 Azure AD → Microsoft Entra ID로 명칭 변경. M365 E3/E5에 포함됩니다.</div></div>
+        <div class="term-card" data-cat="product" data-name="Intune MDM MAM"><span class="label">제품·기술</span><div class="name">Intune (MDM/MAM)</div><div class="full">Microsoft Intune · Mobile Device/Application Management</div><div class="desc"><b>MDM</b>(기기 관리): 기기 전체에 정책 적용. <b>MAM</b>(앱 관리): 개인 기기에서 업무 앱만 별도 관리. BYOD(개인 기기 업무 활용) 환경에서 필수 솔루션입니다.</div></div>
+        <div class="term-card" data-cat="product" data-name="Purview DLP"><span class="label">제품·기술</span><div class="name">Purview / DLP</div><div class="full">Microsoft Purview · Data Loss Prevention</div><div class="desc">데이터 거버넌스·컴플라이언스·정보 보호 통합 플랫폼. <b>DLP</b>는 개인정보·기밀 데이터 외부 유출 차단 정책. 금융·의료·공공기관 고객의 컴플라이언스 핵심 키워드입니다.</div></div>
+        <div class="term-card" data-cat="product" data-name="XDR SIEM Sentinel"><span class="label">제품·기술</span><div class="name">XDR / SIEM / Sentinel</div><div class="full">Extended Detection & Response / Security Information & Event Management</div><div class="desc"><b>XDR</b>: 여러 영역 위협을 통합 탐지·대응(E5 포함). <b>SIEM</b>: 보안 이벤트 수집·분석 시스템. <b>Microsoft Sentinel</b>은 Microsoft의 클라우드 SIEM(별도 구매).</div></div>
+        <div class="term-card" data-cat="product" data-name="Copilot Agent"><span class="label">제품·기술</span><div class="name">Copilot / Agent</div><div class="full">Microsoft 365 Copilot · AI 에이전트</div><div class="desc"><b>Copilot Chat</b>: 무료 포함 기본 AI 채팅. <b>M365 Copilot</b>: 모든 앱 통합 AI (유료, 별도 라이선스). <b>Agent</b>: 특정 업무를 자율 수행하는 AI 봇. Copilot Studio로 커스텀 에이전트를 직접 제작할 수 있습니다.</div></div>
+
+        <div class="term-card" data-cat="tech" data-name="MFA SSO"><span class="label">IT 기술</span><div class="name">MFA / SSO</div><div class="full">Multi-Factor Authentication · Single Sign-On</div><div class="desc"><b>MFA</b>: 비밀번호 외 추가 인증(앱·문자·생체) 요구. 계정 탈취 방지 핵심 수단. <b>SSO</b>: 한 번 로그인으로 여러 앱 자동 접근. 편의성과 보안을 동시에 제공합니다.</div></div>
+        <div class="term-card" data-cat="tech" data-name="Zero Trust"><span class="label">IT 기술</span><div class="name">Zero Trust</div><div class="full">제로 트러스트 보안 모델</div><div class="desc">"절대 신뢰하지 말고, 항상 검증하라"는 보안 철학. 내부 직원도 매번 인증을 거치며 최소 권한만 부여합니다. Entra ID·Intune·Defender가 Zero Trust 아키텍처를 구현합니다.</div></div>
+        <div class="term-card" data-cat="tech" data-name="Hybrid 하이브리드 온프레미스"><span class="label">IT 기술</span><div class="name">하이브리드 / 온프레미스</div><div class="full">Hybrid · On-premises</div><div class="desc"><b>온프레미스</b>: 자체 서버 운영. <b>클라우드</b>: Microsoft 서버 사용. <b>하이브리드</b>: 두 방식 병행. M365 마이그레이션 상담 시 고객의 현재 인프라 파악이 선행되어야 합니다.</div></div>
+        <div class="term-card" data-cat="tech" data-name="Tenant 테넌트"><span class="label">IT 기술</span><div class="name">Tenant (테넌트)</div><div class="full">Microsoft 365 테넌트</div><div class="desc">한 기업이 Microsoft 클라우드에서 사용하는 독립 환경(예: company.onmicrosoft.com). 기업 = 1 테넌트. 테넌트 간 데이터는 완전 분리됩니다.</div></div>
+        <div class="term-card" data-cat="tech" data-name="BYOD 개인기기"><span class="label">IT 기술</span><div class="name">BYOD</div><div class="full">Bring Your Own Device</div><div class="desc">직원이 개인 기기를 업무에 활용하는 정책. Intune MAM을 활용하면 개인 기기에서 업무 앱 데이터만 분리·보호 가능. BYOD 도입 고객에게 Intune을 자연스럽게 연결할 수 있습니다.</div></div>
+        <div class="term-card" data-cat="tech" data-name="eDiscovery 전자증거개시"><span class="label">IT 기술</span><div class="name">eDiscovery</div><div class="full">전자 증거 개시</div><div class="desc">소송·감사·규제 조사 시 이메일·문서·채팅 등 전자 데이터를 검색·보존·제출하는 프로세스. E5에 고급 eDiscovery가 포함됩니다.</div></div>
+
+        <div class="term-card" data-cat="sales" data-name="FastTrack 패스트트랙"><span class="label">영업 프로세스</span><div class="name">FastTrack</div><div class="full">Microsoft FastTrack</div><div class="desc">150석 이상 M365 고객에게 무료 제공하는 배포·도입 지원 서비스. Microsoft 기술 전문가가 배포 계획, 마이그레이션, 사용자 교육을 지원합니다. 고객의 도입 장벽을 낮추는 강력한 영업 레버리지입니다.</div></div>
+        <div class="term-card" data-cat="sales" data-name="PoC 개념증명"><span class="label">영업 프로세스</span><div class="name">PoC</div><div class="full">Proof of Concept · 개념 증명</div><div class="desc">제품 도입 전 소규모 시범 운영 단계. 고객사 일부 부서에서 M365·Copilot을 먼저 테스트해 효과를 검증합니다. 무료 평가판(Trial)과 연계하면 구매 결정까지 자연스럽게 이어집니다.</div></div>
+        <div class="term-card" data-cat="sales" data-name="Upsell Crosssell"><span class="label">영업 프로세스</span><div class="name">Upsell / Cross-sell</div><div class="full">업셀 / 크로스셀</div><div class="desc"><b>Upsell</b>: 상위 플랜 제안 (E3 → E5). <b>Cross-sell</b>: 보완 제품 추가 제안 (M365 + Copilot, M365 + Azure). M365 영업의 핵심 전략입니다.</div></div>
+        <div class="term-card" data-cat="sales" data-name="Renewal 갱신"><span class="label">영업 프로세스</span><div class="name">Renewal (갱신)</div><div class="full">라이선스 갱신</div><div class="desc">EA/구독 계약 만료 시 재계약. 만료 3~6개월 전이 플랜 변경·업그레이드 제안의 최고 타이밍. True-Up과 함께 연간 정기 고객 접촉 포인트로 활용하세요.</div></div>
+        <div class="term-card" data-cat="sales" data-name="MPN MCPP"><span class="label">영업 프로세스</span><div class="name">MPN / MCPP</div><div class="full">Microsoft Partner Network · Microsoft Cloud Partner Program</div><div class="desc">Microsoft 공인 파트너 프로그램. 파트너 등급(Solutions Partner 등)에 따라 영업 인센티브·리베이트·기술 지원이 달라집니다. 고객은 파트너(CSP)를 통해 구매하는 경우가 많습니다.</div></div>
+        <div class="term-card" data-cat="sales" data-name="TCO ROI"><span class="label">영업 프로세스</span><div class="name">TCO / ROI</div><div class="full">Total Cost of Ownership · Return on Investment</div><div class="desc"><b>TCO</b>: 라이선스·구현·운영·교육 등 총 소유 비용. <b>ROI</b>: 투자 대비 수익. M365 E3 Forrester 연구(2025)에서 3년 ROI 175% 제시. "비싸다"는 고객에게 TCO/ROI로 가치를 수치화해 설득하세요.</div></div>
+      </div>
+
+      <div class="footer-source">
+        영업 용어는 Microsoft 공식 파트너 문서, 라이선싱 가이드, Microsoft Learn을 기반으로 정리되었습니다.
+      </div>
     </div>
-    <div class="plan-card featured">
-      <div class="rec-badge">🤖 AI 풀 기능</div>
-      <h3>Microsoft 365 Copilot</h3>
-      <div class="ps">별도 라이선스 · 적격 M365 플랜 필요</div>
-      <div class="price" style="color:var(--purple)">₩40,500 <span>/사용자·월</span></div>
-      <div class="pn">연간 약정 · VAT 별도 / 월간 결제: ₩42,525</div>
-      <ul>
-        <li><span class="chk">✔</span>Teams·Outlook·Word·PPT·Excel 전체 Copilot</li>
-        <li><span class="chk">✔</span>비즈니스 데이터 기반 AI 채팅</li>
-        <li><span class="chk">✔</span>Copilot Studio 커스텀 에이전트</li>
-        <li><span class="chk">✔</span>리서치 도구 · 분석 도구</li>
-        <li><span style="color:#e67e22">⚠</span> 별도 M365 라이선스 필수</li>
-      </ul>
-      <div class="plan-src">📎 <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing" target="_blank">microsoft.com Copilot 가격 페이지</a></div>
-    </div>
-  </div>
-</div>
-
-
-<!-- ===== 앱 목록 ===== -->
-<div class="section" id="apps">
-  <div class="search-wrap">
-    <span>🔍</span>
-    <input type="text" placeholder="앱 검색..." oninput="filterApps(this.value)">
-  </div>
-  <div class="sec-title"><span>🤖</span> AI / Copilot</div>
-  <div class="app-grid">
-    <div class="app-item" data-name="Copilot Chat"><div class="ae">💬</div><div class="an">Copilot Chat</div><div class="ad">LLM 기반 안전한 AI 채팅</div><div class="ac cat-ai">AI</div></div>
-    <div class="app-item" data-name="Copilot Studio"><div class="ae">🛠️</div><div class="an">Copilot Studio</div><div class="ad">맞춤형 에이전트 제작</div><div class="ac cat-ai">AI</div></div>
-    <div class="app-item" data-name="리서치 도구"><div class="ae">🔬</div><div class="an">리서치 도구</div><div class="ad">복잡한 리서치 자동화</div><div class="ac cat-ai">AI</div></div>
-    <div class="app-item" data-name="분석 도구"><div class="ae">📊</div><div class="an">분석 도구</div><div class="ad">데이터 인사이트 추출</div><div class="ac cat-ai">AI</div></div>
-    <div class="app-item" data-name="Create"><div class="ae">🎨</div><div class="an">Create</div><div class="ad">AI 이미지·배너·동영상</div><div class="ac cat-ai">AI</div></div>
-  </div>
-  <div class="sec-title" style="margin-top:18px"><span>💼</span> 생산성 앱</div>
-  <div class="app-grid">
-    <div class="app-item" data-name="Word"><div class="ae">📝</div><div class="an">Word</div><div class="ad">AI 문서 작성·편집</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Excel"><div class="ae">📈</div><div class="an">Excel</div><div class="ad">스프레드시트·분석</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="PowerPoint"><div class="ae">🎤</div><div class="an">PowerPoint</div><div class="ad">프레젠테이션 제작</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Outlook"><div class="ae">📧</div><div class="an">Outlook</div><div class="ad">이메일·일정 관리</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="OneNote"><div class="ae">🗒️</div><div class="an">OneNote</div><div class="ad">디지털 필기·노트</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Loop"><div class="ae">🔄</div><div class="an">Loop</div><div class="ad">프로젝트 통합 공동작업</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Clipchamp"><div class="ae">🎬</div><div class="an">Clipchamp</div><div class="ad">동영상 편집</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Power Apps"><div class="ae">⚡</div><div class="an">Power Apps</div><div class="ad">로우코드 앱 빌드</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Power Automate"><div class="ae">🤖</div><div class="an">Power Automate</div><div class="ad">업무 자동화</div><div class="ac cat-prod">생산성</div></div>
-    <div class="app-item" data-name="Power BI Pro"><div class="ae">📉</div><div class="an">Power BI Pro</div><div class="ad">비즈니스 분석 (E5)</div><div class="ac cat-prod">생산성</div></div>
-  </div>
-  <div class="sec-title" style="margin-top:18px"><span>🤝</span> 협업</div>
-  <div class="app-grid">
-    <div class="app-item" data-name="Teams"><div class="ae">👥</div><div class="an">Teams</div><div class="ad">채팅·통화·모임·웨비나</div><div class="ac cat-collab">협업</div></div>
-    <div class="app-item" data-name="SharePoint"><div class="ae">🌐</div><div class="an">SharePoint</div><div class="ad">팀 사이트·문서 공유</div><div class="ac cat-collab">협업</div></div>
-    <div class="app-item" data-name="OneDrive"><div class="ae">☁️</div><div class="an">OneDrive</div><div class="ad">클라우드 파일 저장</div><div class="ac cat-collab">협업</div></div>
-    <div class="app-item" data-name="Exchange"><div class="ae">📬</div><div class="an">Exchange</div><div class="ad">엔터프라이즈 이메일</div><div class="ac cat-collab">협업</div></div>
-  </div>
-  <div class="sec-title" style="margin-top:18px"><span>🔒</span> 보안</div>
-  <div class="app-grid">
-    <div class="app-item" data-name="Defender"><div class="ae">🛡️</div><div class="an">Defender</div><div class="ad">엔드포인트 위협 방어</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Entra ID"><div class="ae">🔑</div><div class="an">Entra ID</div><div class="ad">ID·자격증명 보호</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Intune"><div class="ae">📱</div><div class="an">Intune</div><div class="ad">기기·앱 데이터 보호</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Purview"><div class="ae">📂</div><div class="an">Purview</div><div class="ad">데이터 거버넌스</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Defender for Identity"><div class="ae">🕵️</div><div class="an">Defender Identity</div><div class="ad">온프레미스 ID 보호(E5)</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Defender Cloud Apps"><div class="ae">🌩️</div><div class="an">Defender Cloud Apps</div><div class="ad">클라우드 앱 보안(E5)</div><div class="ac cat-sec">보안</div></div>
-    <div class="app-item" data-name="Windows 11 Enterprise"><div class="ae">🖥️</div><div class="an">Windows 11 Ent.</div><div class="ad">제로 트러스트 OS</div><div class="ac cat-sec">보안</div></div>
-  </div>
-  <div class="sec-title" style="margin-top:18px"><span>💜</span> 직원 경험 (Viva)</div>
-  <div class="app-grid">
-    <div class="app-item" data-name="Viva Glint"><div class="ae">📋</div><div class="an">Viva Glint</div><div class="ad">직원 설문 조사</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Engage"><div class="ae">💬</div><div class="an">Viva Engage</div><div class="ad">직원 커뮤니티 소통</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Insights"><div class="ae">💡</div><div class="an">Viva Insights</div><div class="ad">생산성 데이터 인사이트</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Connections"><div class="ae">🔗</div><div class="an">Viva Connections</div><div class="ad">뉴스·대화 통합 허브</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Pulse"><div class="ae">❤️</div><div class="an">Viva Pulse</div><div class="ad">빠른 팀 피드백 수집</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Learning"><div class="ae">📚</div><div class="an">Viva Learning</div><div class="ad">직원 학습·성장 지원</div><div class="ac cat-emp">직원경험</div></div>
-    <div class="app-item" data-name="Viva Amplify"><div class="ae">📢</div><div class="an">Viva Amplify</div><div class="ad">캠페인 관리·소통</div><div class="ac cat-emp">직원경험</div></div>
-  </div>
-</div>
-
-
-<!-- ===== 플랜 비교 ===== -->
-<div class="section" id="compare">
-  <div class="sec-title"><span>🎯</span> 고객 유형별 추천</div>
-  <div class="cards">
-    <div class="card"><div class="ci">🏢</div><h3>일반·중견기업</h3><p>표준 생산성+기본 보안 → <strong style="color:#0078d4">E3 (₩48,600/월)</strong></p></div>
-    <div class="card"><div class="ci">🏦</div><h3>금융·의료·공공기관</h3><p>강력 보안·컴플라이언스 필수 → <strong style="color:#0078d4">E5 (₩77,000/월)</strong></p></div>
-    <div class="card"><div class="ci">🤖</div><h3>AI 혁신 추구</h3><p>E3/E5에 <strong style="color:#6b2fa0">Copilot (+₩40,500)</strong> 추가</p></div>
-    <div class="card"><div class="ci">🌍</div><h3>EU 규정 대응</h3><p>Teams 제외 → E3 <strong style="color:#0078d4">₩37,100</strong> / E5 <strong style="color:#0078d4">₩65,500</strong></p></div>
-  </div>
-</div>
-
-
-<!-- ===== 영업 팁 ===== -->
-<div class="section" id="tips">
-
-  <div class="tip-cat-filter">
-    <button class="active" onclick="filterTips('all',this)">전체</button>
-    <button onclick="filterTips('contract',this)">🔵 계약·구매</button>
-    <button onclick="filterTips('objection',this)">🔴 반론 대응</button>
-    <button onclick="filterTips('product',this)">🟢 제품 설명</button>
-    <button onclick="filterTips('process',this)">🟠 영업 프로세스</button>
-  </div>
-
-  <!-- 계약·구매 -->
-  <div class="tip-box" data-tcat="contract" onclick="toggleTip(this)">
-    <div class="tq">🔵 EA 계약 리스트는 어디서 확인하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>고객(구매자) 입장:</b><br>
-      • <b>VLSC</b> (microsoft.com/licensing/servicecenter) — EA 계약 상세, 라이선스 수량, True-Up 내역, 만료일 확인. Agreement Admin으로 등록 필요<br>
-      • <b>Microsoft 365 관리 센터</b> (admin.microsoft.com) → 청구 → 내 제품에서 현재 구독 확인<br><br>
-      <b>영업사원 입장:</b><br>
-      • <b>Microsoft Partner Center</b> (partner.microsoft.com) — CSP 파트너인 경우 고객별 구독 현황 조회<br>
-      • <b>MSX / D365 내부 툴</b> — Microsoft 직원·공인 파트너는 내부 CRM에서 고객 EA 계약 조회<br>
-      • 고객사 IT 담당자에게 직접 요청 (Agreement Admin 통해 계약서·현황 공유)<br><br>
-      💡 <b>팁:</b> EA 만료일 6개월 전부터 Renewal 대화 시작이 핵심. VLSC에서 만료일 확인 후 선제적으로 연락하세요.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="contract" onclick="toggleTip(this)">
-    <div class="tq">🔵 EA vs CSP, 어떤 계약 방식을 제안해야 하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>EA (Enterprise Agreement)</b><br>
-      • 대상: 직원 250명 이상 대기업<br>
-      • 3년 약정, 연간 True-Up 정산<br>
-      • 장점: 단가 저렴, 통합 관리 편리<br>
-      • 단점: 약정 기간 중 축소 어려움<br><br>
-      <b>CSP (Cloud Solution Provider)</b><br>
-      • 대상: 중소기업, 유연성 필요 고객<br>
-      • 월간/연간 약정 선택 가능<br>
-      • 장점: 유연한 수량 조정, 파트너 지원<br>
-      • 단점: EA 대비 단가 다소 높음<br><br>
-      💡 <b>판단 기준:</b> 규모가 크고 안정적이면 EA, 빠르게 성장 중이거나 유연성이 필요하면 CSP를 제안하세요.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="contract" onclick="toggleTip(this)">
-    <div class="tq">🔵 NCE 약정 시 주의사항은? <span class="arr">▾</span></div>
-    <div class="ta">
-      NCE(New Commerce Experience)에서 반드시 고객에게 사전 안내해야 할 내용:<br><br>
-      • <b>연간 약정 선택 시</b>: 약정 기간 내 라이선스 수량 <b>감축 불가</b>. 증가만 가능<br>
-      • <b>월간 약정</b>은 연간보다 약 <b>20% 비쌈</b>. 비용 절감이 목적이면 연간 추천<br>
-      • 약정 갱신일(Anniversary Date) 전후 72시간 내에만 변경 가능<br>
-      • 중도 해지 시 잔여 기간 요금 환불 불가<br><br>
-      💡 <b>팁:</b> 고객이 사용자 수 변동이 잦다면 처음에는 월간으로 시작 후 안정화되면 연간으로 전환을 제안하세요.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="contract" onclick="toggleTip(this)">
-    <div class="tq">🔵 True-Up 정산 시점을 영업에 어떻게 활용하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      True-Up은 EA 고객의 <b>연간 라이선스 수량 정산</b> 프로세스로, 영업 최고의 접촉 타이밍입니다.<br><br>
-      <b>활용 방법:</b><br>
-      • True-Up 1~2개월 전 고객에게 먼저 연락 → "올해 사용자 수 변동 파악 도와드릴게요"<br>
-      • 사용자 수 증가분 확인 → 추가 라이선스 비용 안내<br>
-      • 이 시점에 <b>플랜 업그레이드(E3→E5)</b> 또는 <b>Copilot 추가</b> 제안<br>
-      • 다음 연도 약정 수량 조정 협의<br><br>
-      💡 <b>주의:</b> True-Up 미진행 시 라이선스 초과 사용으로 감사(Audit) 위험 있음 — 고객 리스크로 설명하면 설득력 높아집니다.
-    </div>
-  </div>
-
-  <!-- 반론 대응 -->
-  <div class="tip-box" data-tcat="objection" onclick="toggleTip(this)">
-    <div class="tq">🔴 "비용이 너무 비싸다"고 할 때 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>수치로 반박하세요 (Forrester 2025 연구):</b><br>
-      • 3년 기준 ROI <b>175%</b><br>
-      • 사용자당 월 <b>$60</b> 공급업체 비용 절감<br>
-      • IT 지원 티켓 <b>40% 이상</b> 감소<br><br>
-      <b>TCO 비교 논리:</b><br>
-      M365 = Office 앱 + 이메일 + 화상회의 + 보안 + 기기 관리 + AI<br>
-      개별 솔루션으로 따로 구매하면 훨씬 비쌉니다. 통합 플랫폼 비용임을 강조하세요.<br><br>
-      💡 <b>말하기 좋은 문장:</b> "월 ₩48,600에 Office 앱, Teams, 보안, 기기 관리, AI 채팅이 전부 포함됩니다. 개별로 따면 두 배 이상입니다."
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="objection" onclick="toggleTip(this)">
-    <div class="tq">🔴 "지금 쓰는 게 있어서 바꾸기 어렵다"고 할 때 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>현재 사용 환경별 대응:</b><br><br>
-      • <b>Google Workspace 사용 중</b>: 마이그레이션 도구(Google Workspace Migration for Microsoft Exchange) 무료 제공. FastTrack 지원으로 데이터 이전 무료 지원(150석+)<br>
-      • <b>온프레미스 Exchange/AD 사용 중</b>: 하이브리드 구성으로 단계적 전환 가능. 당장 전체 이전 안 해도 됨<br>
-      • <b>Zoom 사용 중</b>: Teams는 Zoom과 연동 가능. 동시에 쓰다가 Teams로 자연스럽게 전환 유도<br><br>
-      💡 <b>핵심 메시지:</b> "한 번에 바꾸지 않아도 됩니다. 단계적으로 전환하는 로드맵을 같이 만들어드릴 수 있습니다."
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="objection" onclick="toggleTip(this)">
-    <div class="tq">🔴 "보안은 이미 다른 솔루션 쓰고 있다"고 할 때 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>중복 투자 해소 관점으로 접근하세요:</b><br><br>
-      • M365 E3/E5에는 Defender, Entra ID, Intune, Purview가 이미 포함<br>
-      • 기존 보안 솔루션 비용과 M365 포함 보안 기능을 비교 → 중복 계약 정리 기회<br>
-      • E5의 경우 XDR·SIEM 수준의 보안을 추가 비용 없이 제공<br><br>
-      💡 <b>질문 포인트:</b> "현재 보안 솔루션에 월 얼마 쓰고 계세요? M365 안에 이미 포함된 기능과 겹치는 게 있을 수 있습니다."
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="objection" onclick="toggleTip(this)">
-    <div class="tq">🔴 "Copilot은 아직 AI 믿기 어렵다"고 할 때 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>신뢰도 높이는 포인트:</b><br><br>
-      • Copilot Chat은 <b>무료</b>로 이미 포함 → 먼저 써보게 하세요. 부담 없음<br>
-      • 기업 데이터는 외부 AI 학습에 사용되지 않음 (엔터프라이즈 데이터 보호)<br>
-      • AI가 최종 결정하는 게 아니라 초안·요약·분석을 도와주는 도구임을 강조<br>
-      • 특히 <b>반복 업무</b>(이메일 초안, 회의 요약, 보고서 작성)부터 시작하면 체감 효과 빠름<br><br>
-      💡 <b>PoC 제안:</b> "한 팀에서 한 달만 써보고 효과 측정해보시죠. 무료 체험판 연결해드릴게요."
-    </div>
-  </div>
-
-  <!-- 제품 설명 -->
-  <div class="tip-box" data-tcat="product" onclick="toggleTip(this)">
-    <div class="tq">🟢 E3 vs E5 한 문장으로 설명하면? <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>"E3는 생산성의 기반, E5는 보안의 완성"</b><br><br>
-      E5 추가 항목 요약:<br>
-      • 고급 위협 방지 (피싱·랜섬웨어·제로데이 공격)<br>
-      • XDR — 이메일·기기·ID·클라우드 앱 전방위 탐지·대응<br>
-      • Defender for Identity (온프레미스 AD 공격 탐지)<br>
-      • Power BI Pro (데이터 분석·시각화)<br>
-      • 고급 eDiscovery·컴플라이언스<br><br>
-      💡 <b>E5 추천 고객:</b> 금융·의료·공공기관, 개인정보 대량 처리 기업, 보안 감사 대응이 필요한 곳
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="product" onclick="toggleTip(this)">
-    <div class="tq">🟢 Teams 포함/제외 버전, 어떻게 설명하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      2023년 10월부터 EU 경쟁 규정 대응으로 Teams가 별도 분리된 버전이 생겼습니다.<br><br>
-      <b>Teams 제외 버전 추천 대상:</b><br>
-      • 이미 Teams 라이선스를 별도 보유한 고객<br>
-      • Zoom, Google Meet, Cisco Webex 등 다른 협업 툴 사용 중인 고객<br>
-      • Teams 기능이 필요 없는 부서/직군 (현장 작업자 등)<br><br>
-      <b>비용 비교:</b><br>
-      E3 Teams 포함: ₩48,600 vs Teams 제외: ₩37,100 → <b>월 ₩11,500 절감</b><br>
-      E5 Teams 포함: ₩77,000 vs Teams 제외: ₩65,500 → <b>월 ₩11,500 절감</b>
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="product" onclick="toggleTip(this)">
-    <div class="tq">🟢 Copilot Chat(무료)과 M365 Copilot(유료) 차이는? <span class="arr">▾</span></div>
-    <div class="ta">
-      <table style="width:100%;font-size:12px;border-collapse:collapse;margin-top:8px">
-        <tr style="background:#e8f3fb">
-          <th style="padding:7px;text-align:left;border:1px solid #c8dff5">구분</th>
-          <th style="padding:7px;text-align:center;border:1px solid #c8dff5">Copilot Chat (무료)</th>
-          <th style="padding:7px;text-align:center;border:1px solid #c8dff5">M365 Copilot (+₩40,500)</th>
-        </tr>
-        <tr><td style="padding:6px;border:1px solid #eee">웹 AI 채팅</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-        <tr style="background:#f8fbff"><td style="padding:6px;border:1px solid #eee">업무 데이터 기반 AI</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#ccc">✖</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-        <tr><td style="padding:6px;border:1px solid #eee">Teams 회의 요약</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#ccc">✖</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-        <tr style="background:#f8fbff"><td style="padding:6px;border:1px solid #eee">Outlook 이메일 초안</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#ccc">✖</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-        <tr><td style="padding:6px;border:1px solid #eee">Word·PPT·Excel Copilot</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#ccc">✖</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-        <tr style="background:#f8fbff"><td style="padding:6px;border:1px solid #eee">Copilot Studio 에이전트</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#ccc">✖</td><td style="padding:6px;border:1px solid #eee;text-align:center;color:#107c10">✔</td></tr>
-      </table>
-      <br>💡 <b>핵심 차이:</b> 무료는 "인터넷 기반 AI 채팅", 유료는 "우리 회사 데이터를 아는 AI 비서"
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="product" onclick="toggleTip(this)">
-    <div class="tq">🟢 F1/F3 Frontline은 언제 제안하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>현장 직원(최전방 근무자)이 많은 고객에게 적합:</b><br><br>
-      • 제조·물류·유통 현장 작업자<br>
-      • 병원·요양원 간호사·간병인<br>
-      • 유통 매장 직원<br>
-      • 건설·현장 관리자<br><br>
-      <b>F1 vs F3 차이:</b><br>
-      • <b>F1</b>: 웹·모바일 앱만 사용 가능. 데스크톱 Office 앱 없음. 가장 저렴<br>
-      • <b>F3</b>: 데스크톱 Office 앱 포함. E3보다 저렴하면서 기능 충분<br><br>
-      💡 <b>혼합 구성 제안:</b> 사무직은 E3, 현장 직원은 F1/F3으로 나눠 라이선스 비용을 최적화하세요.
-    </div>
-  </div>
-
-  <!-- 영업 프로세스 -->
-  <div class="tip-box" data-tcat="process" onclick="toggleTip(this)">
-    <div class="tq">🟠 FastTrack을 영업에 어떻게 활용하나요? <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>FastTrack이란:</b> 150석 이상 M365 고객에게 Microsoft가 <b>무료</b>로 제공하는 도입 지원 서비스<br><br>
-      <b>제공 내용:</b><br>
-      • 배포 계획 수립 지원<br>
-      • 데이터 마이그레이션 지원 (이메일·파일 등)<br>
-      • 사용자 교육 자료 제공<br>
-      • 기술 전문가 직접 지원<br><br>
-      <b>영업 활용법:</b><br>
-      • "도입이 복잡하지 않냐"는 고객에게 → "Microsoft 전문가가 무료로 도와줍니다"<br>
-      • 경쟁사 대비 차별점으로 활용<br>
-      • aka.ms/fasttrack 에서 신청 가능<br><br>
-      💡 <b>주의:</b> 150석 미만은 파트너사(CSP)의 지원을 안내하세요.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="process" onclick="toggleTip(this)">
-    <div class="tq">🟠 무료 평가판(Trial) 전략적으로 활용하는 법 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>제공 평가판:</b><br>
-      • M365 E3: <b>1개월 무료</b><br>
-      • M365 E3 Teams 제외: <b>1개월 무료</b><br>
-      • M365 Copilot: 일부 고객 대상 무료 체험 가능 (파트너 통해 확인)<br><br>
-      <b>Trial 진행 전략:</b><br>
-      1. 시작 전 — 체험 목표와 평가 기준을 고객과 미리 합의<br>
-      2. 2~3주차 — 중간 체크인으로 사용 현황 확인, 문제 해결<br>
-      3. 만료 1주 전 — 결과 리뷰 미팅 → 구매 결정 유도<br><br>
-      💡 <b>핵심:</b> Trial은 자동으로 유료 전환되므로, 만료 전 구매 여부를 반드시 확정하세요. 카드 등록이 필요합니다.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="process" onclick="toggleTip(this)">
-    <div class="tq">🟠 Renewal(갱신) 타이밍 공략법 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>갱신 준비 타임라인:</b><br><br>
-      • <b>만료 6개월 전</b>: 첫 접촉. 현재 만족도 파악, 사용자 수 변동 확인<br>
-      • <b>만료 3개월 전</b>: 플랜 업그레이드 제안, 견적서 제출<br>
-      • <b>만료 1개월 전</b>: 계약서 검토 및 서명<br>
-      • <b>만료 2주 전</b>: 최종 확인 및 처리<br><br>
-      <b>갱신 시 업셀 포인트:</b><br>
-      • E3 → E5 업그레이드 (보안 강화 니즈 확인)<br>
-      • Copilot 라이선스 추가<br>
-      • 사용자 수 증가에 따른 추가 라이선스<br><br>
-      💡 <b>경쟁사 개입 방어:</b> 갱신 6개월 전부터 관계 강화. 경쟁사는 갱신 시점에 집중적으로 공략합니다.
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="process" onclick="toggleTip(this)">
-    <div class="tq">🟠 PoC(개념 증명) 효과적으로 진행하는 방법 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>PoC 성공 공식:</b><br><br>
-      <b>1. 범위 한정</b>: 전사 도입 X → 특정 팀(10~30명)으로 시작<br>
-      <b>2. 측정 지표 합의</b>: "회의 시간 20% 단축", "이메일 처리 시간 30분 절감" 등 구체적 목표 설정<br>
-      <b>3. 챔피언 지정</b>: 고객사 내 적극적인 담당자를 내부 전도사로 육성<br>
-      <b>4. 결과 문서화</b>: PoC 종료 후 수치로 결과 정리 → 의사결정권자에게 보고<br><br>
-      💡 <b>Copilot PoC 추천 시나리오:</b><br>
-      • Teams 회의 자동 요약 → 회의록 작성 시간 절감<br>
-      • Outlook 이메일 초안 → 응대 시간 절감<br>
-      • Excel 데이터 분석 → 보고서 작성 시간 절감
-    </div>
-  </div>
-
-  <div class="tip-box" data-tcat="process" onclick="toggleTip(this)">
-    <div class="tq">🟠 Google Workspace 쓰는 고객 공략법 <span class="arr">▾</span></div>
-    <div class="ta">
-      <b>핵심 차별점 3가지:</b><br><br>
-      <b>① 보안</b>: Google은 별도 보안 솔루션 필요. M365는 Defender·Purview·Entra ID·Intune 통합 제공<br>
-      <b>② AI</b>: Microsoft Copilot은 GPT-4 기반으로 모든 Office 앱에 깊게 통합. Google Gemini 대비 업무 데이터 연동 수준이 높음<br>
-      <b>③ Windows 통합</b>: Windows 11 Enterprise 포함 → 기기 관리까지 일원화<br><br>
-      <b>마이그레이션 장벽 해소:</b><br>
-      • Google Drive → OneDrive: Microsoft 마이그레이션 도구 무료 제공<br>
-      • Gmail → Outlook: GWMME(Google Workspace Migration for Microsoft Exchange) 활용<br>
-      • FastTrack으로 무료 기술 지원(150석+)<br><br>
-      💡 <b>공략 타이밍:</b> Google 계약 갱신 6개월 전이 최적. 미리 파악해두세요.
-    </div>
-  </div>
-
-</div>
-
-
-<!-- ===== 영업 용어 ===== -->
-<div class="section" id="terms">
-  <div class="search-wrap">
-    <span>🔍</span>
-    <input type="text" id="termSearch" placeholder="용어 검색 (예: EA, Copilot, NCE...)" oninput="filterTerms(this.value)">
-  </div>
-  <div class="cat-filter">
-    <button class="active" onclick="filterTermCat('all',this)">전체</button>
-    <button onclick="filterTermCat('contract',this)">🔵 계약·라이선스</button>
-    <button onclick="filterTermCat('license',this)">🟢 구독·플랜</button>
-    <button onclick="filterTermCat('product',this)">🟣 제품·기술</button>
-    <button onclick="filterTermCat('tech',this)">🟠 IT 기술 용어</button>
-    <button onclick="filterTermCat('sales',this)">🔴 영업 프로세스</button>
-  </div>
-
-  <div class="term-cards" id="termCards">
-
-    <div class="term-card" data-cat="contract" data-name="EA Enterprise Agreement">
-      <span class="term-label lbl-contract">계약·라이선스</span>
-      <div class="term-name">EA</div>
-      <div class="term-full">Enterprise Agreement</div>
-      <div class="term-desc">Microsoft와 대기업(250명 이상) 간 3년 볼륨 라이선스 계약. 일괄 구매로 단가가 낮아지며, True-Up(연간 정산)으로 사용자 수를 조정합니다. 엔터프라이즈 영업에서 가장 흔히 접하는 계약 방식입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="contract" data-name="MCA MPSA CSP">
-      <span class="term-label lbl-contract">계약·라이선스</span>
-      <div class="term-name">MCA / MPSA / CSP</div>
-      <div class="term-full">Microsoft Customer Agreement / Products and Services Agreement / Cloud Solution Provider</div>
-      <div class="term-desc"><b>MCA</b>: 클라우드 제품 구매를 위한 현대화된 계약. <b>MPSA</b>: 다양한 제품을 하나의 계약으로 구매. <b>CSP</b>: 파트너(리셀러)를 통해 구독하는 방식으로 중소기업에 많이 쓰입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="contract" data-name="True-Up 연간 정산">
-      <span class="term-label lbl-contract">계약·라이선스</span>
-      <div class="term-name">True-Up</div>
-      <div class="term-full">연간 라이선스 정산</div>
-      <div class="term-desc">EA 계약에서 연 1회 실제 사용자 수와 계약 수량 차액을 정산하는 프로세스. 사용자가 늘었으면 추가 비용 발생. 고객과 매년 접촉하는 중요한 영업 타이밍입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="contract" data-name="VL 볼륨 라이선스 Volume Licensing">
-      <span class="term-label lbl-contract">계약·라이선스</span>
-      <div class="term-name">VL (볼륨 라이선스)</div>
-      <div class="term-full">Volume Licensing</div>
-      <div class="term-desc">다수의 라이선스를 일괄 구매해 할인받는 방식. EA, MPSA, Open License 등이 VL의 하위 프로그램입니다. 일정 수량 이상 구매 시 적용됩니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="contract" data-name="SA 소프트웨어 어슈어런스 Software Assurance">
-      <span class="term-label lbl-contract">계약·라이선스</span>
-      <div class="term-name">SA (소프트웨어 어슈어런스)</div>
-      <div class="term-full">Software Assurance</div>
-      <div class="term-desc">라이선스 구매 시 추가하는 유지보수 옵션. 계약 기간 내 새 버전으로 무료 업그레이드, 교육, 기술 지원 혜택 제공. EA에 기본 포함됩니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="license" data-name="SKU 제품 코드">
-      <span class="term-label lbl-license">구독·플랜</span>
-      <div class="term-name">SKU</div>
-      <div class="term-full">Stock Keeping Unit</div>
-      <div class="term-desc">Microsoft 제품의 개별 라이선스 단위. 예: "M365 E3 SKU", "Copilot SKU". 견적서 작성 시 SKU 코드(예: CFQ7TTC0HNG6)를 기재합니다. 영업 내부에서 플랜을 지칭할 때 자주 씁니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="license" data-name="CAL UAL 클라이언트 액세스">
-      <span class="term-label lbl-license">구독·플랜</span>
-      <div class="term-name">UAL / CAL</div>
-      <div class="term-full">User Access License / Client Access License</div>
-      <div class="term-desc"><b>CAL</b>: 서버 제품(Exchange, SharePoint 등)에 접근하기 위한 클라이언트 라이선스. <b>UAL</b>: 사용자 기준 CAL. M365 구독에 포함되어 별도 구매가 필요 없습니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="license" data-name="Add-on 애드온 추가 라이선스">
-      <span class="term-label lbl-license">구독·플랜</span>
-      <div class="term-name">Add-on (애드온)</div>
-      <div class="term-full">추가 라이선스</div>
-      <div class="term-desc">기본 M365 플랜에 추가 구매하는 라이선스. M365 Copilot, Teams Phone, Audio Conferencing 등이 대표적. 기존 고객에게 업셀(Upsell)할 때 핵심 상품입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="license" data-name="NCE New Commerce Experience">
-      <span class="term-label lbl-license">구독·플랜</span>
-      <div class="term-name">NCE</div>
-      <div class="term-full">New Commerce Experience</div>
-      <div class="term-desc">Microsoft가 2022년부터 도입한 새 CSP 구매 방식. 연간·월간 약정 선택 가능. 월간 약정은 연간보다 약 20% 비쌉니다. 약정 기간 내 라이선스 감축 불가 — 고객에게 반드시 사전 안내가 필요합니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="license" data-name="F1 F3 Frontline Worker 최전방">
-      <span class="term-label lbl-license">구독·플랜</span>
-      <div class="term-name">F1 / F3 (Frontline)</div>
-      <div class="term-full">Microsoft 365 Frontline Worker 플랜</div>
-      <div class="term-desc">현장 근무자용 저가형 플랜. <b>F1</b>: 웹·모바일 전용(데스크톱 앱 없음), <b>F3</b>: 데스크톱 앱 포함. 제조·유통·의료 현장 직원이 많은 고객에게 비용 최적화 제안으로 활용하세요.</div>
-    </div>
-
-    <div class="term-card" data-cat="product" data-name="Entra ID AAD Azure Active Directory">
-      <span class="term-label lbl-product">제품·기술</span>
-      <div class="term-name">Entra ID (구 AAD)</div>
-      <div class="term-full">Microsoft Entra ID · Azure Active Directory</div>
-      <div class="term-desc">Microsoft의 클라우드 기반 ID·액세스 관리 서비스. 직원 계정 관리, SSO, MFA 담당. 2023년 Azure AD → Microsoft Entra ID로 명칭 변경. M365 E3/E5에 포함됩니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="product" data-name="Intune MDM MAM 기기 관리">
-      <span class="term-label lbl-product">제품·기술</span>
-      <div class="term-name">Intune (MDM/MAM)</div>
-      <div class="term-full">Microsoft Intune · Mobile Device/Application Management</div>
-      <div class="term-desc"><b>MDM</b>(기기 관리): 기기 전체에 정책 적용. <b>MAM</b>(앱 관리): 개인 기기에서 업무 앱만 별도 관리. BYOD(개인 기기 업무 활용) 환경에서 필수 솔루션입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="product" data-name="Purview DLP 데이터 유출 방지">
-      <span class="term-label lbl-product">제품·기술</span>
-      <div class="term-name">Purview / DLP</div>
-      <div class="term-full">Microsoft Purview · Data Loss Prevention</div>
-      <div class="term-desc">데이터 거버넌스·컴플라이언스·정보 보호 통합 플랫폼. <b>DLP</b>는 개인정보·기밀 데이터 외부 유출 차단 정책. 금융·의료·공공기관 고객의 컴플라이언스 핵심 키워드입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="product" data-name="XDR SIEM Sentinel 보안 위협 탐지">
-      <span class="term-label lbl-product">제품·기술</span>
-      <div class="term-name">XDR / SIEM / Sentinel</div>
-      <div class="term-full">Extended Detection & Response / Security Information & Event Management</div>
-      <div class="term-desc"><b>XDR</b>: 여러 영역 위협을 통합 탐지·대응(E5 포함). <b>SIEM</b>: 보안 이벤트 수집·분석 시스템. <b>Microsoft Sentinel</b>은 Microsoft의 클라우드 SIEM(별도 구매).</div>
-    </div>
-
-    <div class="term-card" data-cat="product" data-name="Copilot Agent 에이전트 AI">
-      <span class="term-label lbl-product">제품·기술</span>
-      <div class="term-name">Copilot / Agent</div>
-      <div class="term-full">Microsoft 365 Copilot · AI 에이전트</div>
-      <div class="term-desc"><b>Copilot Chat</b>: 무료 포함 기본 AI 채팅. <b>M365 Copilot</b>: 모든 앱 통합 AI (+₩40,500). <b>Agent</b>: 특정 업무를 자율 수행하는 AI 봇. Copilot Studio로 커스텀 에이전트를 직접 제작할 수 있습니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="MFA SSO 다중인증 싱글사인온">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">MFA / SSO</div>
-      <div class="term-full">Multi-Factor Authentication · Single Sign-On</div>
-      <div class="term-desc"><b>MFA</b>: 비밀번호 외 추가 인증(앱·문자·생체) 요구. 계정 탈취 방지 핵심 수단. <b>SSO</b>: 한 번 로그인으로 여러 앱 자동 접근. 편의성과 보안을 동시에 제공합니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="Zero Trust 제로 트러스트 보안">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">Zero Trust</div>
-      <div class="term-full">제로 트러스트 보안 모델</div>
-      <div class="term-desc">"절대 신뢰하지 말고, 항상 검증하라"는 보안 철학. 내부 직원도 매번 인증을 거치며 최소 권한만 부여합니다. Entra ID·Intune·Defender가 Zero Trust 아키텍처를 구현합니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="Hybrid 하이브리드 온프레미스 클라우드">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">하이브리드 / 온프레미스</div>
-      <div class="term-full">Hybrid · On-premises</div>
-      <div class="term-desc"><b>온프레미스</b>: 자체 서버 운영. <b>클라우드</b>: Microsoft 서버 사용. <b>하이브리드</b>: 두 방식 병행. M365 마이그레이션 상담 시 고객의 현재 인프라 파악이 선행되어야 합니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="Tenant 테넌트 회사 환경">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">Tenant (테넌트)</div>
-      <div class="term-full">Microsoft 365 테넌트</div>
-      <div class="term-desc">한 기업이 Microsoft 클라우드에서 사용하는 독립 환경(예: company.onmicrosoft.com). 기업 = 1 테넌트. 테넌트 간 데이터는 완전 분리됩니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="BYOD 개인기기 업무활용">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">BYOD</div>
-      <div class="term-full">Bring Your Own Device</div>
-      <div class="term-desc">직원이 개인 기기를 업무에 활용하는 정책. Intune MAM을 활용하면 개인 기기에서 업무 앱 데이터만 분리·보호 가능. BYOD 도입 고객에게 Intune을 자연스럽게 연결할 수 있습니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="tech" data-name="eDiscovery 전자증거개시 소송">
-      <span class="term-label lbl-tech">IT 기술 용어</span>
-      <div class="term-name">eDiscovery</div>
-      <div class="term-full">전자 증거 개시</div>
-      <div class="term-desc">소송·감사·규제 조사 시 이메일·문서·채팅 등 전자 데이터를 검색·보존·제출하는 프로세스. E5에 고급 eDiscovery가 포함됩니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="FastTrack 패스트트랙 도입 지원">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">FastTrack</div>
-      <div class="term-full">Microsoft FastTrack</div>
-      <div class="term-desc">150석 이상 M365 고객에게 무료 제공하는 배포·도입 지원 서비스. Microsoft 기술 전문가가 배포 계획, 마이그레이션, 사용자 교육을 지원합니다. 고객의 도입 장벽을 낮추는 강력한 영업 레버리지입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="PoC POC 개념증명 파일럿">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">PoC</div>
-      <div class="term-full">Proof of Concept · 개념 증명</div>
-      <div class="term-desc">제품 도입 전 소규모 시범 운영 단계. 고객사 일부 부서에서 M365·Copilot을 먼저 테스트해 효과를 검증합니다. 무료 평가판(Trial)과 연계하면 구매 결정까지 자연스럽게 이어집니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="Upsell Crosssell 업셀 크로스셀 업그레이드">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">Upsell / Cross-sell</div>
-      <div class="term-full">업셀 / 크로스셀</div>
-      <div class="term-desc"><b>Upsell</b>: 상위 플랜 제안 (E3 → E5). <b>Cross-sell</b>: 보완 제품 추가 제안 (M365 + Copilot, M365 + Azure). M365 영업의 핵심 전략입니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="Renewal 갱신 재계약">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">Renewal (갱신)</div>
-      <div class="term-full">라이선스 갱신</div>
-      <div class="term-desc">EA/구독 계약 만료 시 재계약. 만료 3~6개월 전이 플랜 변경·업그레이드 제안의 최고 타이밍. True-Up과 함께 연간 정기 고객 접촉 포인트로 활용하세요.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="MPN MCPP 파트너 리셀러">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">MPN / MCPP</div>
-      <div class="term-full">Microsoft Partner Network · Microsoft Cloud Partner Program</div>
-      <div class="term-desc">Microsoft 공인 파트너 프로그램. 파트너 등급(Solutions Partner 등)에 따라 영업 인센티브·리베이트·기술 지원이 달라집니다. 고객은 파트너(CSP)를 통해 구매하는 경우가 많습니다.</div>
-    </div>
-
-    <div class="term-card" data-cat="sales" data-name="TCO ROI 비용분석 투자대비">
-      <span class="term-label lbl-sales">영업 프로세스</span>
-      <div class="term-name">TCO / ROI</div>
-      <div class="term-full">Total Cost of Ownership · Return on Investment</div>
-      <div class="term-desc"><b>TCO</b>: 라이선스·구현·운영·교육 등 총 소유 비용. <b>ROI</b>: 투자 대비 수익. M365 E3 Forrester 연구(2025)에서 3년 ROI 175% 제시. "비싸다"는 고객에게 TCO/ROI로 가치를 수치화해 설득하세요.</div>
-    </div>
-
-  </div>
-
-  <div class="source-footer" style="margin-top:20px">
-    영업 용어는 Microsoft 공식 파트너 문서, 라이선싱 가이드, Microsoft Learn을 기반으로 정리되었습니다.
-  </div>
-</div>
-
-<div class="source-footer">
-  📎 가격·기능 출처: <a href="https://www.microsoft.com/ko-kr/microsoft-365/microsoft-365-enterprise" target="_blank">microsoft.com 엔터프라이즈 페이지</a> &nbsp;·&nbsp;
-  <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">플랜 및 가격 페이지</a> (2025년 기준 · 연간 약정 · VAT 별도)
-</div>
+  </section>
 
 </main>
 
 <script>
 function showTab(id) {
   document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('nav button').forEach(b => b.classList.remove('active'));
-  document.getElementById(id).classList.add('active');
-  const tabs = ['overview','pricing','apps','compare','tips','terms'];
-  document.querySelectorAll('nav button')[tabs.indexOf(id)].classList.add('active');
-  window.scrollTo(0,0);
+  document.querySelectorAll('.nav-tab').forEach(b => b.classList.remove('active'));
+  const section = document.getElementById(id);
+  if (section) section.classList.add('active');
+  const tab = document.querySelector('.nav-tab[data-tab="' + id + '"]');
+  if (tab) tab.classList.add('active');
+  window.scrollTo({top: 0, behavior: 'smooth'});
 }
 function toggleTip(el) { el.classList.toggle('open'); }
 function filterTips(cat, btn) {
-  document.querySelectorAll('.tip-cat-filter button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.chip-row[data-filter="tips"] .chip').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.tip-box').forEach(box => {
-    box.style.display = (cat === 'all' || box.dataset.tcat === cat) ? '' : 'none';
+    box.style.display = (cat === 'all' || box.dataset.cat === cat) ? '' : 'none';
   });
 }
 function filterApps(q) {
   const query = q.toLowerCase();
   document.querySelectorAll('.app-item').forEach(item => {
     const match = item.dataset.name.toLowerCase().includes(query) ||
-                  item.querySelector('.ad').textContent.toLowerCase().includes(query);
+                  item.textContent.toLowerCase().includes(query);
     item.style.display = match ? '' : 'none';
   });
 }
@@ -962,12 +1745,13 @@ function filterTerms(q) {
   });
 }
 function filterTermCat(cat, btn) {
-  document.querySelectorAll('.cat-filter button').forEach(b => b.classList.remove('active'));
+  document.querySelectorAll('.chip-row[data-filter="terms"] .chip').forEach(b => b.classList.remove('active'));
   btn.classList.add('active');
   document.querySelectorAll('.term-card').forEach(card => {
     card.style.display = (cat === 'all' || card.dataset.cat === cat) ? '' : 'none';
   });
-  document.getElementById('termSearch').value = '';
+  const search = document.getElementById('termSearch');
+  if (search) search.value = '';
 }
 </script>
 </body>
