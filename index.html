@@ -724,8 +724,10 @@
     padding: 18px 14px;
     text-align: center;
     transition: border-color 0.15s, transform 0.15s;
+    cursor: pointer;
   }
   .app-item:hover { border-color: var(--ink); transform: translateY(-2px); }
+  .app-item:active { transform: translateY(0); }
   .app-item .emoji { font-size: 28px; margin-bottom: 8px; line-height: 1; }
   .app-item .name {
     font-size: 13px; margin-bottom: 4px;
@@ -878,6 +880,119 @@
     line-height: 1.75; word-break: keep-all;
   }
   .term-card .desc b { color: var(--ink); }
+
+  /* === APP DETAIL MODAL === */
+  .app-modal {
+    position: fixed; inset: 0;
+    z-index: 100;
+    display: none;
+    align-items: center; justify-content: center;
+    padding: 24px;
+  }
+  .app-modal.show { display: flex; }
+  .modal-backdrop {
+    position: absolute; inset: 0;
+    background: rgba(34,34,34,0.45);
+    cursor: pointer;
+    animation: fadeIn 0.18s ease-out;
+  }
+  @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+  @keyframes slideUp { from {opacity:0; transform:translateY(12px);} to {opacity:1; transform:translateY(0);} }
+  .modal-card {
+    position: relative;
+    background: white;
+    border-radius: 20px;
+    padding: 36px 36px 28px;
+    max-width: 540px;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.18);
+    animation: slideUp 0.22s ease-out;
+  }
+  .modal-close {
+    position: absolute;
+    top: 18px; right: 18px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--surface-soft);
+    font-size: 14px;
+    color: var(--ink);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    transition: background 0.15s;
+    z-index: 2;
+  }
+  .modal-close:hover { background: var(--hairline); }
+  .modal-icon { font-size: 44px; line-height: 1; margin-bottom: 14px; }
+  .modal-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    font-size: 11px;
+    background: var(--surface-soft);
+    color: var(--muted);
+    border-radius: 9999px;
+    margin-bottom: 12px;
+    letter-spacing: 0.5px;
+  }
+  .modal-title {
+    font-size: 24px;
+    color: var(--ink);
+    margin-bottom: 12px;
+    letter-spacing: -0.3px;
+    line-height: 1.2;
+    word-break: keep-all;
+  }
+  .modal-desc {
+    font-size: 15px;
+    color: var(--body);
+    line-height: 1.65;
+    margin-bottom: 24px;
+    word-break: keep-all;
+  }
+  .modal-desc b { color: var(--ink); }
+  .modal-section {
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--hairline-soft);
+  }
+  .modal-section h3 {
+    font-size: 11px;
+    letter-spacing: 1.8px;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .modal-section ul {
+    padding: 0; list-style: none;
+  }
+  .modal-section ul li {
+    font-size: 14px;
+    color: var(--body);
+    padding: 6px 0;
+    line-height: 1.55;
+    word-break: keep-all;
+    display: flex; gap: 8px; align-items: flex-start;
+  }
+  .modal-section ul li::before {
+    content: '✓';
+    color: var(--success);
+    flex-shrink: 0;
+  }
+  .modal-section p {
+    font-size: 14px;
+    color: var(--body);
+    line-height: 1.7;
+    word-break: keep-all;
+  }
+  .modal-section p b { color: var(--ink); }
+  @media (max-width: 768px) {
+    .app-modal { padding: 16px; }
+    .modal-card { padding: 28px 24px 22px; border-radius: 16px; }
+    .modal-icon { font-size: 36px; }
+    .modal-title { font-size: 20px; }
+    .modal-desc { font-size: 14px; }
+  }
 
   /* === FOOTER === */
   .footer-source {
@@ -1411,55 +1526,55 @@
 
       <div class="section-title"><h2>🤖 AI / Copilot</h2></div>
       <div class="apps-grid">
-        <div class="app-item" data-name="Copilot Chat"><div class="emoji">💬</div><div class="name">Copilot Chat</div><div class="desc">LLM 기반 안전한 AI 채팅</div><div class="cat">AI</div></div>
-        <div class="app-item" data-name="Copilot Studio"><div class="emoji">🛠️</div><div class="name">Copilot Studio</div><div class="desc">맞춤형 에이전트 제작</div><div class="cat">AI</div></div>
-        <div class="app-item" data-name="리서치 도구"><div class="emoji">🔬</div><div class="name">리서치 도구</div><div class="desc">복잡한 리서치 자동화</div><div class="cat">AI</div></div>
-        <div class="app-item" data-name="분석 도구"><div class="emoji">📊</div><div class="name">분석 도구</div><div class="desc">데이터 인사이트 추출</div><div class="cat">AI</div></div>
-        <div class="app-item" data-name="Create"><div class="emoji">🎨</div><div class="name">Create</div><div class="desc">AI 이미지·배너·동영상</div><div class="cat">AI</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Copilot Chat"><div class="emoji">💬</div><div class="name">Copilot Chat</div><div class="desc">LLM 기반 안전한 AI 채팅</div><div class="cat">AI</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Copilot Studio"><div class="emoji">🛠️</div><div class="name">Copilot Studio</div><div class="desc">맞춤형 에이전트 제작</div><div class="cat">AI</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="리서치 도구"><div class="emoji">🔬</div><div class="name">리서치 도구</div><div class="desc">복잡한 리서치 자동화</div><div class="cat">AI</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="분석 도구"><div class="emoji">📊</div><div class="name">분석 도구</div><div class="desc">데이터 인사이트 추출</div><div class="cat">AI</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Create"><div class="emoji">🎨</div><div class="name">Create</div><div class="desc">AI 이미지·배너·동영상</div><div class="cat">AI</div></div>
       </div>
 
       <div class="section-title"><h2>💼 생산성</h2></div>
       <div class="apps-grid">
-        <div class="app-item" data-name="Word"><div class="emoji">📝</div><div class="name">Word</div><div class="desc">AI 문서 작성·편집</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Excel"><div class="emoji">📈</div><div class="name">Excel</div><div class="desc">스프레드시트·분석</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="PowerPoint"><div class="emoji">🎤</div><div class="name">PowerPoint</div><div class="desc">프레젠테이션 제작</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Outlook"><div class="emoji">📧</div><div class="name">Outlook</div><div class="desc">이메일·일정 관리</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="OneNote"><div class="emoji">🗒️</div><div class="name">OneNote</div><div class="desc">디지털 필기·노트</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Loop"><div class="emoji">🔄</div><div class="name">Loop</div><div class="desc">프로젝트 통합 공동작업</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Clipchamp"><div class="emoji">🎬</div><div class="name">Clipchamp</div><div class="desc">동영상 편집</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Power Apps"><div class="emoji">⚡</div><div class="name">Power Apps</div><div class="desc">로우코드 앱 빌드</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Power Automate"><div class="emoji">🤖</div><div class="name">Power Automate</div><div class="desc">업무 자동화</div><div class="cat">생산성</div></div>
-        <div class="app-item" data-name="Power BI Pro"><div class="emoji">📉</div><div class="name">Power BI Pro</div><div class="desc">비즈니스 분석 (E5)</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Word"><div class="emoji">📝</div><div class="name">Word</div><div class="desc">AI 문서 작성·편집</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Excel"><div class="emoji">📈</div><div class="name">Excel</div><div class="desc">스프레드시트·분석</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="PowerPoint"><div class="emoji">🎤</div><div class="name">PowerPoint</div><div class="desc">프레젠테이션 제작</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Outlook"><div class="emoji">📧</div><div class="name">Outlook</div><div class="desc">이메일·일정 관리</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="OneNote"><div class="emoji">🗒️</div><div class="name">OneNote</div><div class="desc">디지털 필기·노트</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Loop"><div class="emoji">🔄</div><div class="name">Loop</div><div class="desc">프로젝트 통합 공동작업</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Clipchamp"><div class="emoji">🎬</div><div class="name">Clipchamp</div><div class="desc">동영상 편집</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Power Apps"><div class="emoji">⚡</div><div class="name">Power Apps</div><div class="desc">로우코드 앱 빌드</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Power Automate"><div class="emoji">🤖</div><div class="name">Power Automate</div><div class="desc">업무 자동화</div><div class="cat">생산성</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Power BI Pro"><div class="emoji">📉</div><div class="name">Power BI Pro</div><div class="desc">비즈니스 분석 (E5)</div><div class="cat">생산성</div></div>
       </div>
 
       <div class="section-title"><h2>🤝 협업</h2></div>
       <div class="apps-grid">
-        <div class="app-item" data-name="Teams"><div class="emoji">👥</div><div class="name">Teams</div><div class="desc">채팅·통화·모임·웨비나</div><div class="cat">협업</div></div>
-        <div class="app-item" data-name="SharePoint"><div class="emoji">🌐</div><div class="name">SharePoint</div><div class="desc">팀 사이트·문서 공유</div><div class="cat">협업</div></div>
-        <div class="app-item" data-name="OneDrive"><div class="emoji">☁️</div><div class="name">OneDrive</div><div class="desc">클라우드 파일 저장</div><div class="cat">협업</div></div>
-        <div class="app-item" data-name="Exchange"><div class="emoji">📬</div><div class="name">Exchange</div><div class="desc">엔터프라이즈 이메일</div><div class="cat">협업</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Teams"><div class="emoji">👥</div><div class="name">Teams</div><div class="desc">채팅·통화·모임·웨비나</div><div class="cat">협업</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="SharePoint"><div class="emoji">🌐</div><div class="name">SharePoint</div><div class="desc">팀 사이트·문서 공유</div><div class="cat">협업</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="OneDrive"><div class="emoji">☁️</div><div class="name">OneDrive</div><div class="desc">클라우드 파일 저장</div><div class="cat">협업</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Exchange"><div class="emoji">📬</div><div class="name">Exchange</div><div class="desc">엔터프라이즈 이메일</div><div class="cat">협업</div></div>
       </div>
 
       <div class="section-title"><h2>🔒 보안</h2></div>
       <div class="apps-grid">
-        <div class="app-item" data-name="Defender"><div class="emoji">🛡️</div><div class="name">Defender</div><div class="desc">엔드포인트 위협 방어</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Entra ID"><div class="emoji">🔑</div><div class="name">Entra ID</div><div class="desc">ID·자격증명 보호</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Intune"><div class="emoji">📱</div><div class="name">Intune</div><div class="desc">기기·앱 데이터 보호</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Purview"><div class="emoji">📂</div><div class="name">Purview</div><div class="desc">데이터 거버넌스</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Defender Identity"><div class="emoji">🕵️</div><div class="name">Defender Identity</div><div class="desc">온프레미스 ID 보호 (E5)</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Defender Cloud Apps"><div class="emoji">🌩️</div><div class="name">Defender Cloud Apps</div><div class="desc">클라우드 앱 보안 (E5)</div><div class="cat">보안</div></div>
-        <div class="app-item" data-name="Windows 11 Enterprise"><div class="emoji">🖥️</div><div class="name">Windows 11 Ent.</div><div class="desc">제로 트러스트 OS</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Defender"><div class="emoji">🛡️</div><div class="name">Defender</div><div class="desc">엔드포인트 위협 방어</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Entra ID"><div class="emoji">🔑</div><div class="name">Entra ID</div><div class="desc">ID·자격증명 보호</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Intune"><div class="emoji">📱</div><div class="name">Intune</div><div class="desc">기기·앱 데이터 보호</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Purview"><div class="emoji">📂</div><div class="name">Purview</div><div class="desc">데이터 거버넌스</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Defender Identity"><div class="emoji">🕵️</div><div class="name">Defender Identity</div><div class="desc">온프레미스 ID 보호 (E5)</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Defender Cloud Apps"><div class="emoji">🌩️</div><div class="name">Defender Cloud Apps</div><div class="desc">클라우드 앱 보안 (E5)</div><div class="cat">보안</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Windows 11 Enterprise"><div class="emoji">🖥️</div><div class="name">Windows 11 Ent.</div><div class="desc">제로 트러스트 OS</div><div class="cat">보안</div></div>
       </div>
 
       <div class="section-title"><h2>💜 직원 경험 (Viva)</h2></div>
       <div class="apps-grid">
-        <div class="app-item" data-name="Viva Glint"><div class="emoji">📋</div><div class="name">Viva Glint</div><div class="desc">직원 설문 조사</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Engage"><div class="emoji">💬</div><div class="name">Viva Engage</div><div class="desc">직원 커뮤니티 소통</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Insights"><div class="emoji">💡</div><div class="name">Viva Insights</div><div class="desc">생산성 데이터 인사이트</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Connections"><div class="emoji">🔗</div><div class="name">Viva Connections</div><div class="desc">뉴스·대화 통합 허브</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Pulse"><div class="emoji">❤️</div><div class="name">Viva Pulse</div><div class="desc">빠른 팀 피드백 수집</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Learning"><div class="emoji">📚</div><div class="name">Viva Learning</div><div class="desc">직원 학습·성장 지원</div><div class="cat">직원경험</div></div>
-        <div class="app-item" data-name="Viva Amplify"><div class="emoji">📢</div><div class="name">Viva Amplify</div><div class="desc">캠페인 관리·소통</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Glint"><div class="emoji">📋</div><div class="name">Viva Glint</div><div class="desc">직원 설문 조사</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Engage"><div class="emoji">💬</div><div class="name">Viva Engage</div><div class="desc">직원 커뮤니티 소통</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Insights"><div class="emoji">💡</div><div class="name">Viva Insights</div><div class="desc">생산성 데이터 인사이트</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Connections"><div class="emoji">🔗</div><div class="name">Viva Connections</div><div class="desc">뉴스·대화 통합 허브</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Pulse"><div class="emoji">❤️</div><div class="name">Viva Pulse</div><div class="desc">빠른 팀 피드백 수집</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Learning"><div class="emoji">📚</div><div class="name">Viva Learning</div><div class="desc">직원 학습·성장 지원</div><div class="cat">직원경험</div></div>
+        <div class="app-item" onclick="openAppModal(this)" data-name="Viva Amplify"><div class="emoji">📢</div><div class="name">Viva Amplify</div><div class="desc">캠페인 관리·소통</div><div class="cat">직원경험</div></div>
       </div>
     </div>
   </section>
@@ -1791,7 +1906,261 @@
 
 </main>
 
+<!-- App detail modal -->
+<div class="app-modal" id="appModal" role="dialog" aria-modal="true">
+  <div class="modal-backdrop" onclick="closeAppModal()"></div>
+  <div class="modal-card">
+    <button class="modal-close" onclick="closeAppModal()" aria-label="닫기">✕</button>
+    <div class="modal-icon" id="modalIcon"></div>
+    <span class="modal-tag" id="modalTag"></span>
+    <h2 class="modal-title" id="modalTitle"></h2>
+    <p class="modal-desc" id="modalDesc"></p>
+    <div class="modal-section" id="modalFeaturesSec">
+      <h3>핵심 기능</h3>
+      <ul id="modalFeatures"></ul>
+    </div>
+    <div class="modal-section" id="modalUseSec">
+      <h3>영업 활용</h3>
+      <p id="modalUse"></p>
+    </div>
+    <div class="modal-section" id="modalAvailSec">
+      <h3>포함 플랜</h3>
+      <p id="modalAvail"></p>
+    </div>
+  </div>
+</div>
+
 <script>
+// === App detail data ===
+const appDetails = {
+  // AI / Copilot
+  "Copilot Chat": { icon:"💬", cat:"AI / Copilot",
+    desc:"적격 M365 구독자에게 <b>무료 포함</b>되는 기본 AI 채팅. 최신 LLM 기반으로 안전하게 대화하며 기업 데이터는 외부 AI 학습에 사용되지 않음.",
+    features:["최신 LLM 기반 안전한 AI 대화","엔터프라이즈 데이터 보호 (외부 학습 차단)","웹 검색 통합 답변","에이전트 호출 (사용량 기반)"],
+    useCase:"M365 구독자에게 \"이미 무료로 쓸 수 있는 AI\" 포지셔닝. 첫 AI 체험 도구로 권장 → 만족 시 M365 Copilot 업셀로 자연 연결.",
+    availability:"M365 E3 · E5 · Teams 제외 · Business 플랜 모두 무료 포함" },
+  "Copilot Studio": { icon:"🛠️", cat:"AI / Copilot",
+    desc:"노코드/로우코드 방식으로 <b>커스텀 AI 에이전트</b>를 직접 제작하는 도구. 사내 업무 자동화·고객 응대·HR 도우미 등 목적별로 만들 수 있음.",
+    features:["GUI 기반 에이전트 빌더","M365 데이터·내부 시스템 연동","Copilot Chat 내부에서 호출","Power Platform 통합"],
+    useCase:"AI 도입 검토 고객사에 \"맞춤 AI를 직접 만들 수 있다\"는 차별점 제시. 디지털 트랜스포메이션 컨설팅 진입점.",
+    availability:"M365 Copilot 라이선스 + Copilot Studio Capacity Pack 필요" },
+  "리서치 도구": { icon:"🔬", cat:"AI / Copilot",
+    desc:"복잡한 리서치를 자동화하는 AI 도구. 여러 소스에서 정보를 수집·정리·요약하여 보고서 작성 시간을 대폭 단축.",
+    features:["다중 소스 검색·종합","자동 출처 인용","구조화된 보고서 생성","Copilot Chat에서 호출"],
+    useCase:"전략기획·시장조사 부서 고객에게 \"리서치 1주 → 1시간\" 효과 제시.",
+    availability:"Microsoft 365 Copilot 포함" },
+  "분석 도구": { icon:"📊", cat:"AI / Copilot",
+    desc:"데이터에서 인사이트를 자동 추출. Excel 파일·SharePoint 데이터를 분석해 패턴·이상치·요약 통계를 산출.",
+    features:["자연어로 데이터 질문","자동 차트·인사이트 생성","Excel·CSV·SharePoint 연동","Copilot Chat 통합"],
+    useCase:"재무·마케팅·운영팀에 데이터 분석가 부재 시 대안 제시. Power BI Pro와 시너지.",
+    availability:"Microsoft 365 Copilot 포함" },
+  "Create": { icon:"🎨", cat:"AI / Copilot",
+    desc:"AI 기반 이미지·배너·짧은 동영상 생성 도구. 마케팅·내부 커뮤니케이션 콘텐츠 제작 시간 단축.",
+    features:["텍스트 → 이미지/배너/영상","Microsoft Designer 통합","브랜드 컨시스턴시 보장","Office 앱 내 직접 호출"],
+    useCase:"마케팅·HR·내부 커뮤니케이션팀에 외주 비용 절감 포인트로 제시.",
+    availability:"M365 구독자 · 일부 기능은 Copilot Pro/Enterprise 필요" },
+
+  // 생산성
+  "Word": { icon:"📝", cat:"생산성",
+    desc:"Microsoft의 대표 워드 프로세서. <b>Copilot 통합</b>으로 초안 자동 작성·요약·재작성·번역 가능. 데스크톱·웹·모바일 전 플랫폼 제공.",
+    features:["자동 초안·재작성·요약 (Copilot)","실시간 공동 편집","마크업·변경 내용 추적","PDF 직접 편집·변환"],
+    useCase:"문서 작업이 많은 모든 직군 — 보고서·계약서·매뉴얼 작성 시간 단축이 핵심 메시지.",
+    availability:"모든 M365 플랜에 기본 포함 · Copilot 기능은 별도 라이선스" },
+  "Excel": { icon:"📈", cat:"생산성",
+    desc:"스프레드시트·데이터 분석 도구. Copilot이 자연어로 수식·차트·피벗을 자동 생성하고 인사이트 도출까지 지원.",
+    features:["자연어 → 수식·차트·피벗 (Copilot)","Power Query 데이터 연결","고급 분석 (예측·트렌드)","공동 편집"],
+    useCase:"재무·운영·세일즈 데이터 분석가에게 \"Excel 박사 안 되어도 분석 가능\" 메시지.",
+    availability:"모든 M365 플랜 · Copilot 별도" },
+  "PowerPoint": { icon:"🎤", cat:"생산성",
+    desc:"프레젠테이션 제작 도구. Copilot이 텍스트로부터 초안 슬라이드 자동 생성. 디자이너 기능으로 레이아웃 자동 정리.",
+    features:["텍스트 → 슬라이드 자동 생성 (Copilot)","Designer 자동 레이아웃","Cameo 카메라 임베드","실시간 공동 편집"],
+    useCase:"제안서·내부 보고용 PPT 작성 시간 단축. 마케팅·세일즈 부서 핵심 도구.",
+    availability:"모든 M365 플랜 · Copilot 별도" },
+  "Outlook": { icon:"📧", cat:"생산성",
+    desc:"엔터프라이즈 이메일·일정 관리. Copilot이 이메일 초안·요약·답장 톤 조정·회의 일정 추천까지 지원.",
+    features:["이메일 초안·요약·재작성 (Copilot)","일정·미팅 자동 추천","받은편지함 우선순위 정리","Teams 미팅 통합"],
+    useCase:"이메일 응대 부담이 큰 영업·CS·임원에게 \"하루 1시간 절감\" 효과 제시.",
+    availability:"모든 M365 플랜 · Copilot 별도" },
+  "OneNote": { icon:"🗒️", cat:"생산성",
+    desc:"디지털 필기·노트 앱. 자유형 캔버스로 텍스트·이미지·손글씨·녹음을 한 곳에. 협업 노트북도 가능.",
+    features:["자유형 캔버스","필기·이미지·녹음 통합","공유 노트북","Copilot 노트 정리·요약"],
+    useCase:"회의록·연구 노트·교육 자료 정리 부서에 권장.",
+    availability:"모든 M365 플랜 포함" },
+  "Loop": { icon:"🔄", cat:"생산성",
+    desc:"여러 앱에 걸쳐 동기화되는 <b>실시간 협업 컴포넌트</b>. Teams 채팅에 표를 띄우면 Outlook·Word에서도 같은 표 편집 가능.",
+    features:["크로스앱 동기화 컴포넌트","실시간 공동 편집","태스크·테이블·노트 위젯","Teams·Outlook·Word 통합"],
+    useCase:"프로젝트 관리·하이브리드 근무 팀에 \"같은 콘텐츠 어디서나\" 메시지.",
+    availability:"모든 M365 플랜 포함" },
+  "Clipchamp": { icon:"🎬", cat:"생산성",
+    desc:"웹 기반 동영상 편집 도구. AI 자동 자막·음성 합성·템플릿으로 마케팅·교육용 영상을 빠르게 제작.",
+    features:["AI 자동 자막·번역","음성 합성 (TTS)","마케팅·교육 템플릿","브랜드 키트"],
+    useCase:"마케팅·HR·교육 부서에 외주 영상 비용 절감 포인트.",
+    availability:"모든 M365 플랜 포함" },
+  "Power Apps": { icon:"⚡", cat:"생산성",
+    desc:"<b>로우코드 비즈니스 앱 빌더</b>. IT 전문가가 아니어도 부서별 업무 앱(승인·재고·점검 등)을 직접 만들 수 있음.",
+    features:["드래그앤드롭 앱 빌더","M365·Dataverse 데이터 연결","모바일·웹 동시 배포","Power Automate 통합"],
+    useCase:"IT 백로그가 긴 고객사에 \"현업이 직접 만든다\"는 해결책 제시. DX 컨설팅 진입점.",
+    availability:"M365용 Power Apps는 E3/E5에 기본 포함 (제한 있음) · 풀 기능은 Power Apps Premium 별도" },
+  "Power Automate": { icon:"🤖", cat:"생산성",
+    desc:"<b>업무 자동화(RPA + 워크플로우) 도구</b>. 반복 업무를 자동화 — 이메일 → 승인 → DB 저장 같은 흐름을 노코드로 구성.",
+    features:["워크플로우 자동화","RPA (데스크톱 자동화)","수백 개 커넥터 (M365·SaaS·DB)","Copilot으로 흐름 자동 생성"],
+    useCase:"승인 프로세스·데이터 입력·이메일 응대 등 반복 업무 많은 부서에 ROI 직관적.",
+    availability:"M365용은 E3/E5에 기본 포함 · 풀 RPA·프리미엄 커넥터는 별도" },
+  "Power BI Pro": { icon:"📉", cat:"생산성",
+    desc:"엔터프라이즈 <b>비즈니스 인텔리전스 플랫폼</b>. 대시보드·리포트·실시간 데이터 시각화. AI 기반 자동 인사이트.",
+    features:["대시보드·리포트 빌더","수백 개 데이터 소스","AI 자동 인사이트","Teams·Excel 임베드"],
+    useCase:"임원 보고·KPI 대시보드 필요 고객에 핵심. E5 고객은 추가 비용 없이 사용 가능 = 강력한 차별점.",
+    availability:"M365 E5에 기본 포함 · E3 고객은 Power BI Pro 별도 구매" },
+
+  // 협업
+  "Teams": { icon:"👥", cat:"협업",
+    desc:"M365의 <b>통합 협업 허브</b>. 채팅·통화·화상회의·웨비나·파일 공유·앱 통합까지 한 곳에. Copilot이 회의 요약·작업 추천 지원.",
+    features:["채팅·통화·화상회의·웨비나","Teams Phone (PSTN 통합)","앱 통합 (1500+ 커넥터)","Copilot 회의 요약·작업 제안"],
+    useCase:"Zoom·Webex 쓰는 고객의 통합 비용 절감 + AI 회의 요약으로 차별화.",
+    availability:"M365 E3/E5 (Teams 포함) · Teams 제외 플랜은 단독 라이선스 별도" },
+  "SharePoint": { icon:"🌐", cat:"협업",
+    desc:"팀 사이트·인트라넷·문서 라이브러리 플랫폼. 부서·프로젝트별 공간에서 문서를 협업·버전 관리.",
+    features:["팀 사이트·인트라넷","문서 라이브러리·버전 관리","검색·메타데이터","Teams·OneDrive 통합"],
+    useCase:"문서 관리·인트라넷 구축 검토 고객에 통합 솔루션 제시.",
+    availability:"모든 M365 플랜 포함" },
+  "OneDrive": { icon:"☁️", cat:"협업",
+    desc:"개인 클라우드 저장소. 1인당 <b>1TB ~ 5TB+</b>. PC·모바일·웹 자동 동기화. 외부 공유·랜섬웨어 복구 지원.",
+    features:["1~5TB+ 클라우드 저장소","PC·모바일·웹 자동 동기화","외부 공유 (만료·암호 설정)","랜섬웨어 감지·복구"],
+    useCase:"USB·이메일 첨부 의존 고객에 \"어디서나 같은 파일\" + 보안 강화 메시지.",
+    availability:"모든 M365 플랜 포함" },
+  "Exchange": { icon:"📬", cat:"협업",
+    desc:"엔터프라이즈 이메일·일정·연락처 서버. <b>Exchange Online</b>으로 클라우드 메일 인프라 제공. 도메인 메일·DLP·아카이브 포함.",
+    features:["도메인 이메일 (회사명@yourdomain.com)","일정·연락처·작업 동기화","DLP·아카이브·법적 보존","Defender for Office 365 통합"],
+    useCase:"자체 메일 서버 운영하는 고객에 운영비 절감 + 보안 강화 제시.",
+    availability:"모든 M365 플랜 포함" },
+
+  // 보안
+  "Defender": { icon:"🛡️", cat:"보안",
+    desc:"엔드포인트 위협 방어 (안티바이러스·EDR). 디바이스 단의 맬웨어·랜섬웨어·피싱 차단. E5는 고급 XDR 통합.",
+    features:["안티바이러스·맬웨어 방지","EDR (탐지·대응)","피싱 보호","E5: XDR·자동 조치"],
+    useCase:"기존 안티바이러스 솔루션 비용 비교 → M365 통합으로 절감 메시지.",
+    availability:"기본 Defender는 모든 M365 플랜 · Defender for Endpoint Plan 2는 E5 포함" },
+  "Entra ID": { icon:"🔑", cat:"보안",
+    desc:"Microsoft의 <b>클라우드 ID·액세스 관리</b> (구 Azure AD). 직원 계정·SSO·MFA·조건부 액세스 담당.",
+    features:["사용자·그룹 관리","SSO (Single Sign-On)","MFA (다중 인증)","조건부 액세스 정책"],
+    useCase:"비밀번호 관리·계정 탈취 사고가 잦은 고객에 Zero Trust 첫 단추.",
+    availability:"모든 M365 플랜 포함 (Entra ID P1) · 고급 기능은 P2 (E5에 포함)" },
+  "Intune": { icon:"📱", cat:"보안",
+    desc:"<b>기기·앱 관리 (MDM/MAM)</b>. 회사 PC·모바일 정책 일괄 적용. BYOD(개인 기기)에서 업무 데이터만 별도 관리도 가능.",
+    features:["기기 정책·구성 일괄 배포","앱 보호 (MAM)","원격 데이터 삭제","BYOD 안전 운영"],
+    useCase:"하이브리드 근무·BYOD 도입 고객에 필수 솔루션으로 제시.",
+    availability:"모든 M365 플랜 포함" },
+  "Purview": { icon:"📂", cat:"보안",
+    desc:"데이터 거버넌스·컴플라이언스 통합 플랫폼. <b>DLP(유출 방지)·감사 로그·eDiscovery·민감 정보 분류</b>를 한 곳에서.",
+    features:["DLP (데이터 유출 방지)","감사 로그·법적 보존","민감 정보 자동 분류","eDiscovery (E5 고급)"],
+    useCase:"금융·의료·공공·개인정보 다량 처리 고객에 컴플라이언스 핵심 키워드.",
+    availability:"기본 기능은 M365 E3 · 고급 기능은 E5" },
+  "Defender Identity": { icon:"🕵️", cat:"보안",
+    desc:"<b>온프레미스 AD 환경에서의 ID 공격 탐지</b>. 내부자 위협·골든 티켓·DCSync 같은 공격을 행동 분석으로 탐지. E5 전용.",
+    features:["AD 공격 탐지 (Pass-the-Hash 등)","내부자 위협 분석","XDR 통합","자동 조치"],
+    useCase:"온프레미스 AD 비중 큰 대기업에 E5 업셀 핵심 차별점.",
+    availability:"M365 E5 전용" },
+  "Defender Cloud Apps": { icon:"🌩️", cat:"보안",
+    desc:"<b>SaaS 앱(Shadow IT) 가시성·통제</b>. 직원이 사용하는 미승인 SaaS를 발견하고 차단·정책 적용. E5 전용.",
+    features:["Shadow IT 발견","SaaS 사용량 모니터링","비정상 활동 탐지","액세스 차단·정책 적용"],
+    useCase:"보안 감사·컴플라이언스 강화 검토 고객에 E5 가치 추가.",
+    availability:"M365 E5 전용" },
+  "Windows 11 Enterprise": { icon:"🖥️", cat:"보안",
+    desc:"기업용 Windows 11. <b>제로 트러스트 아키텍처 OS</b>로 설계됨. Hello for Business·BitLocker·Application Guard·Credential Guard 포함.",
+    features:["Zero Trust OS","Windows Hello for Business","BitLocker 디스크 암호화","Application Guard (브라우저 격리)"],
+    useCase:"OS 라이선스 갱신 시점 고객에 M365 E3/E5에 OS까지 포함됨을 강조.",
+    availability:"모든 M365 E3/E5에 포함" },
+
+  // 직원 경험 (Viva)
+  "Viva Glint": { icon:"📋", cat:"직원 경험",
+    desc:"직원 참여도(employee engagement) 설문 플랫폼. 정기 펄스 서베이로 조직 건강도를 측정·시각화.",
+    features:["정기 펄스 서베이","실시간 대시보드","AI 텍스트 분석","HR·관리자 액션 가이드"],
+    useCase:"HR·조직문화팀 고객에 \"직원 이탈 사전 신호 탐지\" 가치 제시.",
+    availability:"Viva Suite 또는 단독 라이선스" },
+  "Viva Engage": { icon:"💬", cat:"직원 경험",
+    desc:"사내 SNS 같은 커뮤니티 소통 플랫폼 (구 Yammer). 직원 간 자유로운 소통·임원 Q&A·내부 캠페인.",
+    features:["커뮤니티·토픽 그룹","임원 라이브 Q&A","스토리·짧은 영상","Teams 통합"],
+    useCase:"대기업 사내 커뮤니케이션 강화·신입사원 적응 지원 도구로 제시.",
+    availability:"M365 E3/E5에 기본 포함" },
+  "Viva Insights": { icon:"💡", cat:"직원 경험",
+    desc:"개인·팀·조직의 <b>업무 패턴 인사이트</b>. 회의·이메일·집중 시간을 분석해 번아웃 예방·생산성 개선 제안.",
+    features:["개인 일일 인사이트","팀 회의·협업 분석","집중 시간 자동 예약","리더용 조직 인사이트"],
+    useCase:"임원·HR에 \"데이터 기반 일하는 방식 개선\" 메시지.",
+    availability:"개인용은 M365에 포함 · 조직용은 Viva Suite" },
+  "Viva Connections": { icon:"🔗", cat:"직원 경험",
+    desc:"직원용 통합 허브. Teams 안에서 회사 뉴스·내부 자료·HR 정보·KPI 대시보드를 한 곳에서 확인.",
+    features:["Teams 내 통합 인트라넷","대시보드·카드 위젯","뉴스·캠페인 피드","모바일 최적화"],
+    useCase:"인트라넷 노후화·접근성 문제 있는 고객에 모바일 우선 솔루션으로 제시.",
+    availability:"M365 E3/E5에 포함" },
+  "Viva Pulse": { icon:"❤️", cat:"직원 경험",
+    desc:"관리자가 팀에 빠르게 짧은 설문을 보내고 피드백을 수집하는 도구. 회의 후·프로젝트 종료 후 즉시 활용.",
+    features:["관리자 셀프 서비스 설문","익명 응답","AI 인사이트 자동 도출","Teams 통합"],
+    useCase:"중간관리자가 팀 분위기·문제 빠르게 캐치하고 싶은 환경에 적합.",
+    availability:"Viva Suite 또는 단독 라이선스" },
+  "Viva Learning": { icon:"📚", cat:"직원 경험",
+    desc:"<b>직원 학습·역량 개발</b> 통합 플랫폼. LinkedIn Learning·내부 콘텐츠·외부 LMS를 Teams 안에서 학습.",
+    features:["LinkedIn Learning 통합","내부·외부 콘텐츠 모음","Teams 내 학습","관리자 추천·트래킹"],
+    useCase:"AI·디지털 역량 강화 검토 고객에 \"업무 안에서 학습\" 메시지.",
+    availability:"Viva Suite · 기본 기능은 M365 E3/E5" },
+  "Viva Amplify": { icon:"📢", cat:"직원 경험",
+    desc:"내부 커뮤니케이션·캠페인 관리 도구. 임원·HR이 회사 전체에 보내는 메시지를 기획·발송·성과 측정.",
+    features:["멀티 채널 발송 (메일·Teams·SharePoint)","캠페인 일정·승인 워크플로우","성과 분석 (도달·반응)","AI 콘텐츠 추천"],
+    useCase:"임원 메시지·전사 캠페인 운영 빈도 높은 대기업에 권장.",
+    availability:"Viva Suite 라이선스" }
+};
+
+function openAppModal(item) {
+  const name = item.dataset.name;
+  const d = appDetails[name];
+  const modal = document.getElementById('appModal');
+  if (!modal) return;
+
+  // 데이터 없는 앱은 기본 fallback
+  const detail = d || {
+    icon: item.querySelector('.emoji')?.textContent || '📦',
+    cat: item.querySelector('.cat')?.textContent || '',
+    desc: item.querySelector('.desc')?.textContent || '',
+    features: [],
+    useCase: '',
+    availability: ''
+  };
+
+  document.getElementById('modalIcon').textContent = detail.icon;
+  document.getElementById('modalTag').textContent = detail.cat;
+  document.getElementById('modalTitle').textContent = name;
+  document.getElementById('modalDesc').innerHTML = detail.desc;
+
+  const featSec = document.getElementById('modalFeaturesSec');
+  const featUl = document.getElementById('modalFeatures');
+  if (detail.features && detail.features.length) {
+    featUl.innerHTML = detail.features.map(f => `<li>${f}</li>`).join('');
+    featSec.style.display = '';
+  } else { featSec.style.display = 'none'; }
+
+  const useSec = document.getElementById('modalUseSec');
+  if (detail.useCase) {
+    document.getElementById('modalUse').innerHTML = detail.useCase;
+    useSec.style.display = '';
+  } else { useSec.style.display = 'none'; }
+
+  const availSec = document.getElementById('modalAvailSec');
+  if (detail.availability) {
+    document.getElementById('modalAvail').innerHTML = detail.availability;
+    availSec.style.display = '';
+  } else { availSec.style.display = 'none'; }
+
+  modal.classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+function closeAppModal() {
+  const modal = document.getElementById('appModal');
+  if (modal) { modal.classList.remove('show'); document.body.style.overflow = ''; }
+}
+// ESC로 닫기
+document.addEventListener('keydown', function(e) {
+  if (e.key === 'Escape') closeAppModal();
+});
+
 function toggleInfoTooltip(e) {
   if (e) e.stopPropagation();
   const tt = document.getElementById('infoTooltip');
