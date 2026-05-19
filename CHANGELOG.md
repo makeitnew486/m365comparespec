@@ -1,5 +1,22 @@
 # Changelog
 
+## 2026-05-19 — "왜 FBKR" 섹션 추가
+
+홈 페이지 영업 narrative 완성. **프로페셔널 서비스 로드맵 → 둘러보기 사이**에 "왜 FBKR과 함께해야 하는가" 신규 섹션 삽입.
+
+흐름:
+- 왜 구독형 (3 pillars) → 고객 제안 5단계 → 프로페셔널 서비스 로드맵 → **왜 FBKR (NEW)** → 둘러보기
+
+6 카드 (`.reason-grid` 패턴 재사용):
+1. 종합 IT 파트너 (라이선스 + 사무환경 + 보안 한 창구)
+2. 고객 환경 깊이 이해 (기존 DocuShare/ApeosWare와 매끄러운 통합)
+3. 글로벌 그룹 + 현지 인프라 (Fujifilm 그룹 + 한국 전국망)
+4. 프로페셔널 서비스 turn-key (도입~운영 책임)
+5. DX·AI 트랜스포메이션 동반자 (FBKR OCR·문서AI + Copilot 시너지)
+6. 장기 라이프사이클 관리 (갱신·업셀·최적화 매년 동행)
+
+---
+
 ## 2026-05-11 — MAXHUB-inspired redesign + content overhaul
 
 ### 디자인
