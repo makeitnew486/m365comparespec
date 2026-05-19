@@ -215,7 +215,7 @@ toggleInfoTooltip(e)    // nav 우측 ⓘ 사용 안내 토글
 
 ### DD-010 — 홈에 "왜 FBKR" 섹션 추가
 **왜:** 사용자가 "고객이 왜 FBKR이랑 해야 하는지" 영업 narrative 보강 요청.
-**적용:** 홈 페이지의 프로페셔널 서비스 로드맵 다음, 둘러보기 앞에 6 reason 카드 추가. 기존 `.reason-grid` 패턴 재사용 (License 섹션의 9 전환 이유와 같은 컴포넌트). FBKR 자산만 언급 (DocuShare·ApeosWare·OCR·전국 지점·Fujifilm 그룹) — 검증 안 된 자격/실적은 의도적으로 제외.
+**적용:** 홈 페이지의 프로페셔널 서비스 로드맵 다음, 둘러보기 앞에 6 reason 카드 추가. 기존 `.reason-grid` 패턴 재사용 (License 섹션의 9 전환 이유와 같은 컴포넌트). FBKR 자산만 언급 (ApeosWare·OCR·전국 지점·Fujifilm 그룹) — 검증 안 된 자격/실적은 의도적으로 제외. **주의: DocuShare는 현재 미운영(2026-05-19 확인) — 언급 금지.**
 
 ---
 
