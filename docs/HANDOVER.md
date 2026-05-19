@@ -117,7 +117,7 @@ tips     → 영업 자료 (Tips + Glossary 통합)
 3. **왜 구독형 M365인가** (.section-title + 3 pillar 카드: AI·보안·협업)
 4. **고객 제안 5단계** (.journey-flow 가로 5스텝: 진단→페인→가치 제안→PoC→전환)
 5. **FBKR 프로페셔널 서비스 로드맵** (.roadmap-flow 4 stage: 라이선스→도입→운영→전략 파트너) — STAGE 4가 다크 인버전 + 핑크 태그로 destination 강조
-6. **왜 FBKR과 함께해야 하는가** (.reason-grid 6 카드 — 종합 IT 파트너 / 고객 환경 이해 / 글로벌 그룹+현지 / 프로페셔널 서비스 turn-key / DX·AI 동반자 / 장기 라이프사이클)
+6. **왜 FBKR과 함께해야 하는가** (.reason-grid 5 카드 — 종합 IT 파트너 / 고객 환경 이해 / 프로페셔널 서비스 turn-key / DX·AI 동반자 / 장기 라이프사이클)
 7. **둘러보기** (.quick-grid 4링크: Plans / Features / License / Sales Kit)
 8. **footer-source**: 출처 + 마지막 확인일
 
@@ -215,7 +215,7 @@ toggleInfoTooltip(e)    // nav 우측 ⓘ 사용 안내 토글
 
 ### DD-010 — 홈에 "왜 FBKR" 섹션 추가
 **왜:** 사용자가 "고객이 왜 FBKR이랑 해야 하는지" 영업 narrative 보강 요청.
-**적용:** 홈 페이지의 프로페셔널 서비스 로드맵 다음, 둘러보기 앞에 6 reason 카드 추가. 기존 `.reason-grid` 패턴 재사용 (License 섹션의 9 전환 이유와 같은 컴포넌트). FBKR 자산만 언급 (ApeosWare·OCR·전국 지점·Fujifilm 그룹) — 검증 안 된 자격/실적은 의도적으로 제외. **주의: DocuShare는 현재 미운영(2026-05-19 확인) — 언급 금지.**
+**적용:** 홈 페이지의 프로페셔널 서비스 로드맵 다음, 둘러보기 앞에 5 reason 카드 추가 (2026-05-19 기준 — 원래 6 카드였으나 사용자 요청으로 "글로벌 그룹 + 현지 인프라" 카드 삭제). 기존 `.reason-grid` 패턴 재사용 (License 섹션의 9 전환 이유와 같은 컴포넌트). FBKR 자산만 언급 (ApeosWare·OCR·전국 지점) — 검증 안 된 자격/실적은 의도적으로 제외. **주의: DocuShare는 현재 미운영(2026-05-19 확인) — 언급 금지. Fujifilm 그룹/글로벌 R&D 언급도 제외.**
 
 ---
 
