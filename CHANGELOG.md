@@ -1,6 +1,28 @@
 # Changelog
 
-## 2026-06-07 (저녁) — 홈 다이어트 + 매트릭스 압축
+## 2026-06-07 (저녁 — 후속) — 텍스트 줄바꿈 전수 조사 + Plan card 1차 정리
+
+사용자 피드백 "문장 끊기는 게 너무 AI스럽거든 전수 조사" + "스타일 지저분" 1차 대응.
+
+### 줄바꿈 정밀 조정
+- JS 검색 함수 normalize 강화 (`_norm()`: 일반 공백 + non-breaking space 모두 제거 후 비교) — phrase에 &nbsp;를 넣어도 검색 정확도 유지
+- 짧은 영문 제품명 phrase 일괄 nbsp 치환 (검색 정확도는 normalize로 보장):
+  - Microsoft 365 Copilot / E3 / E5 / E7
+  - Copilot Chat · Copilot Studio · Agent 365 · Entra Suite · Entra ID
+  - Frontier Suite · Power Apps · Power Automate · Power BI Pro · Teams Enterprise
+  - Microsoft Defender · Microsoft Purview · Windows 11 Enterprise
+  - FBKR 영업 견적 별도
+- visible URL `microsoft.com/ko-kr` → `<span style="white-space:nowrap">` wrap (href 안 URL은 정상 유지)
+
+### Plan card / Advisory bar 1차 정리 (DD-013, 부분 개선)
+- 노티스 박스 2개 → compact advisory bar 1박스 2행
+- Plan card list 6~7 ✓ → 3~4 그룹화 (`✓ **카테고리** — 컴포넌트 나열` 패턴)
+- Typography hierarchy 강화 (h1 32→36, h2 22→24, h3 20→22, padding/whitespace 확대)
+- 이 단계는 사용자가 "근본 문제 안 풀림" 피드백 → DD-012 후속 작업으로 이어짐
+
+---
+
+## 2026-06-07 (저녁 — 본정리) — 홈 다이어트 + 매트릭스 압축
 
 사용자 피드백: "스타일이 지저분 / 영업 입장 명료성 부족 / 나열 깔끔하게". 큰 정리 작업.
 
