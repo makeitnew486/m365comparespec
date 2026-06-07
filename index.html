@@ -170,26 +170,26 @@
   @media (max-width: 768px) { .section { padding-top: 32px; } }
 
   /* === PAGE HEAD === */
-  .page-head { margin-bottom: 36px; }
+  .page-head { margin-bottom: 44px; }
   .page-eyebrow {
     display: block;
     font-size: 12px; letter-spacing: 1.8px;
     text-transform: uppercase;
     color: var(--rausch);
-    margin-bottom: 12px;
+    margin-bottom: 14px;
   }
   .page-head h1 {
-    font-size: 32px; line-height: 1.15;
-    letter-spacing: -0.6px;
+    font-size: 36px; line-height: 1.15;
+    letter-spacing: -0.8px;
     color: var(--ink);
     word-break: keep-all;
   }
   .page-head .subtitle {
     font-size: 16px;
     color: var(--muted);
-    margin-top: 10px;
+    margin-top: 12px;
     word-break: keep-all;
-    line-height: 1.55;
+    line-height: 1.6;
     max-width: 720px;
   }
   .page-head .subtitle.one-line {
@@ -207,17 +207,18 @@
 
   /* === SECTION TITLES === */
   .section-title {
-    margin-top: 56px;
-    margin-bottom: 20px;
-    display: flex; align-items: baseline; gap: 12px;
+    margin-top: 72px;
+    margin-bottom: 24px;
+    display: flex; align-items: baseline; gap: 14px;
     flex-wrap: wrap;
   }
-  .section-title:first-of-type, .section > *:first-child + .section-title { margin-top: 40px; }
+  .section-title:first-of-type, .section > *:first-child + .section-title { margin-top: 48px; }
   .section .page-head + .section-title { margin-top: 0; }
-  .section .notice + .section-title { margin-top: 12px; }
+  .section .notice + .section-title,
+  .section .advisory + .section-title { margin-top: 16px; }
   .section-title h2 {
-    font-size: 22px; line-height: 1.2;
-    letter-spacing: -0.4px;
+    font-size: 24px; line-height: 1.2;
+    letter-spacing: -0.5px;
     color: var(--ink);
   }
   .section-title .desc {
@@ -268,6 +269,34 @@
     .notice { padding: 18px 20px; gap: 12px; }
     .notice .content .title { font-size: 15px; }
     .notice .content .text { font-size: 13px; }
+  }
+
+  /* === ADVISORY BAR (compact 1-line notices) === */
+  .advisory {
+    border: 1px solid var(--hairline);
+    border-radius: 14px;
+    background: white;
+    margin-bottom: 24px;
+    overflow: hidden;
+  }
+  .advisory-row {
+    display: flex; align-items: center; gap: 14px;
+    padding: 14px 20px;
+    font-size: 14px;
+    color: var(--body);
+    border-top: 1px solid var(--hairline-soft);
+    word-break: keep-all;
+  }
+  .advisory-row:first-child { border-top: 0; }
+  .advisory-row .ic { font-size: 16px; line-height: 1; flex-shrink: 0; }
+  .advisory-row .date { font-size: 12px; letter-spacing: 1px; color: var(--rausch); flex-shrink: 0; font-variant-numeric: tabular-nums; }
+  .advisory-row .msg { flex: 1; min-width: 0; line-height: 1.55; }
+  .advisory-row .msg b { color: var(--ink); }
+  .advisory-row .more { font-size: 12px; color: var(--ink); text-decoration: underline; text-underline-offset: 3px; flex-shrink: 0; }
+  .advisory-row .more:hover { color: var(--rausch); }
+  @media (max-width: 768px) {
+    .advisory-row { flex-wrap: wrap; gap: 8px; padding: 12px 16px; font-size: 13px; }
+    .advisory-row .msg { flex-basis: 100%; }
   }
 
   /* === QUICK LINKS (homepage navigation grid) === */
@@ -483,15 +512,15 @@
 
   /* === PLAN CARDS === */
   .plan-cards {
-    display: grid; gap: 20px;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    margin-bottom: 32px;
+    display: grid; gap: 22px;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    margin-bottom: 40px;
   }
   .plan-card {
     background: white;
     border: 1px solid var(--hairline);
     border-radius: 16px;
-    padding: 28px;
+    padding: 32px 30px 28px;
     position: relative;
     transition: border-color 0.15s;
   }
@@ -518,20 +547,21 @@
   }
   .plan-card .badge.alt { background: var(--ink); }
   .plan-card h3 {
-    font-size: 20px; margin-bottom: 4px;
+    font-size: 22px; margin-bottom: 6px;
     color: var(--ink); word-break: keep-all;
-    letter-spacing: -0.3px;
+    letter-spacing: -0.4px;
+    line-height: 1.2;
   }
   .plan-card .desc {
     font-size: 13px; color: var(--muted);
-    margin-bottom: 18px; word-break: keep-all;
-    line-height: 1.4;
+    margin-bottom: 24px; word-break: keep-all;
+    line-height: 1.5;
   }
   .plan-card .desc b { color: var(--ink); }
-  .plan-card ul { margin-bottom: 18px; }
+  .plan-card ul { margin-bottom: 20px; }
   .plan-card ul li {
-    font-size: 13px;
-    padding: 10px 0 10px 22px;
+    font-size: 14px;
+    padding: 11px 0 11px 22px;
     border-bottom: 1px solid var(--hairline-soft);
     color: var(--body); line-height: 1.55;
     word-break: keep-all;
@@ -1060,21 +1090,18 @@
         <p class="subtitle one-line">M365 플랜·기능·라이선스 전환까지 한 페이지에 — 고객 미팅 1분 전 빠른 확인용</p>
       </header>
 
-      <div class="notice" style="border-left: 4px solid var(--rausch);">
-        <div class="icon">🚀</div>
-        <div class="content">
-          <span class="eyebrow">2026-05-01 · 10년 만의 신규 라이선스 출시</span>
-          <div class="title">Microsoft 365&nbsp;E7 + Agent&nbsp;365 신규 출시</div>
-          <div class="text"><b>E7 (Frontier&nbsp;Suite)</b> = E5 + M365 Copilot + Entra&nbsp;Suite + Agent&nbsp;365 통합. <b>Agent&nbsp;365</b> = 조직 내 모든 AI 에이전트를 IT 팀이 한 콘솔에서 관리·통제하는 "에이전트 관제 센터". 2015년 E5 이후 첫 신규 엔터프라이즈 티어 — <b>"AI는 도구 → AI는 워크포스"</b> 전환점. 자세히는 <a href="#" onclick="showTab('plans'); return false;">플랜 섹션</a> 참고.</div>
+      <div class="advisory">
+        <div class="advisory-row">
+          <span class="ic">🚀</span>
+          <span class="date">2026-05-01</span>
+          <span class="msg"><b>Microsoft 365&nbsp;E7 + Agent&nbsp;365 신규 출시</b> · E5 + Copilot + Entra&nbsp;Suite + Agent&nbsp;365 통합한 최상위 티어 — 10년 만의 신규 엔터프라이즈 SKU</span>
+          <a href="#" onclick="showTab('plans'); return false;" class="more">플랜 보기 →</a>
         </div>
-      </div>
-
-      <div class="notice">
-        <div class="icon">⚠</div>
-        <div class="content">
-          <span class="eyebrow">2026-07-01 · 가격 공지</span>
-          <div class="title">Microsoft 365 가격 인상 예정</div>
-          <div class="text">Microsoft가 <b>AI·보안·관리 기능 확대</b>를 사유로 M365 Business/Enterprise 가격 변경을 발표했습니다. 한국 신가격은 미공개 — 견적·갱신 검토 시 담당자 확인 권장. <a href="https://news.microsoft.com/source/asia/2025/12/05/m365-pricing-updates/?lang=ko" target="_blank">공식 공지 →</a></div>
+        <div class="advisory-row">
+          <span class="ic">⚠</span>
+          <span class="date">2026-07-01</span>
+          <span class="msg"><b>M365 가격 인상 예정</b> · Microsoft 공시가 변경 예고 · 한국 신가격 미공개 — 견적 시 담당자 확인 권장</span>
+          <a href="https://news.microsoft.com/source/asia/2025/12/05/m365-pricing-updates/?lang=ko" target="_blank" class="more">공지 원문 →</a>
         </div>
       </div>
 
@@ -1269,46 +1296,41 @@
         </div>
       </div>
 
-      <div class="section-title"><h2>Teams 포함 플랜</h2></div>
+      <div class="section-title"><h2>Teams 포함 플랜</h2><span class="desc">상위 플랜일수록 보안·AI 기능 누적 통합</span></div>
       <div class="plan-cards">
         <div class="plan-card">
           <h3>Microsoft 365&nbsp;E3</h3>
-          <div class="desc">Teams 포함 · 엔터프라이즈 표준</div>
+          <div class="desc">엔터프라이즈 표준 · 생산성 + 기본 보안</div>
           <ul>
-            <li><span class="chk">✓</span>Word, Excel, PPT, Outlook (전&nbsp;플랫폼)</li>
-            <li><span class="chk">✓</span>Teams · SharePoint · OneDrive (1~5TB+)</li>
-            <li><span class="chk">✓</span>Windows 11&nbsp;Enterprise</li>
-            <li><span class="chk">✓</span>Entra&nbsp;ID · Intune · Defender · Purview</li>
-            <li><span class="chk">✓</span>Power&nbsp;Apps · Power&nbsp;Automate</li>
-            <li><span class="chk">✓</span>Copilot&nbsp;Chat (기본&nbsp;AI&nbsp;채팅)</li>
+            <li><span class="chk">✓</span><b>Office 앱</b> — Word·Excel·PPT·Outlook (데스크톱+웹+모바일)</li>
+            <li><span class="chk">✓</span><b>협업 통합</b> — Teams·SharePoint·OneDrive (1~5TB+)</li>
+            <li><span class="chk">✓</span><b>관리·보안 기본</b> — Entra&nbsp;ID · Intune · Defender · Purview · Windows 11&nbsp;Enterprise</li>
+            <li><span class="chk">✓</span><b>AI 채팅 무료</b> — Copilot&nbsp;Chat 기본 포함</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card featured">
-          <div class="badge">최고 보안</div>
+          <div class="badge">고급 보안</div>
           <h3>Microsoft 365&nbsp;E5</h3>
-          <div class="desc">Teams 포함 · 엔터프라이즈 프리미엄</div>
+          <div class="desc">엔터프라이즈 프리미엄 · E3 + 고급 보안 일체</div>
           <ul>
-            <li><span class="chk">✓</span>E3 전체 기능 포함</li>
-            <li><span class="chk">✓</span>피싱·랜섬웨어 방지 (고급)</li>
-            <li><span class="chk">✓</span>XDR · ITDR · 악성 OAuth 차단</li>
-            <li><span class="chk">✓</span>Defender for Identity · Cloud Apps</li>
-            <li><span class="chk">✓</span>Power&nbsp;BI&nbsp;Pro</li>
-            <li><span class="chk">✓</span>고급 데이터 컴플라이언스·eDiscovery</li>
+            <li><span class="chk">✓</span><b>E3 전체 기능</b> 포함</li>
+            <li><span class="chk">✓</span><b>고급 위협 방어</b> — 피싱·랜섬웨어·XDR·ITDR·악성 OAuth 차단</li>
+            <li><span class="chk">✓</span><b>고급 ID 보호</b> — Defender for Identity / Cloud Apps</li>
+            <li><span class="chk">✓</span><b>분석 + 컴플라이언스</b> — Power&nbsp;BI&nbsp;Pro · 고급 eDiscovery</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card featured">
           <div class="badge">🚀 신규 · 2026-05-01</div>
           <h3>Microsoft 365&nbsp;E7</h3>
-          <div class="desc">Frontier&nbsp;Suite · 사람 + AI 에이전트 통합</div>
+          <div class="desc">Frontier&nbsp;Suite · 사람 + AI 에이전트 통합 최상위 티어</div>
           <ul>
-            <li><span class="chk">✓</span><b>E5 전체 기능</b> 포함 (Teams·보안·컴플라이언스)</li>
-            <li><span class="chk">✓</span><b>Microsoft 365&nbsp;Copilot</b> 포함 (별도 라이선스 불필요)</li>
-            <li><span class="chk">✓</span><b>Entra&nbsp;Suite</b> — 고급 Zero Trust ID + 네트워크 액세스 제어</li>
-            <li><span class="chk">✓</span><b>Agent&nbsp;365</b> — AI 에이전트 관리·거버넌스 제어 플레인</li>
-            <li><span class="chk">✓</span>4개 SKU 통합 → 라이선스 관리·청구 단순화</li>
-            <li><span class="warn">⚠</span>2015년 E5 이후 10년 만의 신규 엔터프라이즈 티어</li>
+            <li><span class="chk">✓</span><b>E5 전체 기능</b> 포함</li>
+            <li><span class="chk">✓</span><b>Microsoft 365&nbsp;Copilot</b> 통합 (별도 라이선스 불필요)</li>
+            <li><span class="chk">✓</span><b>Entra&nbsp;Suite</b> — 고급 Zero Trust ID + 네트워크 액세스</li>
+            <li><span class="chk">✓</span><b>Agent&nbsp;365</b> — AI 에이전트 관제 콘솔</li>
+            <li><span class="warn">★</span>4 SKU 통합 → 라이선스 관리 단순화 · 10년 만의 신규 티어</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
@@ -1346,14 +1368,14 @@
         </div>
       </div>
 
-      <div class="section-title"><h2>Copilot 옵션</h2><span class="desc">AI 풀 기능은 별도 라이선스</span></div>
+      <div class="section-title"><h2>Copilot · Agent 옵션</h2><span class="desc">AI 기능 추가 라이선스</span></div>
       <div class="plan-cards">
         <div class="plan-card">
           <h3>Copilot&nbsp;Chat</h3>
-          <div class="desc">기본 AI 채팅 · <b>무료 포함</b> (적격&nbsp;M365&nbsp;구독자)</div>
+          <div class="desc"><b>무료 포함</b> · 모든 M365 구독자에게 기본 AI 채팅</div>
           <ul>
-            <li><span class="chk">✓</span>최신 LLM 기반 안전한 AI 채팅</li>
-            <li><span class="chk">✓</span>엔터프라이즈 데이터 보호</li>
+            <li><span class="chk">✓</span><b>최신 LLM 기반</b> 안전한 AI 채팅</li>
+            <li><span class="chk">✓</span><b>엔터프라이즈 데이터 보호</b> — 외부 학습 차단</li>
             <li><span class="chk">✓</span>사용량 기반 에이전트 접근</li>
           </ul>
           <div class="src">추가 비용 없음 · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
@@ -1361,48 +1383,44 @@
         <div class="plan-card featured">
           <div class="badge">AI 풀 기능</div>
           <h3>Microsoft 365&nbsp;Copilot</h3>
-          <div class="desc">별도 라이선스 · 적격 M365 플랜 필요</div>
+          <div class="desc">Office 전 앱 AI 통합 · 별도 라이선스</div>
           <ul>
-            <li><span class="chk">✓</span>Teams·Outlook·Word·PPT·Excel 전체 Copilot</li>
-            <li><span class="chk">✓</span>비즈니스 데이터 기반 AI 채팅</li>
-            <li><span class="chk">✓</span>Copilot&nbsp;Studio 커스텀 에이전트</li>
-            <li><span class="chk">✓</span>리서치 도구 · 분석 도구</li>
-            <li><span class="warn">⚠</span>별도 M365 라이선스 필수</li>
+            <li><span class="chk">✓</span><b>전 Office 앱 Copilot</b> — Teams·Outlook·Word·PPT·Excel</li>
+            <li><span class="chk">✓</span><b>비즈니스 데이터 기반</b> AI 채팅 + 리서치·분석</li>
+            <li><span class="chk">✓</span><b>Copilot&nbsp;Studio</b> 커스텀 에이전트 제작</li>
+            <li><span class="warn">⚠</span>별도 M365 라이선스 필수 (E3/E5 이상)</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/enterprise" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card featured">
           <div class="badge">🚀 신규 · 2026-05-01</div>
           <h3>Agent&nbsp;365</h3>
-          <div class="desc">AI 에이전트 관제 센터 · 거버넌스 제어 플레인</div>
+          <div class="desc">AI 에이전트 관제 콘솔 · 거버넌스 제어 플레인</div>
           <ul>
-            <li><span class="chk">✓</span>조직 내 모든 AI 에이전트 통합 가시화</li>
-            <li><span class="chk">✓</span>IT·보안팀의 관찰·관리·통제·보안 콘솔</li>
-            <li><span class="chk">✓</span>Copilot&nbsp;Studio 커스텀 에이전트 거버넌스</li>
+            <li><span class="chk">✓</span><b>전사 AI 에이전트 가시화</b> — 한 콘솔에서 보고·관리</li>
+            <li><span class="chk">✓</span><b>IT·보안팀 거버넌스</b> — Copilot&nbsp;Studio 에이전트 통제</li>
             <li><span class="chk">✓</span>E7에 기본 포함 · add-on 단독 구매도 가능</li>
-            <li><span class="warn">⚠</span>"AI는 도구 → AI는 워크포스" 전환점</li>
+            <li><span class="warn">★</span>"AI는 도구 → AI는 워크포스" 전환점</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card">
           <div class="badge alt">에이전트 종량제</div>
           <h3>Copilot&nbsp;Studio Pack</h3>
-          <div class="desc">커스텀 에이전트 · 종량제(pay-as-you-go)</div>
+          <div class="desc">선불 capacity pack · pay-as-you-go</div>
           <ul>
-            <li><span class="chk">✓</span>Copilot&nbsp;Studio로 자체 에이전트 제작</li>
-            <li><span class="chk">✓</span>Copilot&nbsp;Chat 내 메시지/실행에 크레딧 차감</li>
-            <li><span class="chk">✓</span>선불 capacity pack · Azure 구독 필요</li>
-            <li><span class="warn">⚠</span>사용량 폭증 시 추가 팩 구매 필요</li>
+            <li><span class="chk">✓</span><b>자체 에이전트 제작</b> — Copilot&nbsp;Studio</li>
+            <li><span class="chk">✓</span>Copilot&nbsp;Chat 내 메시지·실행에 크레딧 차감</li>
+            <li><span class="warn">⚠</span>Azure 구독 필요 · 사용량 폭증 시 추가 팩 필요</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/copilot-studio" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card">
           <h3>M365 Copilot Business</h3>
-          <div class="desc">SMB(300명&nbsp;이하) 전용 · 참고</div>
+          <div class="desc">SMB(300명&nbsp;이하) 전용 · 참고용</div>
           <ul>
-            <li><span class="chk">✓</span>적격 M365 Business 플랜 필요</li>
-            <li><span class="chk">✓</span>최대 300 사용자 한도</li>
-            <li><span class="warn">⚠</span>Enterprise(E3/E5) 고객은 위 M365 Copilot 플랜 사용</li>
+            <li><span class="chk">✓</span>적격 M365 Business 플랜 필요 · 최대 300 사용자</li>
+            <li><span class="warn">⚠</span>Enterprise(E3/E5) 고객은 위 M365 Copilot 사용</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업&nbsp;견적 별도</b></div>
         </div>
