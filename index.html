@@ -618,7 +618,7 @@
   }
   .big-table {
     width: 100%; border-collapse: separate;
-    border-spacing: 0; min-width: 900px;
+    border-spacing: 0; min-width: 1080px;
   }
   .big-table thead th {
     position: sticky; top: 80px; z-index: 3;
@@ -696,6 +696,13 @@
     display: inline-block;
     font-size: 10px; padding: 3px 9px;
     background: rgba(255,56,92,0.08); color: var(--rausch);
+    border-radius: 9999px;
+    letter-spacing: 0.3px;
+  }
+  .big-table .e7tag {
+    display: inline-block;
+    font-size: 10px; padding: 3px 9px;
+    background: var(--ink); color: white;
     border-radius: 9999px;
     letter-spacing: 0.3px;
   }
@@ -1044,6 +1051,15 @@
         <p class="subtitle one-line">M365 플랜·기능·라이선스 전환까지 한 페이지에 — 고객 미팅 1분 전 빠른 확인용</p>
       </header>
 
+      <div class="notice" style="border-left: 4px solid var(--rausch);">
+        <div class="icon">🚀</div>
+        <div class="content">
+          <span class="eyebrow">2026-05-01 · 10년 만의 신규 라이선스 출시</span>
+          <div class="title">Microsoft 365 E7 + Agent 365 신규 출시</div>
+          <div class="text"><b>E7 (Frontier Suite)</b> = E5 + M365 Copilot + Entra Suite + Agent 365 통합. <b>Agent 365</b> = 조직 내 모든 AI 에이전트를 IT 팀이 한 콘솔에서 관리·통제하는 "에이전트 관제 센터". 2015년 E5 이후 첫 신규 엔터프라이즈 티어 — <b>"AI는 도구 → AI는 워크포스"</b> 전환점. 자세히는 <a href="#" onclick="showTab('plans'); return false;">플랜 섹션</a> 참고.</div>
+        </div>
+      </div>
+
       <div class="notice">
         <div class="icon">⚠</div>
         <div class="content">
@@ -1228,8 +1244,21 @@
       <header class="page-head">
         <span class="page-eyebrow">PLANS</span>
         <h1>플랜 구성</h1>
-        <p class="subtitle">Teams 포함/제외 4 SKU + Teams 단독 + Copilot 옵션 4종. 가격은 FBKR 영업 견적 별도.</p>
+        <p class="subtitle">E3·E5·E7·Teams 제외 변형·Copilot·Agent 365 옵션. 가격은 FBKR 영업 견적 별도.</p>
       </header>
+
+      <!-- ===== 2026-05-01 신규 출시 안내 ===== -->
+      <div class="notice" style="border-left: 4px solid var(--rausch);">
+        <div class="icon">🚀</div>
+        <div class="content">
+          <span class="eyebrow">2026-05-01 · 10년 만의 신규 라이선스</span>
+          <div class="title">Microsoft 365 E7 + Agent 365 출시</div>
+          <div class="text">
+            <b>M365 E7</b> — "AI 비서(Copilot)와 AI 직원(Agent)이 사람과 함께 일하는 시대"용 최상위 플랜. <b>E5 + M365 Copilot + Entra Suite + Agent 365</b>가 한 SKU로 통합되어 라이선스 관리 단순화. 2015년 E5 이후 10년 만의 신규 엔터프라이즈 티어.<br><br>
+            <b>Agent 365</b> — "회사 안 모든 AI 에이전트를 IT 팀이 한 콘솔에서 관리·통제하는 <b>에이전트 관제 센터</b>." Copilot Studio로 만든 커스텀 에이전트를 안전하게 운영하기 위한 거버넌스 도구. E7에 기본 포함 + 별도 add-on으로도 구매 가능.
+          </div>
+        </div>
+      </div>
 
       <div class="section-title"><h2>Teams 포함 플랜</h2></div>
       <div class="plan-cards">
@@ -1257,6 +1286,20 @@
             <li><span class="chk">✓</span>Defender for Identity · Cloud Apps</li>
             <li><span class="chk">✓</span>Power BI Pro</li>
             <li><span class="chk">✓</span>고급 데이터 컴플라이언스·eDiscovery</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card featured">
+          <div class="badge">🚀 신규 · 2026-05-01</div>
+          <h3>Microsoft 365 E7</h3>
+          <div class="desc">Frontier Suite · 사람 + AI 에이전트 통합</div>
+          <ul>
+            <li><span class="chk">✓</span><b>E5 전체 기능</b> 포함 (Teams·보안·컴플라이언스)</li>
+            <li><span class="chk">✓</span><b>Microsoft 365 Copilot</b> 포함 (별도 라이선스 불필요)</li>
+            <li><span class="chk">✓</span><b>Entra Suite</b> — 고급 Zero Trust ID + 네트워크 액세스 제어</li>
+            <li><span class="chk">✓</span><b>Agent 365</b> — AI 에이전트 관리·거버넌스 제어 플레인</li>
+            <li><span class="chk">✓</span>4개 SKU 통합 → 라이선스 관리·청구 단순화</li>
+            <li><span class="warn">⚠</span>2015년 E5 이후 10년 만의 신규 엔터프라이즈 티어</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
@@ -1318,6 +1361,19 @@
             <li><span class="warn">⚠</span>별도 M365 라이선스 필수</li>
           </ul>
           <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365-copilot/pricing/enterprise" target="_blank">microsoft.com</a></div>
+        </div>
+        <div class="plan-card featured">
+          <div class="badge">🚀 신규 · 2026-05-01</div>
+          <h3>Agent 365</h3>
+          <div class="desc">AI 에이전트 관제 센터 · 거버넌스 제어 플레인</div>
+          <ul>
+            <li><span class="chk">✓</span>조직 내 모든 AI 에이전트 통합 가시화</li>
+            <li><span class="chk">✓</span>IT·보안팀의 관찰·관리·통제·보안 콘솔</li>
+            <li><span class="chk">✓</span>Copilot Studio 커스텀 에이전트 거버넌스</li>
+            <li><span class="chk">✓</span>E7에 기본 포함 · add-on 단독 구매도 가능</li>
+            <li><span class="warn">⚠</span>"AI는 도구 → AI는 워크포스" 전환점</li>
+          </ul>
+          <div class="src">가격: <b>FBKR 영업 견적 별도</b> · 공식: <a href="https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing" target="_blank">microsoft.com</a></div>
         </div>
         <div class="plan-card">
           <div class="badge alt">에이전트 종량제</div>
@@ -1483,7 +1539,7 @@
       <header class="page-head">
         <span class="page-eyebrow">FEATURES</span>
         <h1>기능 & 앱</h1>
-        <p class="subtitle">M365 엔터프라이즈 4개 SKU + Copilot 옵션의 기능 매트릭스 · 포함 앱 목록.</p>
+        <p class="subtitle">M365 엔터프라이즈 5개 SKU (E3·E5·E7·Teams 제외 변형) + Copilot 옵션의 기능 매트릭스.</p>
       </header>
 
       <div class="section-title" style="margin-top: 8px;"><h2>📊 전체 기능 매트릭스</h2></div>
@@ -1495,56 +1551,62 @@
               <th>기능 항목</th>
               <th><span class="plan-name">E3</span><span class="plan-tag">Teams 포함</span></th>
               <th><span class="plan-name">E5</span><span class="plan-tag">Teams 포함</span></th>
+              <th><span class="plan-name">E7 🚀</span><span class="plan-tag">Frontier · 2026-05 신규</span></th>
               <th><span class="plan-name">E3</span><span class="plan-tag">Teams 제외</span></th>
               <th><span class="plan-name">E5</span><span class="plan-tag">Teams 제외</span></th>
               <th><span class="plan-name">+ Copilot</span><span class="plan-tag">별도 라이선스</span></th>
             </tr>
           </thead>
           <tbody>
-            <tr class="cat-row"><td colspan="6">핵심 생산성 앱</td></tr>
-            <tr><td>Word · Excel · PowerPoint · Outlook (데스크톱+웹+모바일)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>OneNote · Loop · Clipchamp · Microsoft 편집기</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Exchange (비즈니스&nbsp;이메일·일정)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Power Apps · Power Automate (M365용)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Power BI Pro</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr class="cat-row"><td colspan="7">핵심 생산성 앱</td></tr>
+            <tr><td>Word · Excel · PowerPoint · Outlook (데스크톱+웹+모바일)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>OneNote · Loop · Clipchamp · Microsoft 편집기</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Exchange (비즈니스&nbsp;이메일·일정)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Power Apps · Power Automate (M365용)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Power BI Pro</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
 
-            <tr class="cat-row"><td colspan="6">협업 도구</td></tr>
-            <tr><td>Microsoft Teams (채팅·통화·모임·웨비나)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td>—</td></tr>
-            <tr><td>SharePoint (팀&nbsp;사이트·문서&nbsp;공유)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>OneDrive (1~5TB+&nbsp;클라우드&nbsp;저장소)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr class="cat-row"><td colspan="7">협업 도구</td></tr>
+            <tr><td>Microsoft Teams (채팅·통화·모임·웨비나)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td>—</td></tr>
+            <tr><td>SharePoint (팀&nbsp;사이트·문서&nbsp;공유)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>OneDrive (1~5TB+&nbsp;클라우드&nbsp;저장소)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
 
-            <tr class="cat-row"><td colspan="6">보안 · ID 관리</td></tr>
-            <tr><td>Microsoft Entra ID (ID·액세스&nbsp;관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Intune (기기·앱&nbsp;데이터&nbsp;관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Windows 11 Enterprise</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Windows Hello for Business</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Microsoft Defender (바이러스·맬웨어 방지)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Shadow IT Discovery</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
-            <tr><td>Microsoft Purview (데이터 거버넌스)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr class="cat-row"><td colspan="7">보안 · ID 관리</td></tr>
+            <tr><td>Microsoft Entra ID (ID·액세스&nbsp;관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Intune (기기·앱&nbsp;데이터&nbsp;관리)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Windows 11 Enterprise</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Windows Hello for Business</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Microsoft Defender (바이러스·맬웨어 방지)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Shadow IT Discovery</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
+            <tr><td>Microsoft Purview (데이터 거버넌스)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td>—</td></tr>
 
-            <tr class="cat-row"><td colspan="6">고급 보안 (E5&nbsp;전용)</td></tr>
-            <tr><td>피싱·랜섬웨어 방지 (고급)</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>XDR 확장 감지 및 대응</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>ITDR 하이브리드 ID 보호</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>Defender for Identity</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>Defender for Cloud Apps</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>악성 OAuth 앱 차단</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
-            <tr><td>고급 데이터 컴플라이언스·eDiscovery</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr class="cat-row"><td colspan="7">고급 보안 (E5&nbsp;이상)</td></tr>
+            <tr><td>피싱·랜섬웨어 방지 (고급)</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>XDR 확장 감지 및 대응</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>ITDR 하이브리드 ID 보호</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>Defender for Identity</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>Defender for Cloud Apps</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>악성 OAuth 앱 차단</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
+            <tr><td>고급 데이터 컴플라이언스·eDiscovery</td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="e5tag">E5 전용</span></td><td>—</td></tr>
 
-            <tr class="cat-row"><td colspan="6">AI / Copilot</td></tr>
-            <tr><td>Copilot Chat (기본&nbsp;AI&nbsp;채팅)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
-            <tr><td>Teams Copilot (회의&nbsp;요약·작업&nbsp;제안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
-            <tr><td>Word / Excel / PowerPoint Copilot</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
-            <tr><td>Outlook Copilot (이메일&nbsp;요약·초안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
-            <tr><td>Copilot Studio (커스텀&nbsp;에이전트&nbsp;제작)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
-            <tr><td>리서치 도구 · 분석 도구</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr class="cat-row"><td colspan="7">🚀 E7 신규 (Entra Suite · Agent 365)</td></tr>
+            <tr><td>Entra Suite — 고급 Zero Trust ID + 네트워크 액세스</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="e7tag">E7 신규</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td>—</td></tr>
+            <tr><td>Agent 365 — AI 에이전트 관리·거버넌스 콘솔</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="e7tag">E7 신규</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">add-on 가능</span></td></tr>
+
+            <tr class="cat-row"><td colspan="7">AI / Copilot</td></tr>
+            <tr><td>Copilot Chat (기본&nbsp;AI&nbsp;채팅)</td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td><td><span class="y">✓</span></td></tr>
+            <tr><td>Teams Copilot (회의&nbsp;요약·작업&nbsp;제안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Word / Excel / PowerPoint Copilot</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Outlook Copilot (이메일&nbsp;요약·초안)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>Copilot Studio (커스텀&nbsp;에이전트&nbsp;제작)</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
+            <tr><td>리서치 도구 · 분석 도구</td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="y">✓</span></td><td><span class="n">✕</span></td><td><span class="n">✕</span></td><td><span class="addtag">Copilot 추가</span></td></tr>
           </tbody>
         </table>
       </div>
       <div class="table-legend">
         <span><span class="y">✓</span> 포함</span>
         <span><span class="n">✕</span> 미포함</span>
-        <span><span class="e5tag">E5 전용</span> E5 플랜만</span>
+        <span><span class="e5tag">E5 전용</span> E5 이상 플랜</span>
+        <span><span class="e7tag">E7 신규</span> 2026-05-01 E7 최초 포함</span>
         <span><span class="addtag">Copilot 추가</span> Copilot 라이선스 별도</span>
         <a class="src-link" href="https://www.microsoft.com/ko-kr/microsoft-365/microsoft-365-enterprise" target="_blank">📎 Microsoft 공식 출처</a>
       </div>

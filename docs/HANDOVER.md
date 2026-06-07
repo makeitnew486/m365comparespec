@@ -140,16 +140,20 @@ tips     → 영업 자료 (Tips + Glossary 통합)
 8. **footer-source**: 출처 + 마지막 확인일
 
 ### 4.2 플랜 (#plans)
-- Teams 포함 (E3·E5)
+- **신규 출시 안내 박스** (notice with rausch 좌측 보더) — E7·Agent 365 영업용 쉬운 설명 (2026-05-01 출시)
+- Teams 포함 (E3·E5·**E7** 🆕)
 - Teams 미포함 (E3·E5·Teams Enterprise 단독)
-- Copilot 옵션 (Copilot Chat 무료·M365 Copilot·Copilot Studio·M365 Copilot Business SMB)
+- Copilot 옵션 (Copilot Chat 무료·M365 Copilot·**Agent 365** 🆕·Copilot Studio Pack·M365 Copilot Business SMB)
 - 고객 유형별 추천 (.cards-grid 4장)
 
 **가격 표기 정책:** 모든 .price/.pn 요소 제거. 각 카드 하단에 `📎 가격: **FBKR 영업 견적 별도** · 공식: microsoft.com` 형태.
 
 ### 4.3 기능 (#compare)
-- **전체 기능 매트릭스** (.big-table): 27행 6열 (기능 항목·E3·E5·E3 no-Teams·E5 no-Teams·+Copilot)
-- 카테고리 행 (.cat-row): ink 배경 + 흰 텍스트, 5개 카테고리 (생산성·협업·보안·E5 전용·AI)
+- **전체 기능 매트릭스** (.big-table): 29행 7열 (기능 항목·E3·E5·**E7 🆕**·E3 no-Teams·E5 no-Teams·+Copilot)
+- 카테고리 행 (.cat-row): ink 배경 + 흰 텍스트, 6개 카테고리 (생산성·협업·보안·E5 이상·🚀 E7 신규·AI)
+- E7 신규 카테고리에 2 행: Entra Suite (Zero Trust + 네트워크), Agent 365 (AI 에이전트 관리·거버넌스)
+- `min-width: 1080px` (E7 컬럼 추가로 900 → 1080 확장)
+- `e7tag` CSS — 다크(ink) 배경 + 흰 텍스트 9999 round chip
 - **sticky thead** `top: 80px` (모바일 64px), z-index 3
 - **sticky 첫 컬럼** `left: 0` (가로 스크롤 시 라벨 고정)
 - `.table-wrap`는 visual 제거 (background/border/radius 없음) — sticky 떠오를 때 자리가 자연스러움
@@ -235,6 +239,13 @@ toggleInfoTooltip(e)    // nav 우측 ⓘ 사용 안내 토글
 **왜:** 사용자가 "고객이 왜 FBKR이랑 해야 하는지" 영업 narrative 보강 요청.
 **적용:** 홈 페이지의 프로페셔널 서비스 로드맵 다음, 둘러보기 앞에 5 reason 카드 추가 (2026-05-19 기준 — 원래 6 카드였으나 사용자 요청으로 "글로벌 그룹 + 현지 인프라" 카드 삭제). 기존 `.reason-grid` 패턴 재사용 (License 섹션의 9 전환 이유와 같은 컴포넌트). FBKR 자산만 언급 (ApeosWare·OCR·전국 지점) — 검증 안 된 자격/실적은 의도적으로 제외. **주의: DocuShare는 현재 미운영(2026-05-19 확인) — 언급 금지. Fujifilm 그룹/글로벌 R&D 언급도 제외.**
 
+### DD-011 — Microsoft 365 E7 + Agent 365 신규 SKU 반영 (2026-05-19)
+**왜:** 사용자가 "공식 페이지 갱신 확인" 요청. WebFetch 결과 **2026-05-01 자로 E7 + Agent 365 신규 출시** 확인 — 직전 검증(2026-05-11)에서 놓친 상태. E5 출시(2015) 이후 10년 만의 신규 엔터프라이즈 티어이므로 즉시 반영.
+**E7 구성:** E5 + M365 Copilot + Entra Suite + Agent 365 4 SKU 통합.
+**Agent 365:** 조직 내 모든 AI 에이전트를 IT/보안 팀이 한 콘솔에서 관리·통제하는 거버넌스 제어 플레인. E7에 기본 포함 + 별도 add-on 가능.
+**적용:** ① 플랜 섹션 Teams 포함에 E7 카드 + Copilot 옵션에 Agent 365 카드 (모두 다크 인버전 + 핑크 "신규" 배지) · ② 플랜 섹션 상단에 영업용 쉬운 설명 안내 박스 (notice with rausch border) · ③ 홈 상단에 출시 공지 배너 추가 (기존 7월 가격 공지 위) · ④ 매트릭스에 E7 컬럼 추가 + Entra Suite/Agent 365 행 + `e7tag` CSS · ⑤ `min-width 900 → 1080px` · ⑥ 영업용 쉬운 설명 ("AI 비서 + AI 직원이 사람과 함께 일하는 시대", "에이전트 관제 센터") 카드·notice 모두에 일관 적용.
+**가격 표기 정책 유지:** 한국 가격(₩133,800 E7 / ₩20,300 Agent 365)이 공식 페이지에 명시되어 있으나 **본 문서에는 표기 X** — 모든 신규 카드에도 "FBKR 영업 견적 별도".
+
 ---
 
 ## 7. 알려진 이슈 / TODO
@@ -279,4 +290,4 @@ git commit -m "..."
 
 ---
 
-**최종 검증일 2026-05-19** · 다음 검증 권장 시점: **2026-07-01 이후** (Microsoft 가격 변경 시행 직후 단가·SKU 변동 확인)
+**최종 검증일 2026-05-19** (오후 — E7·Agent 365 신규 SKU 발견 후 반영 완료) · 다음 검증 권장 시점: **2026-07-01 이후** (Microsoft 가격 변경 시행 직후 단가·SKU 변동 확인)

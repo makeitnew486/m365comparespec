@@ -4,7 +4,7 @@
 
 **🌐 Live:** https://makeitnew486.github.io/m365comparespec/
 **📦 Repo:** https://github.com/makeitnew486/m365comparespec
-**📅 최종 검증:** 2026-05-19
+**📅 최종 Microsoft 공식 페이지 검증:** 2026-05-19 (오후 — E7·Agent 365 신규 SKU 발견)
 
 ---
 
@@ -34,14 +34,16 @@ e6748a1                       Add '왜 FBKR과 함께해야 하는가' section t
  └─ Footer source
 
 플랜 (plans)
- ├─ Teams 포함 (E3·E5)
+ ├─ 🚀 2026-05-01 신규 출시 안내 (notice 박스 — E7·Agent 365 설명)
+ ├─ Teams 포함 (E3·E5·E7 🆕)
  ├─ Teams 미포함 (E3·E5·Teams Enterprise 단독)
- ├─ Copilot 옵션 (Copilot Chat 무료·M365 Copilot·Copilot Studio·SMB Business)
+ ├─ Copilot 옵션 (Copilot Chat·M365 Copilot·Agent 365 🆕·Copilot Studio Pack·SMB Business)
  └─ 고객 유형별 추천 (4 카드)
  ※ 모든 가격은 "FBKR 영업 견적 별도"
 
 기능 (compare)
- ├─ 전체 기능 매트릭스 (27행, sticky thead + 첫 컬럼)
+ ├─ 전체 기능 매트릭스 (29행, 7 컬럼: E3·E5·**E7 🆕**·E3 no-Teams·E5 no-Teams·+Copilot)
+ │   └─ 신규 카테고리: 🚀 E7 신규 (Entra Suite · Agent 365)
  └─ 포함된 앱 (5 카테고리, 33개 카드, 클릭→상세 모달)
 
 라이선스 (license)

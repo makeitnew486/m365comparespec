@@ -1,6 +1,40 @@
 # Changelog
 
-## 2026-05-19 — "왜 FBKR" 섹션 + 콘텐츠 정책 강화
+## 2026-05-19 (오후) — M365 E7 + Agent 365 신규 SKU 반영
+
+직전 검증(2026-05-11) 이후 Microsoft 공식 페이지 확인 결과 **2026-05-01 자로 신규 SKU 2개 출시**됨을 발견. 즉시 반영.
+
+### 신규 SKU 소개 — 영업용 쉬운 설명
+
+**Microsoft 365 E7 (Frontier Suite)**
+- "AI 비서(Copilot)와 AI 직원(Agent)이 사람과 함께 일하는 시대용 최상위 라이선스"
+- 구성: **E5 + M365 Copilot + Entra Suite + Agent 365** 4개 SKU 통합
+- 2015년 E5 출시 이후 **10년 만의 신규 엔터프라이즈 티어**
+- 한국 가격은 공시되어 있으나 본 문서에는 표기하지 않음 (FBKR 영업 견적 별도)
+
+**Agent 365**
+- "회사 안 모든 AI 에이전트를 IT 팀이 한 콘솔에서 보고·관리·통제하는 **에이전트 관제 센터**"
+- Copilot Studio 등으로 만든 커스텀 에이전트를 안전하게 운영하기 위한 거버넌스 도구
+- E7에 기본 포함 + 별도 add-on으로도 구매 가능
+- 컨셉: "AI는 도구 → AI는 워크포스" 전환점
+
+### 반영된 변경
+
+- **플랜 섹션** — Teams 포함 카테고리에 E7 카드 추가 (다크 인버전 + "신규" 배지), Copilot 옵션 카테고리에 Agent 365 카드 추가
+- **플랜 섹션 상단** — 신규 출시 안내 박스 (notice) 추가
+- **홈 공지 배너** — E7 출시 공지 + 기존 7월 가격 공지 2개 병렬
+- **비교 매트릭스** — E7 컬럼 추가 (E5 옆), 신규 카테고리 "🚀 E7 신규 (Entra Suite · Agent 365)" + 2 신규 행, `min-width 900 → 1080px`, `e7tag` CSS 추가
+- **page-head subtitle** — "4 SKU + Copilot 옵션 4종" → "E3·E5·E7·Teams 제외 변형 + Copilot·Agent 365 옵션"
+
+### 출처
+- [Microsoft 365 plans and pricing (한국)](https://www.microsoft.com/ko-kr/microsoft-365/enterprise/microsoft-365-plans-and-pricing)
+- [Directions on Microsoft — E7 Agent-Centered Subscription Plan](https://www.directionsonmicrosoft.com/microsoft-365-e7-a-new-subscription-plan-with-agents-at-the-center/)
+- [Trustmarque — M365 E7 & Agent 365 Launching 1 May](https://trustmarque.com/microsoft-365-e7-agent-365-whats-launching-1-may-and-what-it-means)
+- [Redmond Channel Partner — Agent 365 + E7 launch](https://rcpmag.com/articles/2026/05/06/microsoft-pushes-ai-governance.aspx)
+
+---
+
+## 2026-05-19 (오전) — "왜 FBKR" 섹션 + 콘텐츠 정책 강화
 
 ### "왜 FBKR과 함께해야 하는가" 섹션 신설
 홈 페이지 영업 narrative 완성. **프로페셔널 서비스 로드맵 → 둘러보기 사이**에 신규 섹션 삽입.
