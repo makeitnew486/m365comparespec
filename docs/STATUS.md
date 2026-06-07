@@ -8,15 +8,28 @@
 
 ---
 
-## 현재 commit 헤드
+## 현재 commit 헤드 (2026-06-07 세션 끝)
 
 ```
-aff0a16 (main, origin/main)  Remove '글로벌 그룹 + 현지 인프라' card — 5 cards total
-5e129e8                       Remove DocuShare references — FBKR no longer operates it
-57d351b                       docs: reflect '왜 FBKR' section in CHANGELOG + HANDOVER + DD-010
-e6748a1                       Add '왜 FBKR과 함께해야 하는가' section to homepage
-8b27897                       docs: README overhaul + HANDOVER + CHANGELOG
+2206fc2 (main, origin/main)  docs: comprehensive sync after 홈 다이어트 + 매트릭스 압축
+30687c3                       Homepage diet + matrix compression — clarity first
+8697d2d                       Cleaner sales-first UX: compact advisory bar + grouped plan card lists
+0f1c0ae                       Audit: nbsp + nowrap wrap on product names and URLs
+172e7f1                       Correct verification date to actual today (2026-06-07)
+3ef8817                       Add M365 E7 + Agent 365 (2026-05-01 launch)
+aff0a16                       Remove '글로벌 그룹 + 현지 인프라' card — 5 cards total
+ffba270                       Redesign UI with MAXHUB/Airbnb-inspired design system
+60d23b4                       Initial commit
 ```
+
+## 2026-06-07 세션 핵심 성과
+
+1. **E7 + Agent 365 신규 SKU 반영** — 2026-05-01 Microsoft 출시. 플랜·매트릭스·advisory bar에 자연 통합
+2. **콘텐츠 정책 강화** — DocuShare 미운영 / Fujifilm 그룹 제외 / 가격 표기 X 명시 (HANDOVER §1.5)
+3. **명료성 우선 원칙 신설** (HANDOVER §1.6) — 한 페이지 한 메시지
+4. **홈 다이어트** 17 카드 → 7 카드
+5. **매트릭스 압축** 29행 → 11행 (그룹화 + sub 디테일)
+6. **5단계·로드맵·왜 FBKR 재배치** (영업자료·라이선스 탭으로)
 
 ---
 
