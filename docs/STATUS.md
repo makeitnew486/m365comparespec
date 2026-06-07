@@ -4,7 +4,7 @@
 
 **🌐 Live:** https://makeitnew486.github.io/m365comparespec/
 **📦 Repo:** https://github.com/makeitnew486/m365comparespec
-**📅 최종 Microsoft 공식 페이지 검증:** 2026-05-19 (오후 — E7·Agent 365 신규 SKU 발견)
+**📅 최종 Microsoft 공식 페이지 검증:** 2026-06-07 (오후 — E7·Agent 365 신규 SKU 발견)
 
 ---
 

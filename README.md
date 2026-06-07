@@ -65,10 +65,10 @@ m365_sales_tool/
 ## 콘텐츠 정책 (영업이 절대 위반하면 안 되는 것)
 
 - ₩ 단가 표기 절대 금지 — "FBKR 영업 견적 별도"로 통일
-- **DocuShare 언급 금지** (2026-05-19 기준 FBKR 미운영)
+- **DocuShare 언급 금지** (2026-06-07 기준 FBKR 미운영)
 - "왜 FBKR" 섹션에 검증 안 된 자격·실적·파트너 등급 임의 추가 금지
 - 2026-07-01 Microsoft 가격 변경 공지 advisory 배너 유지
 
 ---
 
-**최근 업데이트 2026-05-19** (오후 — Microsoft E7 + Agent 365 신규 SKU 반영) · 자세한 인수인계는 [`docs/HANDOVER.md`](docs/HANDOVER.md), 변경 연대기는 [`CHANGELOG.md`](CHANGELOG.md) 참고
+**최근 업데이트 2026-06-07** (오후 — Microsoft E7 + Agent 365 신규 SKU 반영) · 자세한 인수인계는 [`docs/HANDOVER.md`](docs/HANDOVER.md), 변경 연대기는 [`CHANGELOG.md`](CHANGELOG.md) 참고
