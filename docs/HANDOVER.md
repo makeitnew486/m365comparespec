@@ -129,15 +129,17 @@ license  → 라이선스 모델
 tips     → 영업 자료 (Tips + Glossary 통합)
 ```
 
-### 4.1 홈 (#overview)
+### 4.1 홈 (#overview) — 다이어트 후 (2026-06-07)
 1. **page-head** (eyebrow + h1 + 한 줄 서브타이틀)
-2. **notice 박스**: 2026-07-01 가격 인상 공지 (Microsoft 공식 공지 링크)
-3. **왜 구독형 M365인가** (.section-title + 3 pillar 카드: AI·보안·협업)
-4. **고객 제안 5단계** (.journey-flow 가로 5스텝: 진단→페인→가치 제안→PoC→전환)
-5. **FBKR 프로페셔널 서비스 로드맵** (.roadmap-flow 4 stage: 라이선스→도입→운영→전략 파트너) — STAGE 4가 다크 인버전 + 핑크 태그로 destination 강조
-6. **왜 FBKR과 함께해야 하는가** (.reason-grid 5 카드 — 종합 IT 파트너 / 고객 환경 이해 / 프로페셔널 서비스 turn-key / DX·AI 동반자 / 장기 라이프사이클)
-7. **둘러보기** (.quick-grid 4링크: Plans / Features / License / Sales Kit)
-8. **footer-source**: 출처 + 마지막 확인일
+2. **advisory bar** (.advisory + 2 .advisory-row: E7 출시 공지 + 7월 가격 공지)
+3. **왜 구독형 M365인가** (.section-title + 3 pillar 카드: AI·보안·협업) — 홈에서 유일하게 남은 narrative 카드
+4. **둘러보기** (.quick-grid 4링크: Plans / Features / License / Sales Kit)
+5. **footer-source**: 출처 + 마지막 확인일
+
+> **이전 홈 → 다른 탭으로 이동:**
+> - 고객 제안 5단계 → 영업 자료 탭 sub-section
+> - FBKR 프로페셔널 서비스 로드맵 → 라이선스 탭 끝
+> - 왜 FBKR과 함께해야 하는가 (5 카드) → 라이선스 탭 끝
 
 ### 4.2 플랜 (#plans)
 - **신규 출시 안내 박스** (notice with rausch 좌측 보더) — E7·Agent 365 영업용 쉬운 설명 (2026-05-01 출시)
@@ -148,12 +150,14 @@ tips     → 영업 자료 (Tips + Glossary 통합)
 
 **가격 표기 정책:** 모든 .price/.pn 요소 제거. 각 카드 하단에 `📎 가격: **FBKR 영업 견적 별도** · 공식: microsoft.com` 형태.
 
-### 4.3 기능 (#compare)
-- **전체 기능 매트릭스** (.big-table): 29행 7열 (기능 항목·E3·E5·**E7 🆕**·E3 no-Teams·E5 no-Teams·+Copilot)
-- 카테고리 행 (.cat-row): ink 배경 + 흰 텍스트, 6개 카테고리 (생산성·협업·보안·E5 이상·🚀 E7 신규·AI)
-- E7 신규 카테고리에 2 행: Entra Suite (Zero Trust + 네트워크), Agent 365 (AI 에이전트 관리·거버넌스)
-- `min-width: 1080px` (E7 컬럼 추가로 900 → 1080 확장)
+### 4.3 기능 (#compare) — 압축 후 (2026-06-07)
+- **압축 매트릭스** (.big-table): **11행 7열** (이전 29행에서 그룹화 단순화)
+- 첫 컬럼 width 260 → **320px** (그룹 라벨 + sub 디테일 동시 표시)
+- 행 구조: `<b>그룹명</b><div class="sub">하위 컴포넌트 목록</div>`
+- 카테고리 행 (.cat-row): 4개 (생산성·협업 / 보안·ID / 🚀 E7 신규 / AI Copilot)
+- E7 컬럼 (E5 옆 3번째)
 - `e7tag` CSS — 다크(ink) 배경 + 흰 텍스트 9999 round chip
+- `.sub` CSS — 11.5px muted, 그룹 하위 디테일 표시
 - **sticky thead** `top: 80px` (모바일 64px), z-index 3
 - **sticky 첫 컬럼** `left: 0` (가로 스크롤 시 라벨 고정)
 - `.table-wrap`는 visual 제거 (background/border/radius 없음) — sticky 떠오를 때 자리가 자연스러움
@@ -166,14 +170,17 @@ tips     → 영업 자료 (Tips + Glossary 통합)
 - **영구형 vs 구독형 비교표**: 12행 3열 (구분·영구형·구독형)
 - **구독형 전환 9가지 이유**: .reason-grid (numbered 01–09)
 - **자주 듣는 반박 처리**: 6 .card (비용/오프라인/보안/지원종료/호환성/교육)
+- **FBKR 프로페셔널 서비스 로드맵** (이동) — .roadmap-flow 4 stage (라이선스→도입→운영→전략 파트너), STAGE 4 다크 인버전
+- **왜 FBKR과 함께해야 하는가** (이동) — .reason-grid 5 카드
 - 출처 footer
 
 ### 4.5 영업 자료 (#tips)
-- **영업 팁 (sub-section)**:
+- **🎯 고객 제안 5단계 (sub-section, 신규 위치)**: .journey-flow 가로 5스텝 (진단→페인→가치 제안→PoC→전환)
+- **💡 영업 팁 (sub-section)**:
   - 카테고리 칩 필터 (전체·계약·반론·제품·프로세스)
   - 15개 .tip-box (data-cat별로 좌측 보더 색 차별: ink·rausch·success·orange)
   - 클릭 → `.tip-a` 펼침 (toggleTip)
-- **영업 용어집 (sub-section)**:
+- **📖 영업 용어집 (sub-section)**:
   - 검색 바 + 5개 카테고리 칩 필터
   - 27개 .term-card (5 분류: 계약·구독·제품·기술·영업)
 

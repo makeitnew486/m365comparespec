@@ -1,5 +1,36 @@
 # Changelog
 
+## 2026-06-07 (저녁) — 홈 다이어트 + 매트릭스 압축
+
+사용자 피드백: "스타일이 지저분 / 영업 입장 명료성 부족 / 나열 깔끔하게". 큰 정리 작업.
+
+### 홈 페이지 다이어트 (17 카드 → 7 카드)
+**제거:** 고객 제안 5단계 (.journey-flow) · FBKR 프로페셔널 서비스 로드맵 (.roadmap-flow) · 왜 FBKR과 함께해야 하는가 (.reason-grid 5장)
+**남김:** Hero · Advisory bar · 왜 구독형 (3 pillar) · 둘러보기 (4 quick links) · footer
+
+### 섹션 이동 (탭 분배)
+- **5단계** → 영업 자료 탭 sub-section ("🎯 고객 제안 5단계", 영업 팁 위)
+- **로드맵 + 왜 FBKR** → 라이선스 탭 끝 (반박 처리 다음, 출처 footer 앞) — 영구→구독 narrative 자연 연결
+
+### 매트릭스 압축 (29행 → 11행)
+관련 기능을 카테고리 단위 1행으로 그룹화 + 하위 디테일은 작은 글씨로 보존:
+- 생산성·협업 4행 (핵심 Office / Teams / SharePoint·OneDrive / Power BI Pro)
+- 보안·ID 관리 2행 (기본 보안 통합 / 고급 보안 E5+)
+- E7 신규 2행 (Entra Suite / Agent 365)
+- AI / Copilot 2행 (Copilot Chat 무료 / Microsoft 365 Copilot 유료)
+- 첫 컬럼 width 260 → 320px (그룹 라벨 + sub 디테일 수용)
+- `.sub` CSS 신규 (11.5px muted)
+
+### Typography
+- page-head h1 32 → 36px
+- section-title 22 → 24px
+- plan-card h3 20 → 22px · padding 28 → 32px · ul 13 → 14px
+
+### Advisory bar
+- 큰 notice 박스 2개 → compact 1박스 2행 (icon · date · msg · link)
+
+---
+
 ## 2026-06-07 (오후) — M365 E7 + Agent 365 신규 SKU 반영
 
 직전 검증(2026-05-11) 이후 Microsoft 공식 페이지 확인 결과 **2026-05-01 자로 신규 SKU 2개 출시**됨을 발견. 즉시 반영.

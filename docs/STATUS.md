@@ -20,30 +20,29 @@ e6748a1                       Add '왜 FBKR과 함께해야 하는가' section t
 
 ---
 
-## 5탭 구조 (현재 라이브)
+## 5탭 구조 (현재 라이브 · 2026-06-07 다이어트 후)
 
 ```
-홈 (overview)
+홈 (overview)  ← 압축됨, 17 카드 → 7 카드
  ├─ Hero page-head
- ├─ ⚠ 2026-07-01 가격 인상 공지
+ ├─ Advisory bar (E7 출시 + 7월 가격 공지 — 2행 1박스)
  ├─ 왜 구독형 M365인가 (3 pillars: AI · 보안 · 협업)
- ├─ 고객 제안 5단계 (진단→페인→가치제안→PoC→전환)
- ├─ FBKR 프로페셔널 서비스 로드맵 (STAGE 1~4, GOAL은 다크 인버전)
- ├─ 왜 FBKR과 함께해야 하는가 (5 카드)
  ├─ 둘러보기 (4 quick links)
  └─ Footer source
 
 플랜 (plans)
- ├─ 🚀 2026-05-01 신규 출시 안내 (notice 박스 — E7·Agent 365 설명)
- ├─ Teams 포함 (E3·E5·E7 🆕)
+ ├─ Teams 포함 (E3·E5·E7 🆕 신규 — list 압축됨 4줄/카드)
  ├─ Teams 미포함 (E3·E5·Teams Enterprise 단독)
- ├─ Copilot 옵션 (Copilot Chat·M365 Copilot·Agent 365 🆕·Copilot Studio Pack·SMB Business)
+ ├─ Copilot · Agent 옵션 (Chat·Copilot·Agent 365 🆕·Studio Pack·SMB)
  └─ 고객 유형별 추천 (4 카드)
  ※ 모든 가격은 "FBKR 영업 견적 별도"
 
 기능 (compare)
- ├─ 전체 기능 매트릭스 (29행, 7 컬럼: E3·E5·**E7 🆕**·E3 no-Teams·E5 no-Teams·+Copilot)
- │   └─ 신규 카테고리: 🚀 E7 신규 (Entra Suite · Agent 365)
+ ├─ 압축 기능 매트릭스 (11행, 7 컬럼 — 그룹화)
+ │   ├─ 생산성·협업 4행
+ │   ├─ 보안·ID 관리 2행 (기본 / 고급 E5+)
+ │   ├─ 🚀 E7 신규 2행 (Entra Suite · Agent 365)
+ │   └─ AI / Copilot 2행 (무료 / 유료)
  └─ 포함된 앱 (5 카테고리, 33개 카드, 클릭→상세 모달)
 
 라이선스 (license)
